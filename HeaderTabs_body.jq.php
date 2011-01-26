@@ -93,20 +93,23 @@ class HeaderTabs {
 		$wgOut->addModules( 'jquery.ui.tabs' );
 		$js_text =<<<END
 <script type="text/javascript">
-$(function() {
+jQuery(function($) {
+		
 	$("#headertabs").tabs();
 	var curHash = window.location.hash;
 	if ( curHash.indexOf( "#tab=" ) == 0 ) {
 		var tabName = curHash.replace( "#tab=", "" );
 		$("#headertabs").tabs('select', tabName);
 	}
+
+	$(".tabLink").click( function() {
+		var href = $(this).attr('href');
+		var tabName = href.replace( "#tab=", "" );
+		$("#headertabs").tabs('select', tabName);
+		return false; //$htUseHistory;
+	} );
+
 });
-$(".tabLink").click( function() {
-	var href = $(this).attr('href');
-	var tabName = href.replace( "#tab=", "" );
-	$("#headertabs").tabs('select', tabName);
-	return false; //$htUseHistory;
-} );
 </script>
 
 END;
@@ -118,15 +121,16 @@ END;
 	function renderSwitchTabLink( &$parser, $tabName, $linkText, $anotherTarget = '' ) {
 		$tabTitle = Title::newFromText( $tabName );
 		$tabKey = $tabTitle->getDBkey();
+		$sanitizedLinkText = $parser->recursiveTagParse( $linkText );
 
 		if ( $anotherTarget != '' ) {
 			$targetTitle = Title::newFromText( $anotherTarget );
 			$targetURL = $targetTitle->getFullURL();
 
-			$output = '<a href="' . $targetURL . '#tab=' . $tabKey . '">' . $linkText . '</a>';
+			$output = '<a href="' . $targetURL . '#tab=' . $tabKey . '">' . $sanitizedLinkText . '</a>';
 		} else {
 			$output =<<<END
-<a href="#tab=$tabKey" class="tabLink">$linkText</a>
+<a href="#tab=$tabKey" class="tabLink">$sanitizedLinkText</a>
 END;
 	}
 

@@ -129,14 +129,15 @@ function addHTMLHeader( &$wgOut ) {
 function renderSwitchTabLink( &$parser, $tabName, $linkText, $anotherTarget = '' ) {
 	$tabTitle = Title::newFromText( $tabName );
 	$tabKey = $tabTitle->getDBkey();
+	$sanitizedLinkText = $parser->recursiveTagParse( $linkText );
 
 	if ( $anotherTarget != '' ) {
 		$targetTitle = Title::newFromText( $anotherTarget );
 		$targetURL = $targetTitle->getFullURL();
 
-		$output = '<a href="' . $targetURL . '#tab=' . $tabKey . '">' . $linkText . '</a>';
+		$output = '<a href="' . $targetURL . '#tab=' . $tabKey . '">' . $sanitizedLinkText . '</a>';
 	} else {
-		$output = '<a href="#tab=' . $tabKey . '" onclick="return HeaderTabs.switchTab(\'' . $tabKey . '\')">' . $linkText . '</a>';
+		$output = '<a href="#tab=' . $tabKey . '" onclick="return HeaderTabs.switchTab(\'' . $tabKey . '\')">' . $sanitizedLinkText . '</a>';
 	}
 
 	return $parser->insertStripItem( $output, $parser->mStripState );
