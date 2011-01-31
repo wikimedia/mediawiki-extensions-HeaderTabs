@@ -116,4 +116,4 @@ HeaderTabs.switchTab = function(tabid) {
 	}
 
 	return false;
-}
+};
