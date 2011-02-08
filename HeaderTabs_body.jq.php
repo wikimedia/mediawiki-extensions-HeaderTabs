@@ -10,13 +10,13 @@
  */
 
 class HeaderTabs {
-	function tag( $input, $args, $parser ) {
+	public static function tag( $input, $args, $parser ) {
 		// this tag besides just enabling tabs, also designates end of tabs
 		// TOC doesn't make sense where tabs are used
 		return '<div id="nomoretabs"></div>';
 	}
 
-	function replaceFirstLevelHeaders( &$parser, &$text ) {
+	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
 		global $htUseHistory, $wgVersion;
 
 		$aboveandbelow = explode( '<div id="nomoretabs"></div>', $text, 2 );
@@ -87,7 +87,7 @@ class HeaderTabs {
 		return true;
 	}
 
-	function addHTMLHeader( &$wgOut ) {
+	public static function addHTMLHeader( &$wgOut ) {
 		global $htUseHistory; // unused, for now
 
 		$wgOut->addModules( 'jquery.ui.tabs' );
@@ -118,7 +118,7 @@ END;
 		return true;
 	}
 
-	function renderSwitchTabLink( &$parser, $tabName, $linkText, $anotherTarget = '' ) {
+	public static function renderSwitchTabLink( &$parser, $tabName, $linkText, $anotherTarget = '' ) {
 		$tabTitle = Title::newFromText( $tabName );
 		$tabKey = $tabTitle->getDBkey();
 		$sanitizedLinkText = $parser->recursiveTagParse( $linkText );
