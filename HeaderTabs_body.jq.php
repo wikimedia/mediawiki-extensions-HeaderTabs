@@ -32,36 +32,24 @@ class HeaderTabs {
 
 			$tabs = array();
 
-			$v = explode( '.', $wgVersion );
-			if ( $v[0] > 1 || ( $v[0] == 1 && $v[1] >= 16 ) ) {
-				$parts = preg_split( '/(<h1.*?class="mw-headline".*?<\/h1>)/', $aboveandbelow[0], - 1, PREG_SPLIT_DELIM_CAPTURE );
-				array_shift( $parts ); // don't need above part anyway
+			$parts = preg_split( '/(<h1.*?class="mw-headline".*?<\/h1>)/', $aboveandbelow[0], - 1, PREG_SPLIT_DELIM_CAPTURE );
+			array_shift( $parts ); // don't need above part anyway
 
-				for ( $i = 0; $i < ( count( $parts ) / 2 ); $i++ )
-				{
-					preg_match( '/id="(.*?)"/', $parts[$i * 2], $matches );
-					$tabid = $matches[1];
+			for ( $i = 0; $i < ( count( $parts ) / 2 ); $i++ ) {
+				preg_match( '/id="(.*?)"/', $parts[$i * 2], $matches );
+				// Forward slashes in tab IDs cause a problem
+				// in the jQuery UI tabs() function - just
+				// replace them with an underline.
+				$tabid = str_replace('/', '_', $matches[1]);
 
-					preg_match( '/<span.*?class="mw-headline".*?>\s*(.*?)\s*<\/h1>/', $parts[$i * 2], $matches );
-					$tabtitle = $matches[1];
+				preg_match( '/<span.*?class="mw-headline".*?>\s*(.*?)\s*<\/h1>/', $parts[$i * 2], $matches );
+				$tabtitle = $matches[1];
 
-					array_push( $tabs, array(
-						'tabid' => $tabid,
-						'title' => $tabtitle,
-						'tabcontent' => $parts[$i * 2 + 1]
-					) );
-				}
-			} else {
-				$parts = preg_split( '/<a name="(.*?)"><\/a><h1>.*?<span class="mw-headline">\s*(.*?)\s*<\/span><\/h1>/', $aboveandbelow[0], - 1, PREG_SPLIT_DELIM_CAPTURE );
-				array_shift( $parts ); // don't need above part anyway
-
-				for ( $i = 0; $i < ( count( $parts ) / 3 ); $i++ ) {
-					array_push( $tabs, array(
-						'tabid' => $parts[$i * 3],
-						'title' => $parts[$i * 3 + 1],
-						'tabcontent' => $parts[$i * 3 + 2]
-					) );
-				}
+				array_push( $tabs, array(
+					'tabid' => $tabid,
+					'title' => $tabtitle,
+					'tabcontent' => $parts[$i * 2 + 1]
+				) );
 			}
 
 			$tabhtml  = '<div id="headertabs">';
