@@ -25,7 +25,7 @@ $wgExtensionFunctions[] = 'htSetupExtension';
 $wgExtensionCredits['parserhook'][] = array(
 	'name' => 'Header Tabs',
 	'description' => 'Adds tabs to the page separating top-level sections.',
-	'version' => '0.8.1',
+	'version' => '0.8.2',
 	'author' => array( '[http://www.sergeychernyshev.com Sergey Chernyshev]', 'Yaron Koren' ),
 	'url' => 'http://www.mediawiki.org/wiki/Extension:Header_Tabs'
 );
