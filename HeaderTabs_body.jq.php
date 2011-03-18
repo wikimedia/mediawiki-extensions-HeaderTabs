@@ -17,8 +17,6 @@ class HeaderTabs {
 	}
 
 	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
-		global $htUseHistory, $wgVersion;
-
 		$aboveandbelow = explode( '<div id="nomoretabs"></div>', $text, 2 );
 
 		if ( count( $aboveandbelow ) <= 1 ) {
