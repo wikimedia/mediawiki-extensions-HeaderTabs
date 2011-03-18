@@ -21,7 +21,6 @@ if ( method_exists( 'OutputPage', 'addModules' ) ) {
 	$wgAutoloadClasses['HeaderTabs'] = "$dir/HeaderTabs_body.yui.php";
 }
 
-$wgExtensionFunctions[] = 'htSetupExtension';
 $wgExtensionCredits['parserhook'][] = array(
 	'name' => 'Header Tabs',
 	'description' => 'Adds tabs to the page separating top-level sections.',
@@ -32,24 +31,16 @@ $wgExtensionCredits['parserhook'][] = array(
 
 $htUseHistory = true;
 
-function htSetupExtension() {
-	global $wgHooks;
-	global $wgParser;
-
-	$wgHooks['BeforePageDisplay'][] = 'HeaderTabs::addHTMLHeader';
-	$wgHooks['ParserAfterTidy'][] = 'HeaderTabs::replaceFirstLevelHeaders';
-	$wgParser->setHook( 'headertabs', array( 'HeaderTabs', 'tag' ) );
-
-	return true;
-}
+$wgHooks['ParserFirstCallInit'][] = 'headerTabsParserFunctions';
+$wgHooks['LanguageGetMagic'][] = 'headerTabsLanguageGetMagic';
+$wgHooks['BeforePageDisplay'][] = 'HeaderTabs::addHTMLHeader';
+$wgHooks['ParserAfterTidy'][] = 'HeaderTabs::replaceFirstLevelHeaders';
 
 # Parser function to insert a link changing a tab:
-$wgExtensionFunctions[] = 'headerTabsParserFunctions';
-$wgHooks['LanguageGetMagic'][] = 'headerTabsLanguageGetMagic';
-
-function headerTabsParserFunctions() {
-    global $wgParser;
-    $wgParser->setFunctionHook( 'switchtablink', array( 'HeaderTabs', 'renderSwitchTabLink' ) );
+function headerTabsParserFunctions( $parser ) {
+	$parser->setHook( 'headertabs', array( 'HeaderTabs', 'tag' ) );
+	$parser->setFunctionHook( 'switchtablink', array( 'HeaderTabs', 'renderSwitchTabLink' ) );
+	return true;
 }
 
 function headerTabsLanguageGetMagic( &$magicWords, $langCode = "en" ) {
