@@ -43,8 +43,7 @@ class HeaderTabs {
 
 			$tabs = array();
 
-			$v = explode( '.', $wgVersion );
-			if ( $v[0] > 1 || ( $v[0] == 1 && $v[1] >= 16 ) ) {
+			if ( version_compare( $wgVersion, '1.16', '>=' ) ) {
 				$parts = preg_split( '/(<h1.*?class="mw-headline".*?<\/h1>)/', $aboveandbelow[0], - 1, PREG_SPLIT_DELIM_CAPTURE );
 				array_shift( $parts ); // don't need above part anyway
 
@@ -90,7 +89,6 @@ class HeaderTabs {
 			$tabhtml .= '</ul>';
 
 			$tabhtml .= '<div class="yui-content">';
-			$firsttab = true;
 			foreach ( $tabs as $tab ) {
 				$tabhtml .= '<div id="' . $tab['tabid'] . '"><p>' . $tab['tabcontent'] . '</p></div>';
 			}
