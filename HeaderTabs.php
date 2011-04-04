@@ -15,7 +15,8 @@ $dir = dirname( __FILE__ );
 // the file loaded depends on whether the ResourceLoader exists, which in
 // turn depends on what version of MediaWiki this is - for MW 1.17+,
 // HeaderTabs_body.jq.php will get loaded
-if ( method_exists( 'OutputPage', 'addModules' ) ) {
+$realFunction = array( 'OutputPage', 'addModules' );
+if ( is_callable( $realFunction ) ) {
 	$wgAutoloadClasses['HeaderTabs'] = "$dir/HeaderTabs_body.jq.php";
 } else {
 	$wgAutoloadClasses['HeaderTabs'] = "$dir/HeaderTabs_body.yui.php";
