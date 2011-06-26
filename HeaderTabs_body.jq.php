@@ -36,9 +36,12 @@ class HeaderTabs {
 			for ( $i = 0; $i < ( count( $parts ) / 2 ); $i++ ) {
 				preg_match( '/id="(.*?)"/', $parts[$i * 2], $matches );
 				// Forward slashes in tab IDs cause a problem
-				// in the jQuery UI tabs() function - just
-				// replace them with an underline.
-				$tabid = str_replace('/', '_', $matches[1]);
+				// in the jQuery UI tabs() function -
+				// replace them with two underlines (two, to
+				// avoid conflicting with another tab that
+				// might have the same name, but with a space
+				// instead of a slash).
+				$tabid = str_replace('.2F', '__', $matches[1]);
 
 				preg_match( '/<span.*?class="mw-headline".*?>\s*(.*?)\s*<\/h1>/', $parts[$i * 2], $matches );
 				$tabtitle = $matches[1];
@@ -91,6 +94,8 @@ jQuery(function($) {
 	$(".tabLink").click( function() {
 		var href = $(this).attr('href');
 		var tabName = href.replace( "#tab=", "" );
+		// Fix for tabs with slashes in their name.
+		tabName = tabName.replace( "/", "__" );
 		$("#headertabs").tabs('select', tabName);
 		return false; //$htUseHistory;
 	} );
