@@ -106,7 +106,7 @@ jQuery(function($) {
 		tabName = tabName.replace( /%/g, "_" );
 		tabName = tabName.replace( /\./g, "_" );
 		$("#headertabs").tabs('select', tabName);
-		return false; //$htUseHistory;
+		return false;
 	} );
 
 });
