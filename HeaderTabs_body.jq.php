@@ -35,13 +35,14 @@ class HeaderTabs {
 
 			for ( $i = 0; $i < ( count( $parts ) / 2 ); $i++ ) {
 				preg_match( '/id="(.*?)"/', $parts[$i * 2], $matches );
-				// Forward slashes in tab IDs cause a problem
-				// in the jQuery UI tabs() function -
-				// replace them with two underlines (two, to
-				// avoid conflicting with another tab that
-				// might have the same name, but with a space
-				// instead of a slash).
-				$tabid = str_replace('.2F', '__', $matches[1]);
+				// Almost all special characters in tab IDs
+				// cause a problem in the jQuery UI tabs()
+				// function - in the URLs they already come out
+				// as URL-encoded, which is good, but for some
+				// reason it's as ".2F", etc., instead of
+				// "%2F" - so replace all "." with "_", and
+				// everything should be fine.
+				$tabid = str_replace('.', '_', $matches[1]);
 
 				preg_match( '/<span.*?class="mw-headline".*?>\s*(.*?)\s*<\/h1>/', $parts[$i * 2], $matches );
 				$tabtitle = $matches[1];
@@ -77,8 +78,6 @@ class HeaderTabs {
 	}
 
 	public static function addHTMLHeader( &$wgOut ) {
-		global $htUseHistory; // unused, for now
-
 		$wgOut->addModules( 'jquery.ui.tabs' );
 		$js_text =<<<END
 <script type="text/javascript">
@@ -94,8 +93,18 @@ jQuery(function($) {
 	$(".tabLink").click( function() {
 		var href = $(this).attr('href');
 		var tabName = href.replace( "#tab=", "" );
-		// Fix for tabs with slashes in their name.
-		tabName = tabName.replace( "/", "__" );
+		// Almost all non-alphanumeric characters in tab names cause
+		// problems for jQuery UI tabs, including '.'. The solution:
+		// URL-encode all the characters, then replace the resulting
+		// '%', plus '.', with '_'.
+		tabName = escape( tabName );
+		// For some reason, the JS escape() function doesn't handle
+		// '+', '/' or '@' - take care of these manually.
+		tabName = tabName.replace( /\+/g, "%2B" );
+		tabName = tabName.replace( /\//g, "%2F" );
+		tabName = tabName.replace( /@/g, "%40" );
+		tabName = tabName.replace( /%/g, "_" );
+		tabName = tabName.replace( /\./g, "_" );
 		$("#headertabs").tabs('select', tabName);
 		return false; //$htUseHistory;
 	} );
