@@ -11,8 +11,11 @@
 
 class HeaderTabs {
 	public static function tag( $input, $args, $parser ) {
-		// this tag besides just enabling tabs, also designates end of tabs
-		// TOC doesn't make sense where tabs are used
+		// This tag, besides just enabling tabs, also designates
+		// the end of tabs.
+		// @TODO - a table of contents doesn't make sense in a page
+		// where tabs are used - disable them here automatically,
+		// instead of requiring "__NOTOC__"?
 		return '<div id="nomoretabs"></div>';
 	}
 
@@ -113,7 +116,7 @@ jQuery(function($) {
 </script>
 
 END;
-			$wgOut->addScript($js_text);
+		$wgOut->addScript($js_text);
 
 		return true;
 	}
@@ -132,7 +135,7 @@ END;
 			$output =<<<END
 <a href="#tab=$tabKey" class="tabLink">$sanitizedLinkText</a>
 END;
-	}
+		}
 
 		return $parser->insertStripItem( $output, $parser->mStripState );
 	}
