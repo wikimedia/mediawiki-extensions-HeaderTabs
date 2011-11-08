@@ -23,12 +23,15 @@ if ( is_callable( $rlMethod ) ) {
 }
 
 $wgExtensionCredits['parserhook'][] = array(
+	'path' => __FILE__,
 	'name' => 'Header Tabs',
-	'description' => 'Adds tabs to the page separating top-level sections.',
+	'descriptionmsg' => 'headertabs-desc',
 	'version' => '0.8.3',
 	'author' => array( '[http://www.sergeychernyshev.com Sergey Chernyshev]', 'Yaron Koren' ),
 	'url' => 'http://www.mediawiki.org/wiki/Extension:Header_Tabs'
 );
+// Translations
+$wgExtensionMessagesFiles['HeaderTabs'] = $dir . '/HeaderTabs.i18n.php';
 
 $htUseHistory = true;
 
