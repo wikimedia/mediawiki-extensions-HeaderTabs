@@ -34,3 +34,10 @@ $messages['mk'] = array(
 	'headertabs-desc' => 'Во страницата додава јазичиња што ги одделуваат првостепените поднаслови',
 );
 
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'headertabs-desc' => 'Voegt tabbladen toe aan een pagina om de hoogste niveaus te scheiden',
+);
+
