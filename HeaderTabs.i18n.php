@@ -27,6 +27,13 @@ $messages['ia'] = array(
 	'headertabs-desc' => 'Adde schedas al pagina, separante le sectiones de prime nivello',
 );
 
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'headertabs-desc' => "Setzt Tabs op d'Säiten derbäi als alternativ Manéier fir den Ieweschten Niveau vun den Abschnitter vun engem Artikel duerzestellen",
+);
+
 /** Macedonian (Македонски)
  * @author Bjankuloski06
  */
