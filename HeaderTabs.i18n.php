@@ -20,6 +20,13 @@ $messages['de'] = array(
 	'headertabs-desc' => 'Ermöglicht Reiter zur alternativen Darstellung der obersten Gliederungsebene von Inhaltsverzeichnissen',
 );
 
+/** French (Français)
+ * @author Gomoko
+ */
+$messages['fr'] = array(
+	'headertabs-desc' => 'Ajoute des onglets à la page qui sépare les sections de niveau supérieur',
+);
+
 /** Interlingua (Interlingua)
  * @author McDutchie
  */
