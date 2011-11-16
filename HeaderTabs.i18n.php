@@ -27,6 +27,13 @@ $messages['fr'] = array(
 	'headertabs-desc' => 'Ajoute des onglets à la page qui sépare les sections de niveau supérieur',
 );
 
+/** Galician (Galego)
+ * @author Toliño
+ */
+$messages['gl'] = array(
+	'headertabs-desc' => 'Engade lapelas á páxina para separar as seccións de nivel superior',
+);
+
 /** Interlingua (Interlingua)
  * @author McDutchie
  */
