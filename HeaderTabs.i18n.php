@@ -13,6 +13,13 @@ $messages['en'] = array(
 	'headertabs-desc' => 'Adds tabs to the page separating top-level sections',
 );
 
+/** Asturian (Asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'headertabs-desc' => 'Amiesta llingüetes a la páxina pa separar les seiciones de primer nivel',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
@@ -32,6 +39,13 @@ $messages['fr'] = array(
  */
 $messages['gl'] = array(
 	'headertabs-desc' => 'Engade lapelas á páxina para separar as seccións de nivel superior',
+);
+
+/** Upper Sorbian (Hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'headertabs-desc' => 'Zmóžnja rajtarki k stronje, kotrež najwyše wotrězki wotdźěleja',
 );
 
 /** Interlingua (Interlingua)
