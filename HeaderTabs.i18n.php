@@ -69,6 +69,13 @@ $messages['mk'] = array(
 	'headertabs-desc' => 'Во страницата додава јазичиња што ги одделуваат првостепените поднаслови',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'headertabs-desc' => 'Menambahkan tab pada laman untuk memisahkan bahagian-bahagian aras teratas',
+);
+
 /** Dutch (Nederlands)
  * @author Siebrand
  */
