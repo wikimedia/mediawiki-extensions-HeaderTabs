@@ -25,7 +25,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'descriptionmsg' => 'headertabs-desc',
 	'version' => '0.9',
 	'author' => array( '[http://www.sergeychernyshev.com Sergey Chernyshev]', 'Yaron Koren', '[http://olivierbeaton.com Olivier Finlay Beaton]' ),
-	'url' => 'http://www.mediawiki.org/wiki/Extension:Header_Tabs'
+	'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs'
 );
 
 // Translations
@@ -64,7 +64,7 @@ if ( isset( $wgConfigureAdditionalExtensions ) && is_array( $wgConfigureAddition
 					'htAutomaticNamespaces' => 'simple',
 				),
 			'schema' => false,
-			'url' => 'http://www.mediawiki.org/wiki/Extension:Header_Tabs',
+			'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs',
 		);
 
 } // $wgConfigureAdditionalExtensions exists
