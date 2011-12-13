@@ -42,6 +42,8 @@ $messages['fr'] = array(
  */
 $messages['gl'] = array(
 	'headertabs-desc' => 'Engade lapelas á páxina para separar as seccións de nivel superior',
+	'headertabs-edittab' => 'editar',
+	'headertabs-edittab-hint' => 'Editar a lapela',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
@@ -85,3 +87,4 @@ $messages['ms'] = array(
 $messages['nl'] = array(
 	'headertabs-desc' => 'Voegt tabbladen toe aan een pagina om de hoogste niveaus te scheiden',
 );
+
