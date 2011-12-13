@@ -1,0 +1,27 @@
+/**
+ * Default jquery styling with normal sized font and blue links.
+ *
+ * @file
+ * @ingroup Extensions
+ *
+ * @author 70.189.238.136
+ * @author Olivier Beaton
+ */
+
+/* JQuery UI tabs clearing styles by Olivier Finlay Beaton and 70.189.238.136 */
+#headertabs.jquery-large.ui-widget {
+	font-family: inherit;
+	font-size: 1em; /* ie doesn't like inherit here */
+}
+
+/* section by 70.189.238.136, for things I forgot, thanks! */
+#headertabs.jquery-large .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: inherit; font-size: 1em; } /* ie doesn't like inherit here */
+#headertabs.jquery-large .ui-widget-content a { color:#0645AD; }
+#headertabs.jquery-large .ui-widget-content a:visited { color:#0b0080; }
+#headertabs.jquery-large .ui-widget-content a.new { color:#CC2200; }
+#headertabs.jquery-large .ui-widget-content a.new:visited { color:#A55858; }
+#headertabs.jquery-large .ui-widget-content a.extiw { color:#3366BB; }
+#headertabs.jquery-large .ui-widget-content a.redirect { color:#308050; } /*Color redirect links*/
+#headertabs.jquery-large .ui-widget-content a.redirect:visited { color:#3070A0; } /*Color redirect links*/
+
+/* end JQuery UI tabs style clearer */
