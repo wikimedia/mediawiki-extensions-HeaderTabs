@@ -106,16 +106,20 @@ class HeaderTabs {
 		return true;
 	}
 
-	public static function addHTMLHeader( &$wgOut ) {
+	/**
+	 * @param $out OutputPage
+	 * @return bool
+	 */
+	public static function addHTMLHeader( &$out ) {
 		global $htScriptPath, $htUseHistory;
 
 		if ( $htUseHistory ) {
-			$wgOut->addScript( '<script type="text/javascript" src="'.$htScriptPath.'/skins-yui/combined-history-min.js"></script>' );
+			$out->addScript( '<script type="text/javascript" src="'.$htScriptPath.'/skins-yui/combined-history-min.js"></script>' );
 		} else {
-			$wgOut->addScript( '<script type="text/javascript" src="'.$htScriptPath.'/skins-yui/combined-min.js"></script>' );
+			$out->addScript( '<script type="text/javascript" src="'.$htScriptPath.'/skins-yui/combined-min.js"></script>' );
 		}
 
-		$wgOut->addLink( array(
+		$out->addLink( array(
 			'rel'	 => 'stylesheet',
 			'type'	=> 'text/css',
 			'media' => 'screen, projection',

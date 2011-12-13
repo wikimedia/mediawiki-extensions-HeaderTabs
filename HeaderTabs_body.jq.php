@@ -256,20 +256,24 @@ class HeaderTabs {
 		return true;
 	}
 
-	public static function addHTMLHeader( &$wgOut ) {
+	/**
+	 * @param $out OutputPage
+	 * @return bool
+	 */
+	public static function addHTMLHeader( &$out ) {
 		global $htScriptPath,$htStyle;
 
 		wfDebugLog('headertabs', __METHOD__.': loading javascript');
 
 		//! @todo we might be able to only load our js and styles if we are rendering tabs, speeding up pages that don't use it? but what about cached pages? (2011-12-12, ofb)
 
-		$wgOut->addModules( 'ext.headertabs' );
+		$out->addModules( 'ext.headertabs' );
 
 		// add the stylesheet for our perticular style
 		if (!empty($htStyle) && $htStyle !== 'jquery') {
 			$styleFile = $htScriptPath.'/skins-jquery/ext.headertabs.'.$htStyle.'.css';
 			wfDebugLog('headertabs', __METHOD__.': including style file: '.$styleFile);
-			$wgOut->addExtensionStyle( $styleFile );
+			$out->addExtensionStyle( $styleFile );
 		}
 
 		return true;
