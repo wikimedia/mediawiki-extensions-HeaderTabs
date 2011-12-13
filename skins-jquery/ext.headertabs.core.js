@@ -1,5 +1,5 @@
 /**
- * Version of the HeaderTabs class that uses jQuery and the ResourceLoader.
+ * Javascript code for Header Tabs extension for MW 1.17+
  *
  * @file
  * @ingroup Extensions
@@ -26,16 +26,16 @@ var $tabs = $("#headertabs").tabs();
 /* follow a # anchor to a tab OR a heading */
 var curHash = window.location.hash;
 if ( curHash.indexOf( "#tab=" ) == 0 ) {
-		// remove the fragment identifier, we're using it for the name of the tab in the jquery ui tabs
-		var tabName = curHash.replace( "#tab=", "" );
-		$tabs.tabs('select', tabName);
+	// remove the fragment identifier, we're using it for the name of the tab in the jquery ui tabs
+	var tabName = curHash.replace( "#tab=", "" );
+	$tabs.tabs('select', tabName);
 } else if (curHash != '') {
 	/* select tab in a fragment
 	thanks kboudloche, Alphos
 	http://forum.jquery.com/topic/jquery-ui-tabs-create-an-anchor-to-content-within-tab#14737000001187015
  */
- var tabName = $(curHash).closest('.ui-tabs-panel').attr('id');
- $tabs.tabs('select', tabNameEscape(tabName));
+	var tabName = $(curHash).closest('.ui-tabs-panel').attr('id');
+	$tabs.tabs('select', tabNameEscape(tabName));
 }
 
 function tabEditTabLink(hash) {

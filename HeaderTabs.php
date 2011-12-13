@@ -17,7 +17,7 @@ $dir = dirname( __FILE__ );
 // the file loaded depends on whether the ResourceLoader exists, which in
 // turn depends on what version of MediaWiki this is - for MW 1.17+,
 // HeaderTabs_body.jq.php will get loaded
-$jquery = is_callable( array( 'OutputPage', 'addModules' ) );
+$useJQuery = is_callable( array( 'OutputPage', 'addModules' ) );
 
 $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
@@ -42,9 +42,9 @@ $htStyle = 'jquery-large';
 $htEditTabLink = true;
 
 // Extension:Configure
-if (isset($wgConfigureAdditionalExtensions) && is_array($wgConfigureAdditionalExtensions)) {
+if ( isset( $wgConfigureAdditionalExtensions ) && is_array( $wgConfigureAdditionalExtensions ) ) {
 
-	/* (not our var to doc)
+	/**
 	 * attempt to tell Extension:Configure how to web configure our extension
 	 * @since 2011-09-22, 0.2
 	 */
@@ -69,13 +69,13 @@ if (isset($wgConfigureAdditionalExtensions) && is_array($wgConfigureAdditionalEx
 
 } // $wgConfigureAdditionalExtensions exists
 
-// used by both jquery and yui
+// used by both jQuery and YUI
 $wgHooks['ParserFirstCallInit'][] = 'headerTabsParserFunctions';
 $wgHooks['LanguageGetMagic'][] = 'headerTabsLanguageGetMagic';
 $wgHooks['BeforePageDisplay'][] = 'HeaderTabs::addHTMLHeader';
 $wgHooks['ParserAfterTidy'][] = 'HeaderTabs::replaceFirstLevelHeaders';
 
-if ($jquery) {
+if ( $useJQuery ) {
 	$wgAutoloadClasses['HeaderTabs'] = "$dir/HeaderTabs_body.jq.php";
 
 	$wgHooks['ResourceLoaderGetConfigVars'][] = 'HeaderTabs::addConfigVarsToJS';
@@ -96,9 +96,7 @@ if ($jquery) {
 		'remoteExtPath' => 'HeaderTabs',
 	);
 
-	//end if jquery
-} else {
-	// we are pre 1.17 and doing yui
+} else { // if ! $useJQuery
 	$wgAutoloadClasses['HeaderTabs'] = "$dir/HeaderTabs_body.yui.php";
 }
 
@@ -116,8 +114,8 @@ function headerTabsLanguageGetMagic( &$magicWords, $langCode = "en" ) {
 	//! @todo implement in tab parsing code instead... but problems like nowiki (2011-12-12, ofb)
 	// if you make them here, it will be article wide instead of tab-wide
 	// __NOTABTOC__, __TABTOC__, __NOEDITTAB__
-	// and oneday with a special page: __NEWTABLINK__, __NONEWTABLINK__
-	// and oneday if we can force toc generation: __FORCETABTOC__
+	// and one day with a special page: __NEWTABLINK__, __NONEWTABLINK__
+	// and one day if we can force toc generation: __FORCETABTOC__
 
 	//! @todo make this load a custom name from i18n file (2011-12-12, ofb)
 	// ensure to keep this name too for backwards compat

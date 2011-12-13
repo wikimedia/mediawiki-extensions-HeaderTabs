@@ -22,7 +22,7 @@ class HeaderTabs {
 
 		//! @todo handle __NOTABTOC__, __TABTOC__, __FORCETABTOC__ here (2011-12-12, ofb)
 
-		// where do we stop rendering tabs, and what is bellow it?
+		// Where do we stop rendering tabs, and what is below it?
 		// if we don't have a stop point, then bail out
 		$aboveandbelow = explode( '<div id="nomoretabs"></div>', $text, 2 );
 		if ( count( $aboveandbelow ) <= 1 ) {
@@ -38,7 +38,7 @@ class HeaderTabs {
 		wfDebugLog('headertabs', __METHOD__.': detected header handling, checking');
 
 		if ($below !== '') {
-			wfDebugLog('headertabs', __METHOD__.': we have text bellow our tabs');
+			wfDebugLog('headertabs', __METHOD__.': we have text below our tabs');
 		}
 
 		// grab the TOC
@@ -182,20 +182,20 @@ class HeaderTabs {
 					$tabtocraw = $tabtocmatches[0];
 					$tabtoc = $tabtocraw;
 					$itempattern = '/<li class="toclevel-[0-9]+"><a href="(#[^"]+)"><span class="tocnumber">[0-9]+<\/span> <span class="toctext">([^<]+)<\/span><\/a><\/li>/';
-					if (preg_match_all ( $itempattern , $tabtocraw, $tabtocitemmatches, PREG_SET_ORDER) > 0 ) {
-						foreach($tabtocitemmatches as $match) {
+					if ( preg_match_all( $itempattern , $tabtocraw, $tabtocitemmatches, PREG_SET_ORDER ) > 0 ) {
+						foreach( $tabtocitemmatches as $match ) {
 							$newitem = $match[0];
 
-							// 1.17 behaviour
-							if (strpos($match[2], '[edit] ') === 0) {
-								$newitem = str_replace($match[1], '#'.substr($match[1], 12), $newitem);
-								$newitem = str_replace($match[2], substr($match[2], 7), $newitem);
-							// 1.18+ behaviour
-							} elseif (trim(substr($match[2], 0, strlen($match[2])/2)) == trim(substr($match[2], strlen($match[2])/2))) {
-								$newitem = str_replace($match[1], '#'.trim(substr($match[1], (strlen($match[1])/2)+1)), $newitem);
-								$newitem = str_replace($match[2], trim(substr($match[2], strlen($match[2])/2)), $newitem);
+							// 1.17 behavior
+							if ( strpos( $match[2], '[edit] ' ) === 0 ) {
+								$newitem = str_replace( $match[1], '#' . substr( $match[1], 12 ), $newitem );
+								$newitem = str_replace( $match[2], substr( $match[2], 7 ), $newitem );
+							// 1.18+ behavior
+							} elseif ( trim( substr( $match[2], 0, strlen( $match[2] ) / 2 ) ) == trim( substr( $match[2], strlen( $match[2] ) / 2 ) ) ) {
+								$newitem = str_replace( $match[1], '#' . trim( substr( $match[1], ( strlen( $match[1] ) / 2 ) + 1 ) ), $newitem );
+								$newitem = str_replace( $match[2], trim( substr( $match[2], strlen( $match[2] ) / 2 ) ), $newitem );
 							}
-							$tabtoc = str_replace($match[0], $newitem, $tabtoc);
+							$tabtoc = str_replace( $match[0], $newitem, $tabtoc );
 						}
 						$content = $tabtoc.$content;
 					}
@@ -210,13 +210,11 @@ class HeaderTabs {
 			) );
 		}
 
-		//! @todo see if we can't add the SMW factorbox stuff back in (2011-12-12, ofb)
+		//! @todo see if we can't add the SMW factbox stuff back in (2011-12-12, ofb)
 
 		wfDebugLog('headertabs', __METHOD__.': generated '.count($tabs).' tabs');
 
-		$tabhtml	= '';
-
-		$tabhtml .= '<div id="headertabs"';
+		$tabhtml = '<div id="headertabs"';
 		if (!empty($htStyle) && $htStyle !== 'jquery') {
 			$tabhtml .= ' class="'.$htStyle.'"';
 		}
@@ -248,8 +246,6 @@ class HeaderTabs {
 	public static function addConfigVarsToJS( &$vars ) {
 		global $htUseHistory, $htEditTabLink;
 
-		wfDebugLog('headertabs', __METHOD__.': adding globals');
-
 		$vars['htUseHistory'] = $htUseHistory;
 		$vars['htEditTabLink'] = $htEditTabLink;
 
@@ -263,16 +259,13 @@ class HeaderTabs {
 	public static function addHTMLHeader( &$out ) {
 		global $htScriptPath,$htStyle;
 
-		wfDebugLog('headertabs', __METHOD__.': loading javascript');
-
 		//! @todo we might be able to only load our js and styles if we are rendering tabs, speeding up pages that don't use it? but what about cached pages? (2011-12-12, ofb)
 
 		$out->addModules( 'ext.headertabs' );
 
-		// add the stylesheet for our perticular style
-		if (!empty($htStyle) && $htStyle !== 'jquery') {
-			$styleFile = $htScriptPath.'/skins-jquery/ext.headertabs.'.$htStyle.'.css';
-			wfDebugLog('headertabs', __METHOD__.': including style file: '.$styleFile);
+		// Add the CSS file for the specified style.
+		if ( !empty( $htStyle ) && $htStyle !== 'jquery' ) {
+			$styleFile = $htScriptPath . '/skins-jquery/ext.headertabs.' . $htStyle . '.css';
 			$out->addExtensionStyle( $styleFile );
 		}
 
