@@ -15,10 +15,10 @@ class HeaderTabs {
 		global $wgOut, $htScriptPath;
 
 		$wgOut->addLink( array(
-			'rel'   => 'stylesheet',
-			'type'  => 'text/css',
+			'rel'	 => 'stylesheet',
+			'type'	=> 'text/css',
 			'media' => 'screen, projection',
-			'href'  => $htScriptPath . '/skins/headertabs_hide_factbox.css'
+			'href'	=> $htScriptPath . '/skins-yui/headertabs_hide_factbox.css'
 		) );
 
 		// This tag, besides just enabling tabs, also designates the
@@ -74,7 +74,7 @@ class HeaderTabs {
 				}
 			}
 
-			$tabhtml  = '<div id="headertabs" class="yui-navset">';
+			$tabhtml	= '<div id="headertabs" class="yui-navset">';
 
 			$tabhtml .= '<ul class="yui-nav">';
 			$firsttab = true;
@@ -95,7 +95,7 @@ class HeaderTabs {
 			$tabhtml .= '</div></div>';
 
 			if ( $htUseHistory ) {
-				$text = '<iframe id="yui-history-iframe" src="' . $htScriptPath . '/skins/blank.html" style="position:absolute; top:0; left:0; width:1px; height:1px; visibility:hidden;"></iframe><input id="yui-history-field" type="hidden">';
+				$text = '<iframe id="yui-history-iframe" src="' . $htScriptPath . '/skins-yui/blank.html" style="position:absolute; top:0; left:0; width:1px; height:1px; visibility:hidden;"></iframe><input id="yui-history-field" type="hidden">';
 			} else {
 				$text = '';
 			}
@@ -110,16 +110,16 @@ class HeaderTabs {
 		global $htScriptPath, $htUseHistory;
 
 		if ( $htUseHistory ) {
-			$wgOut->addScript( '<script type="text/javascript" src="'.$htScriptPath.'/skins/combined-history-min.js"></script>' );
+			$wgOut->addScript( '<script type="text/javascript" src="'.$htScriptPath.'/skins-yui/combined-history-min.js"></script>' );
 		} else {
-			$wgOut->addScript( '<script type="text/javascript" src="'.$htScriptPath.'/skins/combined-min.js"></script>' );
+			$wgOut->addScript( '<script type="text/javascript" src="'.$htScriptPath.'/skins-yui/combined-min.js"></script>' );
 		}
 
 		$wgOut->addLink( array(
-			'rel'   => 'stylesheet',
-			'type'  => 'text/css',
+			'rel'	 => 'stylesheet',
+			'type'	=> 'text/css',
 			'media' => 'screen, projection',
-			'href'  => $htScriptPath . '/skins/combined-min.css'
+			'href'	=> $htScriptPath . '/skins-yui/combined-min.css'
 		) );
 
 		return true;

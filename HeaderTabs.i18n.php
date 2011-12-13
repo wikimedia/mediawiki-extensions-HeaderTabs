@@ -11,6 +11,9 @@ $messages = array();
 /** English */
 $messages['en'] = array(
 	'headertabs-desc' => 'Adds tabs to the page separating top-level sections',
+	'headertabs-edittab' => 'edit',
+	'headertabs-edittab-hint' => 'Edit tab',
+	'headertabs-edittab-key' => 't',
 );
 
 /** Asturian (Asturianu)
@@ -82,4 +85,3 @@ $messages['ms'] = array(
 $messages['nl'] = array(
 	'headertabs-desc' => 'Voegt tabbladen toe aan een pagina om de hoogste niveaus te scheiden',
 );
-
