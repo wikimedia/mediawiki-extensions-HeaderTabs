@@ -28,6 +28,8 @@ $messages['ast'] = array(
  */
 $messages['de'] = array(
 	'headertabs-desc' => 'Ermöglicht Reiter zur alternativen Darstellung der obersten Gliederungsebene von Inhaltsverzeichnissen',
+	'headertabs-edittab' => 'bearbeiten',
+	'headertabs-edittab-hint' => 'Inhalt des Reiters bearbeiten',
 );
 
 /** French (Français)
@@ -35,6 +37,8 @@ $messages['de'] = array(
  */
 $messages['fr'] = array(
 	'headertabs-desc' => 'Ajoute des onglets à la page qui sépare les sections de niveau supérieur',
+	'headertabs-edittab' => 'modifier',
+	'headertabs-edittab-hint' => "Modifier l'onglet",
 );
 
 /** Galician (Galego)
@@ -51,6 +55,8 @@ $messages['gl'] = array(
  */
 $messages['hsb'] = array(
 	'headertabs-desc' => 'Zmóžnja rajtarki k stronje, kotrež najwyše wotrězki wotdźěleja',
+	'headertabs-edittab' => 'wobdźěłać',
+	'headertabs-edittab-hint' => 'Rajtark wobdźěłać',
 );
 
 /** Interlingua (Interlingua)
@@ -58,6 +64,8 @@ $messages['hsb'] = array(
  */
 $messages['ia'] = array(
 	'headertabs-desc' => 'Adde schedas al pagina, separante le sectiones de prime nivello',
+	'headertabs-edittab' => 'modificar',
+	'headertabs-edittab-hint' => 'Modificar scheda',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -72,6 +80,8 @@ $messages['lb'] = array(
  */
 $messages['mk'] = array(
 	'headertabs-desc' => 'Во страницата додава јазичиња што ги одделуваат првостепените поднаслови',
+	'headertabs-edittab' => 'уреди',
+	'headertabs-edittab-hint' => 'Јазиче за уредување',
 );
 
 /** Malay (Bahasa Melayu)
@@ -82,9 +92,12 @@ $messages['ms'] = array(
 );
 
 /** Dutch (Nederlands)
+ * @author SPQRobin
  * @author Siebrand
  */
 $messages['nl'] = array(
 	'headertabs-desc' => 'Voegt tabbladen toe aan een pagina om de hoogste niveaus te scheiden',
+	'headertabs-edittab' => 'bewerken',
+	'headertabs-edittab-hint' => 'Tabblad bewerken',
 );
 
