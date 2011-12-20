@@ -73,6 +73,8 @@ $messages['ia'] = array(
  */
 $messages['lb'] = array(
 	'headertabs-desc' => "Setzt Tabs op d'Säiten derbäi als alternativ Manéier fir den Ieweschten Niveau vun den Abschnitter vun engem Artikel duerzestellen",
+	'headertabs-edittab' => 'änneren',
+	'headertabs-edittab-hint' => 'Tab änneren',
 );
 
 /** Macedonian (Македонски)
