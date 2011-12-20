@@ -23,6 +23,9 @@ function tabNameEscape(tabName) {
 
 var $tabs = $("#headertabs").tabs();
 
+$tabs.children('div').removeAttr('style');
+$tabs.children('ul').children().removeAttr('style');
+
 /* follow a # anchor to a tab OR a heading */
 var curHash = window.location.hash;
 if ( curHash.indexOf( "#tab=" ) == 0 ) {

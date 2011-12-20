@@ -227,14 +227,22 @@ class HeaderTabs {
 		foreach ( $tabs as $i => $tab ) {
 			$tabhtml .= '<li';
 			if ( $i == 0 ) {
-				$tabhtml .= ' class="selected"';
+				$tabhtml .= ' class="selected" ';
+			} else { // hide selector of all but first tab
+				$tabhtml .= ' style="display:none"';
 			}
 			$tabhtml .= '><a href="#' . $tab['tabid'] . '">'.$tab['title'] . "</a></li>\n";
 		}
 		$tabhtml .= '</ul>';
 
-		foreach ( $tabs as $tab ) {
-			$tabhtml .= '<div id="' . $tab['tabid'] . '" class="section-'.$tab['section'].'"><p>' . $tab['tabcontent'] . '</p></div>';
+		foreach ( $tabs as $i => $tab ) {
+			$tabhtml .= '<div id="' . $tab['tabid'] . '" class="section-'.$tab['section'].'"';
+			
+			if ( $i != 0 ) { // hide content of all but first tab
+				$tabhtml .= ' style="display:none"';
+			}
+			
+			$tabhtml .= '><p>' . $tab['tabcontent'] . '</p></div>';
 		}
 		$tabhtml .= '</div>';
 
