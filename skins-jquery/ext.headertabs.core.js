@@ -23,8 +23,22 @@ function tabNameEscape(tabName) {
 
 var $tabs = $("#headertabs").tabs();
 
-$tabs.children('div').removeAttr('style');
-$tabs.children('ul').children().removeAttr('style');
+// delete the rule hiding unselected tabs
+var sheets = document.styleSheets;
+
+// Could be somebody else inserted something, so we can not just delete rule 0 of sheet 0
+outer:
+for (s = 0; s < sheets.length; s++ ) {
+	var cursheet = sheets[s];
+	var rules = cursheet.cssRules? cursheet.cssRules: cursheet.rules // Yay IE
+	
+	for (r = 0; r < rules.length; r++){
+		if(rules[r].selectorText.toLowerCase()==".unselected"){ //find ".unselected" rule
+			cursheet.deleteRule?cursheet.deleteRule(r):cursheet.removeRule(r); // Yay IE
+			break outer;
+		}
+	}
+}
 
 /* follow a # anchor to a tab OR a heading */
 var curHash = window.location.hash;

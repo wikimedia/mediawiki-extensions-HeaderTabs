@@ -229,25 +229,27 @@ class HeaderTabs {
 			if ( $i == 0 ) {
 				$tabhtml .= ' class="selected" ';
 			} else { // hide selector of all but first tab
-				$tabhtml .= ' style="display:none"';
+				$tabhtml .= ' class="unselected"';
 			}
 			$tabhtml .= '><a href="#' . $tab['tabid'] . '">'.$tab['title'] . "</a></li>\n";
 		}
 		$tabhtml .= '</ul>';
 
 		foreach ( $tabs as $i => $tab ) {
-			$tabhtml .= '<div id="' . $tab['tabid'] . '" class="section-'.$tab['section'].'"';
+			$tabhtml .= '<div id="' . $tab['tabid'] . '" class="section-'.$tab['section'];
 			
 			if ( $i != 0 ) { // hide content of all but first tab
-				$tabhtml .= ' style="display:none"';
+				$tabhtml .= ' unselected';
 			}
 			
-			$tabhtml .= '><p>' . $tab['tabcontent'] . '</p></div>';
+			$tabhtml .= '"><p>' . $tab['tabcontent'] . '</p></div>';
 		}
 		$tabhtml .= '</div>';
 
 		$text = $above . $tabhtml . $below;
 
+		$parser->getOutput()->addHeadItem(HTML::inlineScript( 'document.styleSheets[0].insertRule?document.styleSheets[0].insertRule(".unselected {display:none;}", 0):document.styleSheets[0].addRule(".unselected", "display:none");' ), true );
+		
 		return true;
 	}
 
