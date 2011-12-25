@@ -103,3 +103,12 @@ $messages['nl'] = array(
 	'headertabs-edittab-hint' => 'Tabblad bewerken',
 );
 
+/** Russian (Русский)
+ * @author Eleferen
+ */
+$messages['ru'] = array(
+	'headertabs-desc' => 'Добавляет вкладки на странице, разделяющие разделы верхнего уровня',
+	'headertabs-edittab' => 'править',
+	'headertabs-edittab-hint' => 'Редактировать вкладку',
+);
+
