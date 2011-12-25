@@ -18,7 +18,7 @@ class HeaderTabs {
 	}
 
 	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
-		global $htRenderSingleTab, $htAutomaticNamespaces, $htDefaultFirstTab, $htDisableDefaultToc, $htGenerateTabTocs, $htStyle;
+		global $htRenderSingleTab, $htAutomaticNamespaces, $htDefaultFirstTab, $htDisableDefaultToc, $htGenerateTabTocs, $htStyle,  $htEditTabLink;
 
 		//! @todo handle __NOTABTOC__, __TABTOC__, __FORCETABTOC__ here (2011-12-12, ofb)
 
@@ -221,7 +221,9 @@ class HeaderTabs {
 		$tabhtml .= '>';
 
 		//! @todo handle __NOEDITTAB__ here (2011-12-12, ofb)
-		$tabhtml .= '<span class="editsection" id="edittab">[<a href="" title="'.wfMsg('headertabs-edittab-hint').'">'.wfMsg('headertabs-edittab').'</a>]</span>';
+		if ( $htEditTabLink === TRUE ) {
+			$tabhtml .= '<span class="editsection" id="edittab">[<a href="" title="'.wfMsg('headertabs-edittab-hint').'">'.wfMsg('headertabs-edittab').'</a>]</span>';
+		}
 
 		$tabhtml .= '<ul>';
 		foreach ( $tabs as $i => $tab ) {
