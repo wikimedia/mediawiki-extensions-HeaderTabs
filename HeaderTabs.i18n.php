@@ -21,6 +21,8 @@ $messages['en'] = array(
  */
 $messages['ast'] = array(
 	'headertabs-desc' => 'Amiesta llingüetes a la páxina pa separar les seiciones de primer nivel',
+	'headertabs-edittab' => 'editar',
+	'headertabs-edittab-hint' => 'Llingüeta editar',
 );
 
 /** German (Deutsch)
