@@ -25,6 +25,15 @@ $messages['ast'] = array(
 	'headertabs-edittab-hint' => 'Llingüeta editar',
 );
 
+/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+ * @author Wizardist
+ */
+$messages['be-tarask'] = array(
+	'headertabs-desc' => 'Дадае на старонку закладкі, якія падзяляюць разьдзелы верхняга ўзроўню',
+	'headertabs-edittab' => 'рэдагаваць',
+	'headertabs-edittab-hint' => 'Рэдагаваць закладку',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
