@@ -16,6 +16,13 @@ $messages['en'] = array(
 	'headertabs-edittab-key' => 't',
 );
 
+/** Message documentation (Message documentation)
+ * @author EugeneZelenko
+ */
+$messages['qqq'] = array(
+	'headertabs-edittab' => '{{Identical|Edit}}',
+);
+
 /** Asturian (Asturianu)
  * @author Xuacu
  */
@@ -112,6 +119,15 @@ $messages['nl'] = array(
 	'headertabs-desc' => 'Voegt tabbladen toe aan een pagina om de hoogste niveaus te scheiden',
 	'headertabs-edittab' => 'bewerken',
 	'headertabs-edittab-hint' => 'Tabblad bewerken',
+);
+
+/** Piedmontese (Piemontèis)
+ * @author Dragonòt
+ */
+$messages['pms'] = array(
+	'headertabs-desc' => 'A gionta dij boton a la pagina an separand le session a àut livel',
+	'headertabs-edittab' => 'modìfica',
+	'headertabs-edittab-hint' => 'Modìfica boton',
 );
 
 /** Russian (Русский)
