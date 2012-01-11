@@ -122,12 +122,13 @@ $messages['nl'] = array(
 );
 
 /** Piedmontese (Piemontèis)
+ * @author Borichèt
  * @author Dragonòt
  */
 $messages['pms'] = array(
-	'headertabs-desc' => 'A gionta dij boton a la pagina an separand le session a àut livel',
+	'headertabs-desc' => "A gionta dij feuij a la pàgina ch'a separo le session ëd livel pì àut",
 	'headertabs-edittab' => 'modìfica',
-	'headertabs-edittab-hint' => 'Modìfica boton',
+	'headertabs-edittab-hint' => 'Modìfiché la lenghëtta',
 );
 
 /** Russian (Русский)
