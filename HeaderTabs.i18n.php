@@ -41,6 +41,14 @@ $messages['be-tarask'] = array(
 	'headertabs-edittab-hint' => 'Рэдагаваць закладку',
 );
 
+/** Breton (Brezhoneg)
+ * @author Fulup
+ */
+$messages['br'] = array(
+	'headertabs-edittab' => 'kemmañ',
+	'headertabs-edittab-hint' => 'Kemmañ an ivinell',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
