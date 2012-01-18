@@ -30,6 +30,14 @@ $wgExtensionCredits['parserhook'][] = array(
 
 // Translations
 $wgExtensionMessagesFiles['HeaderTabs'] = $dir . '/HeaderTabs.i18n.php';
+//! @todo implement in tab parsing code instead... but problems like nowiki (2011-12-12, ofb)
+// if you make them here, it will be article wide instead of tab-wide
+// __NOTABTOC__, __TABTOC__, __NOEDITTAB__
+// and one day with a special page: __NEWTABLINK__, __NONEWTABLINK__
+// and one day if we can force toc generation: __FORCETABTOC__
+//! @todo make this load a custom name from i18n file (2011-12-12, ofb)
+// ensure to keep this name too for backwards compat
+$wgExtensionMessagesFiles['HeaderTabsMagic'] = $dir . '/HeaderTabs.i18n.magic.php';
 
 // Config
 $htUseHistory = true;
@@ -71,7 +79,6 @@ if ( isset( $wgConfigureAdditionalExtensions ) && is_array( $wgConfigureAddition
 
 // used by both jQuery and YUI
 $wgHooks['ParserFirstCallInit'][] = 'headerTabsParserFunctions';
-$wgHooks['LanguageGetMagic'][] = 'headerTabsLanguageGetMagic';
 $wgHooks['BeforePageDisplay'][] = 'HeaderTabs::addHTMLHeader';
 $wgHooks['ParserAfterTidy'][] = 'HeaderTabs::replaceFirstLevelHeaders';
 
@@ -95,33 +102,15 @@ if ( $useJQuery ) {
 		'localBasePath' => dirname( __FILE__ ),
 		'remoteExtPath' => 'HeaderTabs',
 	);
-
 } else { // if ! $useJQuery
 	$wgAutoloadClasses['HeaderTabs'] = "$dir/HeaderTabs_body.yui.php";
 }
 
 # Parser function to insert a link changing a tab:
 function headerTabsParserFunctions( $parser ) {
-
 	//! @todo make this load a custom name from i18n file (2011-12-12, ofb)
 	// ensure to keep this name too for backwards compat
 	$parser->setHook( 'headertabs', array( 'HeaderTabs', 'tag' ) );
 	$parser->setFunctionHook( 'switchtablink', array( 'HeaderTabs', 'renderSwitchTabLink' ) );
-	return true;
-}
-
-function headerTabsLanguageGetMagic( &$magicWords, $langCode = "en" ) {
-	//! @todo implement in tab parsing code instead... but problems like nowiki (2011-12-12, ofb)
-	// if you make them here, it will be article wide instead of tab-wide
-	// __NOTABTOC__, __TABTOC__, __NOEDITTAB__
-	// and one day with a special page: __NEWTABLINK__, __NONEWTABLINK__
-	// and one day if we can force toc generation: __FORCETABTOC__
-
-	//! @todo make this load a custom name from i18n file (2011-12-12, ofb)
-	// ensure to keep this name too for backwards compat
-	switch ( $langCode ) {
-	default:
-		$magicWords['switchtablink']	= array ( 0, 'switchtablink' );
-	}
 	return true;
 }
