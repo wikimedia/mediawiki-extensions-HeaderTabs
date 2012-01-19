@@ -76,6 +76,13 @@ $messages['gl'] = array(
 	'headertabs-edittab-hint' => 'Editar a lapela',
 );
 
+/** Hebrew (עברית)
+ * @author Ofekalef
+ */
+$messages['he'] = array(
+	'headertabs-edittab' => 'עריכה',
+);
+
 /** Upper Sorbian (Hornjoserbsce)
  * @author Michawiki
  */
