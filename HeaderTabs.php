@@ -35,8 +35,6 @@ $wgExtensionMessagesFiles['HeaderTabs'] = $dir . '/HeaderTabs.i18n.php';
 // __NOTABTOC__, __TABTOC__, __NOEDITTAB__
 // and one day with a special page: __NEWTABLINK__, __NONEWTABLINK__
 // and one day if we can force toc generation: __FORCETABTOC__
-//! @todo make this load a custom name from i18n file (2011-12-12, ofb)
-// ensure to keep this name too for backwards compat
 $wgExtensionMessagesFiles['HeaderTabsMagic'] = $dir . '/HeaderTabs.i18n.magic.php';
 
 // Config
@@ -108,8 +106,6 @@ if ( $useJQuery ) {
 
 # Parser function to insert a link changing a tab:
 function headerTabsParserFunctions( $parser ) {
-	//! @todo make this load a custom name from i18n file (2011-12-12, ofb)
-	// ensure to keep this name too for backwards compat
 	$parser->setHook( 'headertabs', array( 'HeaderTabs', 'tag' ) );
 	$parser->setFunctionHook( 'switchtablink', array( 'HeaderTabs', 'renderSwitchTabLink' ) );
 	return true;
