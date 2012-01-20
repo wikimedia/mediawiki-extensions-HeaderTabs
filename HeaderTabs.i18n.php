@@ -58,6 +58,15 @@ $messages['de'] = array(
 	'headertabs-edittab-hint' => 'Inhalt des Reiters bearbeiten',
 );
 
+/** Lower Sorbian (Dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'headertabs-desc' => 'Zmóžnja rejtarki k bokoju, kótarež wótźěluju nejwuše wótrězki',
+	'headertabs-edittab' => 'wobźěłaś',
+	'headertabs-edittab-hint' => 'Rejtark wobźěłaś',
+);
+
 /** French (Français)
  * @author Gomoko
  */
