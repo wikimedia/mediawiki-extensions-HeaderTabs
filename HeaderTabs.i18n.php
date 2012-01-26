@@ -86,10 +86,12 @@ $messages['gl'] = array(
 );
 
 /** Hebrew (עברית)
+ * @author Nirofir
  * @author Ofekalef
  */
 $messages['he'] = array(
 	'headertabs-edittab' => 'עריכה',
+	'headertabs-edittab-hint' => 'עריכת לשונית',
 );
 
 /** Upper Sorbian (Hornjoserbsce)
