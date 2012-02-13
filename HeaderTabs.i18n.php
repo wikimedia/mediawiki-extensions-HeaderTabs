@@ -58,6 +58,13 @@ $messages['de'] = array(
 	'headertabs-edittab-hint' => 'Inhalt des Reiters bearbeiten',
 );
 
+/** Zazaki (Zazaki)
+ * @author Mirzali
+ */
+$messages['diq'] = array(
+	'headertabs-edittab' => 'bıvurne',
+);
+
 /** Lower Sorbian (Dolnoserbski)
  * @author Michawiki
  */
