@@ -93,10 +93,12 @@ $messages['gl'] = array(
 );
 
 /** Hebrew (עברית)
+ * @author Amire80
  * @author Nirofir
  * @author Ofekalef
  */
 $messages['he'] = array(
+	'headertabs-desc' => 'הוספה לדף של לשוניות שמפרידות פסקאות ראשיות',
 	'headertabs-edittab' => 'עריכה',
 	'headertabs-edittab-hint' => 'עריכת לשונית',
 );
