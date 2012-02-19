@@ -156,6 +156,15 @@ $messages['nl'] = array(
 	'headertabs-edittab-hint' => 'Tabblad bewerken',
 );
 
+/** Polish (Polski)
+ * @author BeginaFelicysym
+ */
+$messages['pl'] = array(
+	'headertabs-desc' => 'Dodaje do strony zakładki oddzielające sekcje najwyższego poziomu',
+	'headertabs-edittab' => 'edytuj',
+	'headertabs-edittab-hint' => 'Edytuj zakładkę',
+);
+
 /** Piedmontese (Piemontèis)
  * @author Borichèt
  * @author Dragonòt
