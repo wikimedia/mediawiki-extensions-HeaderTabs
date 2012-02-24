@@ -74,6 +74,15 @@ $messages['dsb'] = array(
 	'headertabs-edittab-hint' => 'Rejtark wobźěłaś',
 );
 
+/** Spanish (Español)
+ * @author Armando-Martin
+ */
+$messages['es'] = array(
+	'headertabs-desc' => 'Añade pestañas a la página para separar las secciones de nivel superior',
+	'headertabs-edittab' => 'editar',
+	'headertabs-edittab-hint' => 'Editar pestaña',
+);
+
 /** French (Français)
  * @author Gomoko
  */
