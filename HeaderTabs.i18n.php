@@ -83,6 +83,14 @@ $messages['es'] = array(
 	'headertabs-edittab-hint' => 'Editar pestaña',
 );
 
+/** Persian (فارسی)
+ * @author ZxxZxxZ
+ */
+$messages['fa'] = array(
+	'headertabs-edittab' => 'ویرایش',
+	'headertabs-edittab-hint' => 'زبانهٔ ویرایش',
+);
+
 /** French (Français)
  * @author Gomoko
  */
