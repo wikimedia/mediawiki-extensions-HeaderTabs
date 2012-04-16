@@ -170,6 +170,8 @@ $messages['mk'] = array(
  */
 $messages['ms'] = array(
 	'headertabs-desc' => 'Menambahkan tab pada laman untuk memisahkan bahagian-bahagian aras teratas',
+	'headertabs-edittab' => 'sunting',
+	'headertabs-edittab-hint' => 'Sunting tab',
 );
 
 /** Dutch (Nederlands)
