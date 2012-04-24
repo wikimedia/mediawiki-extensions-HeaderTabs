@@ -18,7 +18,8 @@ class HeaderTabs {
 	}
 
 	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
-		global $htRenderSingleTab, $htAutomaticNamespaces, $htDefaultFirstTab, $htDisableDefaultToc, $htGenerateTabTocs, $htStyle,  $htEditTabLink;
+		global $htRenderSingleTab, $htAutomaticNamespaces, $htDefaultFirstTab, $htDisableDefaultToc, $htGenerateTabTocs, $htStyle, $htEditTabLink;
+		global $htTabIndexes;
 
 		//! @todo handle __NOTABTOC__, __TABTOC__, __FORCETABTOC__ here (2011-12-12, ofb)
 
@@ -251,6 +252,11 @@ class HeaderTabs {
 		$text = $above . $tabhtml . $below;
 
 		$parser->getOutput()->addHeadItem(HTML::inlineScript( 'document.styleSheets[0].insertRule?document.styleSheets[0].insertRule(".unselected {display:none;}", 0):document.styleSheets[0].addRule(".unselected", "display:none");' ), true );
+
+		foreach ( $tabs as $i => $tab ) {
+			$tabTitle = str_replace( ' ', '_', $tab['title'] );
+			$htTabIndexes[$tabTitle] = $i;
+		}
 		
 		return true;
 	}
@@ -285,6 +291,10 @@ class HeaderTabs {
 	}
 
 	public static function renderSwitchTabLink( &$parser, $tabName, $linkText, $anotherTarget = '' ) {
+		// The cache unfortunately needs to be disabled for the
+		// Javascript for such links to work.
+		$parser->disableCache();
+
 		$tabTitle = Title::newFromText( $tabName );
 		$tabKey = $tabTitle->getDBkey();
 		$sanitizedLinkText = $parser->recursiveTagParse( $linkText );
@@ -301,4 +311,9 @@ class HeaderTabs {
 		return $parser->insertStripItem( $output, $parser->mStripState );
 	}
 
+	static function setGlobalJSVariables( &$vars ) {
+		global $htTabIndexes;
+		$vars['htTabIndexes'] = $htTabIndexes;
+		return true;
+	}
 }

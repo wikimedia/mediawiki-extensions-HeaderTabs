@@ -99,7 +99,8 @@ $tabs.bind('tabsshow', function(event, ui) {
 
 /* click a tab parserhook link */
 $(".tabLink").click( function() {
-	var href = $(this).attr('href');
-	$tabs.tabs('select', tabNameEscape(href));
+	var tabName = $(this).attr('href').replace('#tab=', '');
+	var tabIndex = htTabIndexes[tabName];
+	$tabs.tabs('select', tabIndex ); //tabNameEscape(href));
 	return false;
 } );

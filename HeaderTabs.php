@@ -47,6 +47,9 @@ $htGenerateTabTocs = false;
 $htStyle = 'jquery-large';
 $htEditTabLink = true;
 
+// Other variables
+$htTabIndexes = array();
+
 // Extension:Configure
 if ( isset( $wgConfigureAdditionalExtensions ) && is_array( $wgConfigureAdditionalExtensions ) ) {
 
@@ -100,6 +103,7 @@ if ( $useJQuery ) {
 		'localBasePath' => dirname( __FILE__ ),
 		'remoteExtPath' => 'HeaderTabs',
 	);
+	$wgHooks['MakeGlobalVariablesScript'][] = 'HeaderTabs::setGlobalJSVariables';
 } else { // if ! $useJQuery
 	$wgAutoloadClasses['HeaderTabs'] = "$dir/HeaderTabs_body.yui.php";
 }
