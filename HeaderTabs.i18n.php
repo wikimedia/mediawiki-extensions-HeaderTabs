@@ -59,10 +59,12 @@ $messages['de'] = array(
 );
 
 /** Zazaki (Zazaki)
+ * @author Erdemaslancan
  * @author Mirzali
  */
 $messages['diq'] = array(
 	'headertabs-edittab' => 'bıvurne',
+	'headertabs-edittab-hint' => 'Taber bıvurne',
 );
 
 /** Lower Sorbian (Dolnoserbski)
