@@ -140,6 +140,14 @@ $messages['ia'] = array(
 	'headertabs-edittab-hint' => 'Modificar scheda',
 );
 
+/** Italian (Italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'headertabs-edittab' => 'modifica',
+	'headertabs-edittab-hint' => 'Modifica scheda',
+);
+
 /** Japanese (日本語)
  * @author Whym
  */
