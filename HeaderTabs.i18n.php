@@ -213,6 +213,15 @@ $messages['pms'] = array(
 	'headertabs-edittab-hint' => 'Modìfiché la lenghëtta',
 );
 
+/** Brazilian Portuguese (Português do Brasil)
+ * @author Jaideraf
+ */
+$messages['pt-br'] = array(
+	'headertabs-desc' => 'Adiciona guias à página separando seções de primeiro nível',
+	'headertabs-edittab' => 'editar',
+	'headertabs-edittab-hint' => 'Editar guia',
+);
+
 /** Russian (Русский)
  * @author Eleferen
  */
