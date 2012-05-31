@@ -144,6 +144,7 @@ $messages['ia'] = array(
  * @author Beta16
  */
 $messages['it'] = array(
+	'headertabs-desc' => 'Aggiunge schede alla pagina separando le sezioni di primo livello',
 	'headertabs-edittab' => 'modifica',
 	'headertabs-edittab-hint' => 'Modifica scheda',
 );
