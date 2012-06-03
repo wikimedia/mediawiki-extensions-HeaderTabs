@@ -140,7 +140,7 @@ $messages['ia'] = array(
 	'headertabs-edittab-hint' => 'Modificar scheda',
 );
 
-/** Italian (Italiano)
+/** Italian (italiano)
  * @author Beta16
  */
 $messages['it'] = array(
@@ -214,7 +214,7 @@ $messages['pms'] = array(
 	'headertabs-edittab-hint' => 'Modìfiché la lenghëtta',
 );
 
-/** Brazilian Portuguese (Português do Brasil)
+/** Brazilian Portuguese (português do Brasil)
  * @author Jaideraf
  */
 $messages['pt-br'] = array(
