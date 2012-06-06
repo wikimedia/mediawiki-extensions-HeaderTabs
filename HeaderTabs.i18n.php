@@ -150,10 +150,11 @@ $messages['it'] = array(
 );
 
 /** Japanese (日本語)
+ * @author Shirayuki
  * @author Whym
  */
 $messages['ja'] = array(
-	'headertabs-desc' => '最上位の節ごとに分けたタブをページに追加します',
+	'headertabs-desc' => '最上位の節ごとに分けたタブをページに追加する',
 	'headertabs-edittab' => '編集',
 	'headertabs-edittab-hint' => 'タブを編集',
 );
