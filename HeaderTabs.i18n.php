@@ -23,7 +23,7 @@ $messages['qqq'] = array(
 	'headertabs-edittab' => '{{Identical|Edit}}',
 );
 
-/** Asturian (Asturianu)
+/** Asturian (asturianu)
  * @author Xuacu
  */
 $messages['ast'] = array(
@@ -41,7 +41,7 @@ $messages['be-tarask'] = array(
 	'headertabs-edittab-hint' => 'Рэдагаваць закладку',
 );
 
-/** Breton (Brezhoneg)
+/** Breton (brezhoneg)
  * @author Fulup
  */
 $messages['br'] = array(
@@ -76,7 +76,7 @@ $messages['dsb'] = array(
 	'headertabs-edittab-hint' => 'Rejtark wobźěłaś',
 );
 
-/** Spanish (Español)
+/** Spanish (español)
  * @author Armando-Martin
  */
 $messages['es'] = array(
@@ -93,7 +93,7 @@ $messages['fa'] = array(
 	'headertabs-edittab-hint' => 'زبانهٔ ویرایش',
 );
 
-/** French (Français)
+/** French (français)
  * @author Gomoko
  */
 $messages['fr'] = array(
@@ -131,7 +131,7 @@ $messages['hsb'] = array(
 	'headertabs-edittab-hint' => 'Rajtark wobdźěłać',
 );
 
-/** Interlingua (Interlingua)
+/** Interlingua (interlingua)
  * @author McDutchie
  */
 $messages['ia'] = array(
@@ -168,7 +168,7 @@ $messages['lb'] = array(
 	'headertabs-edittab-hint' => 'Tab änneren',
 );
 
-/** Macedonian (Македонски)
+/** Macedonian (македонски)
  * @author Bjankuloski06
  */
 $messages['mk'] = array(
@@ -196,7 +196,7 @@ $messages['nl'] = array(
 	'headertabs-edittab-hint' => 'Tabblad bewerken',
 );
 
-/** Polish (Polski)
+/** Polish (polski)
  * @author BeginaFelicysym
  */
 $messages['pl'] = array(
@@ -224,7 +224,7 @@ $messages['pt-br'] = array(
 	'headertabs-edittab-hint' => 'Editar guia',
 );
 
-/** Russian (Русский)
+/** Russian (русский)
  * @author Eleferen
  */
 $messages['ru'] = array(
