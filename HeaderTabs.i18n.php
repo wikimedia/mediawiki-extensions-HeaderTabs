@@ -18,9 +18,11 @@ $messages['en'] = array(
 
 /** Message documentation (Message documentation)
  * @author EugeneZelenko
+ * @author Purodha
  */
 $messages['qqq'] = array(
 	'headertabs-edittab' => '{{Identical|Edit}}',
+	'headertabs-edittab-hint' => 'This is about a tab being edited.',
 );
 
 /** Asturian (asturianu)
@@ -157,6 +159,13 @@ $messages['ja'] = array(
 	'headertabs-desc' => '最上位の節ごとに分けたタブをページに追加する',
 	'headertabs-edittab' => '編集',
 	'headertabs-edittab-hint' => 'タブを編集',
+);
+
+/** Colognian (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'headertabs-edittab' => 'ändere',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
