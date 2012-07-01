@@ -34,7 +34,7 @@ $messages['ast'] = array(
 	'headertabs-edittab-hint' => 'Llingüeta editar',
 );
 
-/** Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
  * @author Wizardist
  */
 $messages['be-tarask'] = array(
@@ -69,7 +69,7 @@ $messages['diq'] = array(
 	'headertabs-edittab-hint' => 'Taber bıvurne',
 );
 
-/** Lower Sorbian (Dolnoserbski)
+/** Lower Sorbian (dolnoserbski)
  * @author Michawiki
  */
 $messages['dsb'] = array(
@@ -104,7 +104,7 @@ $messages['fr'] = array(
 	'headertabs-edittab-hint' => "Modifier l'onglet",
 );
 
-/** Galician (Galego)
+/** Galician (galego)
  * @author Toliño
  */
 $messages['gl'] = array(
@@ -124,7 +124,7 @@ $messages['he'] = array(
 	'headertabs-edittab-hint' => 'עריכת לשונית',
 );
 
-/** Upper Sorbian (Hornjoserbsce)
+/** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
 $messages['hsb'] = array(
