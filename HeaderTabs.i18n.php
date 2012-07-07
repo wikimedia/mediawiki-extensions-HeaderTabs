@@ -242,3 +242,12 @@ $messages['ru'] = array(
 	'headertabs-edittab-hint' => 'Редактировать вкладку',
 );
 
+/** Tagalog (Tagalog)
+ * @author AnakngAraw
+ */
+$messages['tl'] = array(
+	'headertabs-desc' => 'Nagdaragdag ng mga laylayan sa pahina na naghihiwalay ng mga seksiyon na pangmataas na antas',
+	'headertabs-edittab' => 'baguhin',
+	'headertabs-edittab-hint' => 'Baguhin ang laylayan',
+);
+
