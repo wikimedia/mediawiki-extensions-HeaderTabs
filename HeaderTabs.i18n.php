@@ -21,6 +21,7 @@ $messages['en'] = array(
  * @author Purodha
  */
 $messages['qqq'] = array(
+	'headertabs-desc' => '{{desc}}',
 	'headertabs-edittab' => '{{Identical|Edit}}',
 	'headertabs-edittab-hint' => 'This is about a tab being edited.',
 );
