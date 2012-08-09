@@ -52,6 +52,13 @@ $messages['br'] = array(
 	'headertabs-edittab-hint' => 'Kemmañ an ivinell',
 );
 
+/** Czech (česky)
+ * @author Chmee2
+ */
+$messages['cs'] = array(
+	'headertabs-edittab' => 'upravit',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
@@ -234,6 +241,13 @@ $messages['pt-br'] = array(
 	'headertabs-edittab-hint' => 'Editar guia',
 );
 
+/** Romanian (română)
+ * @author Stelistcristi
+ */
+$messages['ro'] = array(
+	'headertabs-edittab-hint' => 'Modifică fila',
+);
+
 /** Russian (русский)
  * @author Eleferen
  */
@@ -243,6 +257,13 @@ $messages['ru'] = array(
 	'headertabs-edittab-hint' => 'Редактировать вкладку',
 );
 
+/** Sinhala (සිංහල)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['si'] = array(
+	'headertabs-edittab' => 'සංස්කරණය',
+);
+
 /** Tagalog (Tagalog)
  * @author AnakngAraw
  */
@@ -250,5 +271,12 @@ $messages['tl'] = array(
 	'headertabs-desc' => 'Nagdaragdag ng mga laylayan sa pahina na naghihiwalay ng mga seksiyon na pangmataas na antas',
 	'headertabs-edittab' => 'baguhin',
 	'headertabs-edittab-hint' => 'Baguhin ang laylayan',
+);
+
+/** Traditional Chinese (‪中文（繁體）‬)
+ * @author Simon Shek
+ */
+$messages['zh-hant'] = array(
+	'headertabs-edittab' => '編輯',
 );
 
