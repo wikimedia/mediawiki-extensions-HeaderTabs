@@ -169,6 +169,14 @@ $messages['ja'] = array(
 	'headertabs-edittab-hint' => 'タブを編集',
 );
 
+/** Georgian (ქართული)
+ * @author David1010
+ */
+$messages['ka'] = array(
+	'headertabs-edittab' => 'რედაქტირება',
+	'headertabs-edittab-hint' => 'ჩანართის რედაქტირება',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
