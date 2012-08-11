@@ -240,6 +240,13 @@ $messages['pms'] = array(
 	'headertabs-edittab-hint' => 'Modìfiché la lenghëtta',
 );
 
+/** Pashto (پښتو)
+ * @author Ahmed-Najib-Biabani-Ibrahimkhel
+ */
+$messages['ps'] = array(
+	'headertabs-edittab' => 'سمول',
+);
+
 /** Brazilian Portuguese (português do Brasil)
  * @author Jaideraf
  */
