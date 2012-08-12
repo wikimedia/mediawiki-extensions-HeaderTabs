@@ -211,6 +211,13 @@ $messages['ms'] = array(
 	'headertabs-edittab-hint' => 'Sunting tab',
 );
 
+/** Maltese (Malti)
+ * @author Chrisportelli
+ */
+$messages['mt'] = array(
+	'headertabs-edittab' => 'immodifika',
+);
+
 /** Dutch (Nederlands)
  * @author SPQRobin
  * @author Siebrand
@@ -277,6 +284,14 @@ $messages['ru'] = array(
  */
 $messages['si'] = array(
 	'headertabs-edittab' => 'සංස්කරණය',
+	'headertabs-edittab-hint' => 'ටැබය සංස්කරණය කරන්න',
+);
+
+/** Tamil (தமிழ்)
+ * @author Karthi.dr
+ */
+$messages['ta'] = array(
+	'headertabs-edittab' => 'தொகு',
 );
 
 /** Tagalog (Tagalog)
