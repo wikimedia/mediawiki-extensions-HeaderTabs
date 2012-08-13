@@ -132,6 +132,13 @@ $messages['he'] = array(
 	'headertabs-edittab-hint' => 'עריכת לשונית',
 );
 
+/** Hindi (हिन्दी)
+ * @author Karthi.dr
+ */
+$messages['hi'] = array(
+	'headertabs-edittab' => 'सम्पादन',
+);
+
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
@@ -285,6 +292,14 @@ $messages['ru'] = array(
 $messages['si'] = array(
 	'headertabs-edittab' => 'සංස්කරණය',
 	'headertabs-edittab-hint' => 'ටැබය සංස්කරණය කරන්න',
+);
+
+/** Swedish (svenska)
+ * @author WikiPhoenix
+ */
+$messages['sv'] = array(
+	'headertabs-edittab' => 'redigera',
+	'headertabs-edittab-hint' => 'Redigera flik',
 );
 
 /** Tamil (தமிழ்)
