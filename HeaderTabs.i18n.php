@@ -277,6 +277,13 @@ $messages['ro'] = array(
 	'headertabs-edittab-hint' => 'Modifică fila',
 );
 
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'headertabs-edittab' => 'cange',
+);
+
 /** Russian (русский)
  * @author Eleferen
  */
