@@ -112,6 +112,13 @@ $messages['fr'] = array(
 	'headertabs-edittab-hint' => "Modifier l'onglet",
 );
 
+/** Irish (Gaeilge)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['ga'] = array(
+	'headertabs-edittab' => 'cur in eagar',
+);
+
 /** Galician (galego)
  * @author Toliño
  */
