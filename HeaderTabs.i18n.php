@@ -95,12 +95,27 @@ $messages['es'] = array(
 	'headertabs-edittab-hint' => 'Editar pestaña',
 );
 
+/** Basque (euskara)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['eu'] = array(
+	'headertabs-edittab' => 'aldatu',
+);
+
 /** Persian (فارسی)
  * @author ZxxZxxZ
  */
 $messages['fa'] = array(
 	'headertabs-edittab' => 'ویرایش',
 	'headertabs-edittab-hint' => 'زبانهٔ ویرایش',
+);
+
+/** Finnish (suomi)
+ * @author Beluga
+ */
+$messages['fi'] = array(
+	'headertabs-edittab' => 'muokkaa',
+	'headertabs-edittab-hint' => 'Muokkaa välilehteä',
 );
 
 /** French (français)
@@ -110,6 +125,14 @@ $messages['fr'] = array(
 	'headertabs-desc' => 'Ajoute des onglets à la page qui sépare les sections de niveau supérieur',
 	'headertabs-edittab' => 'modifier',
 	'headertabs-edittab-hint' => "Modifier l'onglet",
+);
+
+/** Franco-Provençal (arpetan)
+ * @author ChrisPtDe
+ */
+$messages['frp'] = array(
+	'headertabs-edittab' => 'changiér',
+	'headertabs-edittab-hint' => 'Changiér l’ongllèta',
 );
 
 /** Irish (Gaeilge)
@@ -330,6 +353,13 @@ $messages['tl'] = array(
 	'headertabs-desc' => 'Nagdaragdag ng mga laylayan sa pahina na naghihiwalay ng mga seksiyon na pangmataas na antas',
 	'headertabs-edittab' => 'baguhin',
 	'headertabs-edittab-hint' => 'Baguhin ang laylayan',
+);
+
+/** Vietnamese (Tiếng Việt)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['vi'] = array(
+	'headertabs-edittab' => 'sửa',
 );
 
 /** Traditional Chinese (‪中文（繁體）‬)
