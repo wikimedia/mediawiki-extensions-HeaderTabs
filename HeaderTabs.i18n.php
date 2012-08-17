@@ -355,6 +355,13 @@ $messages['tl'] = array(
 	'headertabs-edittab-hint' => 'Baguhin ang laylayan',
 );
 
+/** Urdu (اردو)
+ * @author පසිඳු කාවින්ද
+ */
+$messages['ur'] = array(
+	'headertabs-edittab' => 'ترمیم کریں',
+);
+
 /** Vietnamese (Tiếng Việt)
  * @author පසිඳු කාවින්ද
  */
