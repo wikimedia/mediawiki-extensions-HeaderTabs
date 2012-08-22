@@ -301,10 +301,11 @@ $messages['pt-br'] = array(
 );
 
 /** Romanian (română)
+ * @author Minisarm
  * @author Stelistcristi
  */
 $messages['ro'] = array(
-	'headertabs-edittab-hint' => 'Modifică fila',
+	'headertabs-edittab-hint' => 'Modificare filă',
 );
 
 /** tarandíne (tarandíne)
