@@ -218,7 +218,9 @@ $messages['ka'] = array(
  * @author Purodha
  */
 $messages['ksh'] = array(
+	'headertabs-desc' => 'Donn Knöpp en Sigge öm de bövverste Afschnedde ze makeere',
 	'headertabs-edittab' => 'ändere',
+	'headertabs-edittab-hint' => 'Knopp ändere',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
