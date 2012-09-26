@@ -372,6 +372,11 @@ $messages['vi'] = array(
 	'headertabs-edittab' => 'sửa',
 );
 
+/** Simplified Chinese (中文（简体）‎) */
+$messages['zh-hans'] = array(
+	'headertabs-edittab' => '编辑',
+);
+
 /** Traditional Chinese (‪中文（繁體）‬)
  * @author Simon Shek
  */
