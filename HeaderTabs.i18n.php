@@ -35,7 +35,7 @@ $messages['ast'] = array(
 	'headertabs-edittab-hint' => 'Llingüeta editar',
 );
 
-/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author Wizardist
  */
 $messages['be-tarask'] = array(
@@ -377,7 +377,7 @@ $messages['zh-hans'] = array(
 	'headertabs-edittab' => '编辑',
 );
 
-/** Traditional Chinese (‪中文（繁體）‬)
+/** Traditional Chinese (中文（繁體）‎)
  * @author Simon Shek
  */
 $messages['zh-hant'] = array(
