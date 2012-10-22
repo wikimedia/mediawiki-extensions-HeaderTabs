@@ -204,7 +204,6 @@ $messages['ja'] = array(
 	'headertabs-desc' => '最上位の節ごとに分けたタブをページに追加する',
 	'headertabs-edittab' => '編集',
 	'headertabs-edittab-hint' => 'タブを編集',
-	'headertabs-edittab-key' => 't',
 );
 
 /** Georgian (ქართული)
