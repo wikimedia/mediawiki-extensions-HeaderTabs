@@ -204,6 +204,7 @@ $messages['ja'] = array(
 	'headertabs-desc' => '最上位の節ごとに分けたタブをページに追加する',
 	'headertabs-edittab' => '編集',
 	'headertabs-edittab-hint' => 'タブを編集',
+	'headertabs-edittab-key' => 't',
 );
 
 /** Georgian (ქართული)
@@ -372,7 +373,8 @@ $messages['vi'] = array(
 	'headertabs-edittab' => 'sửa',
 );
 
-/** Simplified Chinese (中文（简体）‎) */
+/** Simplified Chinese (中文（简体）‎)
+ */
 $messages['zh-hans'] = array(
 	'headertabs-edittab' => '编辑',
 );
@@ -383,4 +385,3 @@ $messages['zh-hans'] = array(
 $messages['zh-hant'] = array(
 	'headertabs-edittab' => '編輯',
 );
-
