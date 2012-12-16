@@ -358,6 +358,15 @@ $messages['tl'] = array(
 	'headertabs-edittab-hint' => 'Baguhin ang laylayan',
 );
 
+/** Ukrainian (українська)
+ * @author Ата
+ */
+$messages['uk'] = array(
+	'headertabs-desc' => 'Додає на сторінку вкладки, що відділяють розділи верхнього рівня',
+	'headertabs-edittab' => 'редагувати',
+	'headertabs-edittab-hint' => 'Редагувати вкладку',
+);
+
 /** Urdu (اردو)
  * @author පසිඳු කාවින්ද
  */
