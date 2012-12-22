@@ -187,6 +187,13 @@ $messages['ia'] = array(
 	'headertabs-edittab-hint' => 'Modificar scheda',
 );
 
+/** Indonesian (Bahasa Indonesia)
+ * @author Farras
+ */
+$messages['id'] = array(
+	'headertabs-edittab' => 'sunting',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */
@@ -307,6 +314,7 @@ $messages['pt-br'] = array(
  * @author Stelistcristi
  */
 $messages['ro'] = array(
+	'headertabs-edittab' => 'modifică',
 	'headertabs-edittab-hint' => 'Modificare filă',
 );
 
