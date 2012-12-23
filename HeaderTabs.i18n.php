@@ -239,6 +239,13 @@ $messages['lb'] = array(
 	'headertabs-edittab-hint' => 'Tab änneren',
 );
 
+/** Lithuanian (lietuvių)
+ * @author Eitvys200
+ */
+$messages['lt'] = array(
+	'headertabs-edittab' => 'redaguoti',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
@@ -314,7 +321,7 @@ $messages['pt-br'] = array(
  * @author Stelistcristi
  */
 $messages['ro'] = array(
-	'headertabs-edittab' => 'modifică',
+	'headertabs-edittab' => 'modificare',
 	'headertabs-edittab-hint' => 'Modificare filă',
 );
 
