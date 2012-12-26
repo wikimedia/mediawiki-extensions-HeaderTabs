@@ -95,6 +95,13 @@ $messages['es'] = array(
 	'headertabs-edittab-hint' => 'Editar pestaña',
 );
 
+/** Estonian (eesti)
+ * @author Avjoska
+ */
+$messages['et'] = array(
+	'headertabs-edittab' => 'redigeeri',
+);
+
 /** Basque (euskara)
  * @author පසිඳු කාවින්ද
  */
