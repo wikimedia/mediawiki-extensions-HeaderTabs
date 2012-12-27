@@ -366,9 +366,11 @@ $messages['sv'] = array(
 
 /** Tamil (தமிழ்)
  * @author Karthi.dr
+ * @author Shanmugamp7
  */
 $messages['ta'] = array(
 	'headertabs-edittab' => 'தொகு',
+	'headertabs-edittab-hint' => 'தொகு தத்தல்',
 );
 
 /** Tagalog (Tagalog)
