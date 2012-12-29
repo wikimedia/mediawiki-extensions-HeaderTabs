@@ -86,6 +86,14 @@ $messages['dsb'] = array(
 	'headertabs-edittab-hint' => 'Rejtark wobźěłaś',
 );
 
+/** Greek (Ελληνικά)
+ * @author ZaDiak
+ */
+$messages['el'] = array(
+	'headertabs-edittab' => 'επεξεργασία',
+	'headertabs-edittab-hint' => 'Επεξεργασία καρτέλας',
+);
+
 /** Spanish (español)
  * @author Armando-Martin
  */
