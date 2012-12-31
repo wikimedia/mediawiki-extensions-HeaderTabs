@@ -54,9 +54,11 @@ $messages['br'] = array(
 
 /** Czech (česky)
  * @author Chmee2
+ * @author Vks
  */
 $messages['cs'] = array(
 	'headertabs-edittab' => 'upravit',
+	'headertabs-edittab-hint' => 'Záložka úprav',
 );
 
 /** German (Deutsch)
