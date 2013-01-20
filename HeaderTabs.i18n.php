@@ -238,6 +238,15 @@ $messages['ka'] = array(
 	'headertabs-edittab-hint' => 'ჩანართის რედაქტირება',
 );
 
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'headertabs-desc' => '최상위 문단을 나누는 문서에 탭을 추가합니다',
+	'headertabs-edittab' => '편집',
+	'headertabs-edittab-hint' => '탭 편집',
+);
+
 /** Colognian (Ripoarisch)
  * @author Purodha
  */
