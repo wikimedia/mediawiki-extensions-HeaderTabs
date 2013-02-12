@@ -355,7 +355,9 @@ $messages['ro'] = array(
  * @author Joetaras
  */
 $messages['roa-tara'] = array(
+	'headertabs-desc' => "Aggiugne schede a 'a pàgene le seziune de separaziune de levèlle ierte",
 	'headertabs-edittab' => 'cange',
+	'headertabs-edittab-hint' => "Cange 'a schede",
 );
 
 /** Russian (русский)
