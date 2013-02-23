@@ -272,6 +272,15 @@ $messages['lt'] = array(
 	'headertabs-edittab' => 'redaguoti',
 );
 
+/** Minangkabau (Baso Minangkabau)
+ * @author Iwan Novirion
+ */
+$messages['min'] = array(
+	'headertabs-desc' => 'Manambahkan tab ka laman nan dipisahkan jo seksi top-level',
+	'headertabs-edittab' => 'suntiang',
+	'headertabs-edittab-hint' => 'Tab suntiang',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
