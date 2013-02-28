@@ -19,9 +19,10 @@ $messages['en'] = array(
 /** Message documentation (Message documentation)
  * @author EugeneZelenko
  * @author Purodha
+ * @author Shirayuki
  */
 $messages['qqq'] = array(
-	'headertabs-desc' => '{{desc}}',
+	'headertabs-desc' => '{{desc|name=Header Tabs|url=http://www.mediawiki.org/wiki/Extension:Header_Tabs}}',
 	'headertabs-edittab' => '{{Identical|Edit}}',
 	'headertabs-edittab-hint' => 'This is about a tab being edited.',
 );
