@@ -307,6 +307,13 @@ $messages['mt'] = array(
 	'headertabs-edittab' => 'immodifika',
 );
 
+/** Low German (Plattdüütsch)
+ * @author Joachim Mos
+ */
+$messages['nds'] = array(
+	'headertabs-edittab' => 'ännern',
+);
+
 /** Dutch (Nederlands)
  * @author SPQRobin
  * @author Siebrand
