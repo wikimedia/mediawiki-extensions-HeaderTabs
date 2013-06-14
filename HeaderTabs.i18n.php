@@ -450,8 +450,11 @@ $messages['zh-hans'] = array(
 );
 
 /** Traditional Chinese (中文（繁體）‎)
+ * @author Justincheng12345
  * @author Simon Shek
  */
 $messages['zh-hant'] = array(
+	'headertabs-desc' => '為頁面分離頂級章節加入分頁',
 	'headertabs-edittab' => '編輯',
+	'headertabs-edittab-hint' => '編輯分頁',
 );
