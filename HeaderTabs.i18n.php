@@ -53,6 +53,13 @@ $messages['br'] = array(
 	'headertabs-edittab-hint' => 'Kemmañ an ivinell',
 );
 
+/** Chechen (нохчийн)
+ * @author Умар
+ */
+$messages['ce'] = array(
+	'headertabs-edittab' => 'нисйé',
+);
+
 /** Czech (česky)
  * @author Chmee2
  * @author Vks
