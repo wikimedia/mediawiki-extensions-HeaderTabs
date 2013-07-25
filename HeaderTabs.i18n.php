@@ -69,6 +69,13 @@ $messages['cs'] = array(
 	'headertabs-edittab-hint' => 'Záložka úprav',
 );
 
+/** Church Slavic (словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
+ * @author ОйЛ
+ */
+$messages['cu'] = array(
+	'headertabs-edittab' => 'исправи',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  */
