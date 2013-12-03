@@ -459,10 +459,11 @@ $messages['vi'] = array(
 
 /** Simplified Chinese (中文（简体）‎)
  * @author Qiyue2001
+ * @author Xiaomingyan
  */
 $messages['zh-hans'] = array(
 	'headertabs-edittab' => '编辑',
-	'headertabs-edittab-hint' => '编辑选项卡',
+	'headertabs-edittab-hint' => '编辑标签页',
 );
 
 /** Traditional Chinese (中文（繁體）‎)
