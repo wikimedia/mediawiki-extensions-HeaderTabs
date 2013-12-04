@@ -1,6 +1,6 @@
 <?php
 /**
- * Version of the HeaderTabs class that uses jQuery and the ResourceLoader.
+ * File for the HeaderTabs class.
  *
  * @file
  * @ingroup Extensions
@@ -94,7 +94,7 @@ class HeaderTabs {
 			wfDebugLog('headertabs', __METHOD__.': we have text above our tabs');
 		}
 
-		if ( count($parts) < $partslimit ) {
+		if ( count( $parts ) < $partslimit ) {
 			return true;
 		}
 
@@ -103,15 +103,15 @@ class HeaderTabs {
 		// disable default TOC
 		if ( $htDisableDefaultToc === TRUE ) {
 			// if it was somewhere else, we need to remove it
-			if ( count($tocmatches) > 0 && $tocmatches[0][1] !== 0 ) {
+			if ( count( $tocmatches ) > 0 && $tocmatches[0][1] !== 0 ) {
 				wfDebugLog('headertabs', __METHOD__.': removed non-standard-pos TOC');
 				// remove from above
-				if ( $tocmatches[0][1] < strlen($above) ) {
+				if ( $tocmatches[0][1] < strlen( $above ) ) {
 					$above = substr_replace( $above, '', $tocmatches[0][1], strlen($tocmatches[0][0]) );
 				} else {
 					$tocmatches[0][1] -= strlen($above);
 					// it's in a tab
-					for ($i = 0; ($i < count ( $parts ) / 2 ); $i++ ) {
+					for ( $i = 0; ( $i < count ( $parts ) / 2 ); $i++ ) {
 						if ( $tocmatches[0][1] < strlen($parts[($i * 2) + 1]) ) {
 							$parts[($i * 2) + 1] = substr_replace( $parts[($i * 2) + 1], '', $tocmatches[0][1], strlen($tocmatches[0][0]) );
 							break;
@@ -120,7 +120,7 @@ class HeaderTabs {
 					}
 				}
 			}
-		} elseif( count($tocmatches) > 0 && $tocmatches[0][1] === 0 ) {
+		} elseif( count( $tocmatches ) > 0 && $tocmatches[0][1] === 0 ) {
 			// add back a default-pos toc
 			$above = $toc.$above;
 		}
@@ -275,7 +275,7 @@ class HeaderTabs {
 	 * @return bool
 	 */
 	public static function addHTMLHeader( &$out ) {
-		global $htScriptPath,$htStyle;
+		global $htScriptPath, $htStyle;
 
 		//! @todo we might be able to only load our js and styles if we are rendering tabs, speeding up pages that don't use it? but what about cached pages? (2011-12-12, ofb)
 
@@ -283,7 +283,7 @@ class HeaderTabs {
 
 		// Add the CSS file for the specified style.
 		if ( !empty( $htStyle ) && $htStyle !== 'jquery' ) {
-			$styleFile = $htScriptPath . '/skins-jquery/ext.headertabs.' . $htStyle . '.css';
+			$styleFile = $htScriptPath . '/skins/ext.headertabs.' . $htStyle . '.css';
 			$out->addExtensionStyle( $styleFile );
 		}
 

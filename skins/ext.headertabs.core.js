@@ -1,5 +1,5 @@
 /**
- * Javascript code for Header Tabs extension for MW 1.17+
+ * JavaScript code for Header Tabs extension.
  *
  * @file
  * @ingroup Extensions
@@ -26,7 +26,7 @@ var $tabs = $("#headertabs").tabs();
 // delete the rule hiding unselected tabs
 var sheets = document.styleSheets;
 
-// Could be somebody else inserted something, so we can not just delete rule 0 of sheet 0
+// Could be somebody else inserted something, so we cannot just delete rule 0 of sheet 0
 outer:
 for (s = 0; s < sheets.length; s++ ) {
 	var cursheet = sheets[s];
@@ -45,7 +45,7 @@ for (s = 0; s < sheets.length; s++ ) {
 /* follow a # anchor to a tab OR a heading */
 var curHash = window.location.hash;
 if ( curHash.indexOf( "#tab=" ) == 0 ) {
-	// remove the fragment identifier, we're using it for the name of the tab in the jquery ui tabs
+	// remove the fragment identifier, we're using it for the name of the tab.
 	var tabName = curHash.replace( "#tab=", "" );
 	$tabs.tabs('select', tabName);
 } else if (curHash != '') {
@@ -60,7 +60,7 @@ if ( curHash.indexOf( "#tab=" ) == 0 ) {
 function tabEditTabLink(hash) {
 	var section = '';
 	if ( hash.indexOf( "#tab=" ) == 0 ) {
-		// keep the fragment identifier, using it to do a jquery find on the id
+		// keep the fragment identifier, using it to do a jQuery find on the id
 		hash = hash.replace( "#tab=", "#" );
 	}
 
@@ -70,7 +70,8 @@ function tabEditTabLink(hash) {
 		section = section.substring(s, s+section.substring(s).indexOf(' '));
 		if (section != 0) {
 			section = '&section='+section;
-		// no way to edit anything before the first section except to edit the entire article
+			// No way to edit anything before the first section
+			// except to edit the entire article.
 		}
 	}
 
