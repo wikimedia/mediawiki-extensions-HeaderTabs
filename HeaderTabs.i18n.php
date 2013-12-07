@@ -60,7 +60,7 @@ $messages['ce'] = array(
 	'headertabs-edittab' => 'нисйé',
 );
 
-/** Czech (česky)
+/** Czech (čeština)
  * @author Chmee2
  * @author Vks
  */
@@ -69,7 +69,7 @@ $messages['cs'] = array(
 	'headertabs-edittab-hint' => 'Záložka úprav',
 );
 
-/** Church Slavic (словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
+/** Church Slavic (словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ)
  * @author ОйЛ
  */
 $messages['cu'] = array(
