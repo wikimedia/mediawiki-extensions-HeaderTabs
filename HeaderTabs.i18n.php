@@ -460,8 +460,10 @@ $messages['vi'] = array(
 /** Simplified Chinese (中文（简体）‎)
  * @author Qiyue2001
  * @author Xiaomingyan
+ * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
+	'headertabs-desc' => '添加分离式选项卡到页面的顶部',
 	'headertabs-edittab' => '编辑',
 	'headertabs-edittab-hint' => '编辑标签页',
 );
