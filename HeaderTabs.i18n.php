@@ -135,9 +135,11 @@ $messages['eu'] = array(
 );
 
 /** Persian (فارسی)
+ * @author Armin1392
  * @author ZxxZxxZ
  */
 $messages['fa'] = array(
+	'headertabs-desc' => 'اضافه کردن تب‌ها به جدا کردن بخش‌های سطح بالای صفحه',
 	'headertabs-edittab' => 'ویرایش',
 	'headertabs-edittab-hint' => 'زبانهٔ ویرایش',
 );
