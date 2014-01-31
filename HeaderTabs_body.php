@@ -18,6 +18,7 @@ class HeaderTabs {
 	}
 
 	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
+		global $wgVersion;
 		global $htRenderSingleTab, $htAutomaticNamespaces, $htDefaultFirstTab, $htDisableDefaultToc, $htGenerateTabTocs, $htStyle, $htEditTabLink;
 		global $htTabIndexes;
 
@@ -44,7 +45,13 @@ class HeaderTabs {
 
 		// grab the TOC
 		$toc = '';
-		$tocpattern = '%<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>.+?</h2></div>'."\n+".'(<ul>'."\n+".'.+?</ul>)'."\n+".'</td></tr></table>'."\n+".'%ms';
+		// The HTML structure of the table of contents changed in
+		// MediaWiki 1.22.
+		if ( version_compare( $wgVersion, '1.22' ) >= 0 ) {
+			$tocpattern = '%<div id="toc" class="toc"><div id="toctitle"><h2>.+?</h2></div>'."\n+".'(<ul>'."\n+".'.+?</ul>)'."\n+".'</div>'."\n+".'%ms';
+		} else {
+			$tocpattern = '%<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>.+?</h2></div>'."\n+".'(<ul>'."\n+".'.+?</ul>)'."\n+".'</td></tr></table>'."\n+".'%ms';
+		}
 		if ( preg_match($tocpattern, $aboveandbelow[0], $tocmatches, PREG_OFFSET_CAPTURE) === 1 ) {
 			wfDebugLog('headertabs', __METHOD__.': found the toc: '.$tocmatches[0][1]);
 			$toc = $tocmatches[0][0];
@@ -101,7 +108,7 @@ class HeaderTabs {
 		wfDebugLog('headertabs', __METHOD__.': split count OK, continuing');
 
 		// disable default TOC
-		if ( $htDisableDefaultToc === TRUE ) {
+		if ( $htDisableDefaultToc ) {
 			// if it was somewhere else, we need to remove it
 			if ( count( $tocmatches ) > 0 && $tocmatches[0][1] !== 0 ) {
 				wfDebugLog('headertabs', __METHOD__.': removed non-standard-pos TOC');
@@ -122,7 +129,7 @@ class HeaderTabs {
 			}
 		} elseif( count( $tocmatches ) > 0 && $tocmatches[0][1] === 0 ) {
 			// add back a default-pos toc
-			$above = $toc.$above;
+			$above = $toc . $above;
 		}
 
 		// we have level 1 headers to parse, we'll want to render tabs
@@ -168,7 +175,7 @@ class HeaderTabs {
 			}
 
 			//! @todo handle __TOC__, __FORCETOC__, __NOTOC__ here (2011-12-12, ofb)
-			if ($htGenerateTabTocs === TRUE) {
+			if ( $htGenerateTabTocs ) {
 				// really? that was it?
 				// maybe a better way then clone... formatHeadings changes properties on the parser which we don't want to do
 				// would be better to have a 'clean' parser so the tab was treated as a new page
@@ -182,19 +189,27 @@ class HeaderTabs {
 					wfDebugLog('headertabs', __METHOD__.': generated toc for tab');
 					$tabtocraw = $tabtocmatches[0];
 					$tabtoc = $tabtocraw;
-					$itempattern = '/<li class="toclevel-[0-9]+"><a href="(#[^"]+)"><span class="tocnumber">[0-9]+<\/span> <span class="toctext">([^<]+)<\/span><\/a><\/li>/';
+					if ( version_compare( $wgVersion, '1.22' ) >= 0 ) {
+						$itempattern = '/<li class="toclevel-[0-9]+"><a href="(#[^"]+)"><span class="tocnumber">[0-9.]+<\/span> <span class="toctext">(<span>([^<]+)<\/span>[^<]+)<\/span><\/a>/';
+					} else {
+						$itempattern = '/<li class="toclevel-[0-9]+"><a href="(#[^"]+)"><span class="tocnumber">[0-9]+<\/span> <span class="toctext">([^<]+)<\/span><\/a><\/li>/';
+					}
 					if ( preg_match_all( $itempattern , $tabtocraw, $tabtocitemmatches, PREG_SET_ORDER ) > 0 ) {
 						foreach( $tabtocitemmatches as $match ) {
 							$newitem = $match[0];
 
-							// 1.17 behavior
+							// MW 1.17
 							if ( strpos( $match[2], '[edit] ' ) === 0 ) {
 								$newitem = str_replace( $match[1], '#' . substr( $match[1], 12 ), $newitem );
 								$newitem = str_replace( $match[2], substr( $match[2], 7 ), $newitem );
-							// 1.18+ behavior
+							// MW 1.18 - 1.21
 							} elseif ( trim( substr( $match[2], 0, strlen( $match[2] ) / 2 ) ) == trim( substr( $match[2], strlen( $match[2] ) / 2 ) ) ) {
 								$newitem = str_replace( $match[1], '#' . trim( substr( $match[1], ( strlen( $match[1] ) / 2 ) + 1 ) ), $newitem );
 								$newitem = str_replace( $match[2], trim( substr( $match[2], strlen( $match[2] ) / 2 ) ), $newitem );
+							// MW 1.22+
+							} elseif ( count( $matches ) == 4 ) {
+								$newitem = str_replace( $match[1], '#' . trim( substr( $match[1], ( strlen( $match[1] ) / 2 ) + 1 ) ), $newitem );
+								$newitem = str_replace( $match[2], trim( $match[3] ), $newitem );
 							}
 							$tabtoc = str_replace( $match[0], $newitem, $tabtoc );
 						}
@@ -222,7 +237,7 @@ class HeaderTabs {
 		$tabhtml .= '>';
 
 		//! @todo handle __NOEDITTAB__ here (2011-12-12, ofb)
-		if ( $htEditTabLink === TRUE ) {
+		if ( $htEditTabLink ) {
 			$tabhtml .= '<span class="editsection" id="edittab">[<a href="" title="'.wfMsg('headertabs-edittab-hint').'">'.wfMsg('headertabs-edittab').'</a>]</span>';
 		}
 
