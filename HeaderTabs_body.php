@@ -238,7 +238,7 @@ class HeaderTabs {
 
 		//! @todo handle __NOEDITTAB__ here (2011-12-12, ofb)
 		if ( $htEditTabLink ) {
-			$tabhtml .= '<span class="editsection" id="edittab">[<a href="" title="'.wfMsg('headertabs-edittab-hint').'">'.wfMsg('headertabs-edittab').'</a>]</span>';
+			$tabhtml .= '<span class="ht-editsection" id="edittab">[<a href="" title="'.wfMsg('headertabs-edittab-hint').'">'.wfMsg('headertabs-edittab').'</a>]</span>';
 		}
 
 		$tabhtml .= '<ul>';

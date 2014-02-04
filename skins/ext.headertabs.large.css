@@ -9,6 +9,14 @@
  * @author Olivier Beaton
  */
 
+/**
+ * Replaces the "editsection" CSS that was in place until MW 1.22 -
+ * for use with $htEditTabLink.
+ */
+span.ht-editsection {
+        float: right;
+}
+
 #headertabs.large.ui-widget {
 	font-family: inherit;
 	font-size: 1em; /* IE doesn't like inherit here */
