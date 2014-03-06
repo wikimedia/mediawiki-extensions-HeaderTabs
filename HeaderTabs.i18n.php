@@ -57,7 +57,7 @@ $messages['br'] = array(
  * @author Умар
  */
 $messages['ce'] = array(
-	'headertabs-edittab' => 'нисйé',
+	'headertabs-edittab' => 'нисъе',
 );
 
 /** Czech (čeština)
