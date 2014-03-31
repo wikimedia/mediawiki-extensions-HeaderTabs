@@ -18,12 +18,13 @@ $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'Header Tabs',
 	'descriptionmsg' => 'headertabs-desc',
-	'version' => '0.9.3',
+	'version' => '0.10.0',
 	'author' => array( '[http://www.sergeychernyshev.com Sergey Chernyshev]', 'Yaron Koren', '[http://olivierbeaton.com Olivier Finlay Beaton]' ),
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs'
 );
 
 // Translations
+$wgMessagesDirs['HeaderTabs'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['HeaderTabs'] = $dir . '/HeaderTabs.i18n.php';
 
 //! @todo implement in tab parsing code instead... but problems like nowiki (2011-12-12, ofb)
