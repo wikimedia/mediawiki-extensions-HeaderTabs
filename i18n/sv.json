@@ -1,9 +1,11 @@
 {
     "@metadata": {
         "authors": [
-            "WikiPhoenix"
+            "WikiPhoenix",
+            "Ainali"
         ]
     },
+    "headertabs-desc": "Lägger till flikar på de sidseparerande toppsektionerna",
     "headertabs-edittab": "redigera",
     "headertabs-edittab-hint": "Redigera flik"
 }
