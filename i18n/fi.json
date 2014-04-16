@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Beluga"
-        ]
-    },
-    "headertabs-edittab": "muokkaa",
-    "headertabs-edittab-hint": "Muokkaa välilehteä"
+	"@metadata": {
+		"authors": [
+			"Beluga"
+		]
+	},
+	"headertabs-edittab": "muokkaa",
+	"headertabs-edittab-hint": "Muokkaa välilehteä"
 }

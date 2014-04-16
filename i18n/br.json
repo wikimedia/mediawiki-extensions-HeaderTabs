@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Fulup"
-        ]
-    },
-    "headertabs-edittab": "kemmañ",
-    "headertabs-edittab-hint": "Kemmañ an ivinell"
+	"@metadata": {
+		"authors": [
+			"Fulup"
+		]
+	},
+	"headertabs-edittab": "kemmañ",
+	"headertabs-edittab-hint": "Kemmañ an ivinell"
 }

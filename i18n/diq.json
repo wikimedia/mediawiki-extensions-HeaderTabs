@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "Erdemaslancan",
-            "Mirzali"
-        ]
-    },
-    "headertabs-edittab": "bıvurne",
-    "headertabs-edittab-hint": "Taber bıvurne"
+	"@metadata": {
+		"authors": [
+			"Erdemaslancan",
+			"Mirzali"
+		]
+	},
+	"headertabs-edittab": "bıvurne",
+	"headertabs-edittab-hint": "Taber bıvurne"
 }

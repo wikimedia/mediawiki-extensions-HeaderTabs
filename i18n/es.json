@@ -1,10 +1,10 @@
 {
-    "@metadata": {
-        "authors": [
-            "Armando-Martin"
-        ]
-    },
-    "headertabs-desc": "Añade pestañas a la página para separar las secciones de nivel superior",
-    "headertabs-edittab": "editar",
-    "headertabs-edittab-hint": "Editar pestaña"
+	"@metadata": {
+		"authors": [
+			"Armando-Martin"
+		]
+	},
+	"headertabs-desc": "Añade pestañas a la página para separar las secciones de nivel superior",
+	"headertabs-edittab": "editar",
+	"headertabs-edittab-hint": "Editar pestaña"
 }
