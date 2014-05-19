@@ -97,7 +97,7 @@ class HeaderTabs {
 		$partslimit = $htRenderSingleTab ? 2 : 4;
 
 		wfDebugLog('headertabs', __METHOD__.': parts (limit '.$partslimit.'): '.count($parts));
-		if ($above !== '') {
+		if ( $above !== '' ) {
 			wfDebugLog('headertabs', __METHOD__.': we have text above our tabs');
 		}
 
@@ -127,7 +127,7 @@ class HeaderTabs {
 					}
 				}
 			}
-		} elseif( count( $tocmatches ) > 0 && $tocmatches[0][1] === 0 ) {
+		} elseif ( count( $tocmatches ) > 0 && $tocmatches[0][1] === 0 ) {
 			// add back a default-pos toc
 			$above = $toc . $above;
 		}
@@ -141,7 +141,7 @@ class HeaderTabs {
 			preg_match( $tabpatternmatch, $parts[$i * 2], $matches );
 
 			// if this is a default tab, don't increment our section number
-			if ($s !== 0 || $i !== 0 || $htDefaultFirstTab === FALSE || $matches[3] !== $htDefaultFirstTab) {
+			if ( $s !== 0 || $i !== 0 || $htDefaultFirstTab === FALSE || $matches[3] !== $htDefaultFirstTab ) {
 				++$s;
 			}
 
@@ -165,7 +165,7 @@ class HeaderTabs {
 			$subpatternsplit = '/(<h[2-6].+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]*>\s*.*?\s*<\/span>.*?<\/h[2-6]>)/';
 			$subpatternmatch = '/<h([2-6]).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]*>\s*(.*?)\s*<\/span>.*?<\/h[2-6]>/';
 			$subparts = preg_split( $subpatternsplit, $content, -1, PREG_SPLIT_DELIM_CAPTURE );
-			if ((count($subparts) % 2) !== 0) {
+			if ( ( count( $subparts ) % 2 ) !== 0 ) {
 				// don't need anything above first header
 				array_shift( $subparts );
 			}
@@ -228,7 +228,7 @@ class HeaderTabs {
 
 		//! @todo see if we can't add the SMW factbox stuff back in (2011-12-12, ofb)
 
-		wfDebugLog('headertabs', __METHOD__.': generated '.count($tabs).' tabs');
+		wfDebugLog( 'headertabs', __METHOD__ . ': generated ' . count( $tabs ) . ' tabs' );
 
 		$tabhtml = '<div id="headertabs"';
 		if (!empty($htStyle) && $htStyle !== 'jquery') {
@@ -307,7 +307,7 @@ class HeaderTabs {
 
 	public static function renderSwitchTabLink( &$parser, $tabName, $linkText, $anotherTarget = '' ) {
 		// The cache unfortunately needs to be disabled for the
-		// Javascript for such links to work.
+		// JavaScript for such links to work.
 		$parser->disableCache();
 
 		$tabTitle = Title::newFromText( $tabName );
@@ -320,7 +320,7 @@ class HeaderTabs {
 
 			$output = '<a href="' . $targetURL . '#tab=' . $tabKey . '">' . $sanitizedLinkText . '</a>';
 		} else {
-			$output = '<a href="#tab='.$tabKey.'" class="tabLink">'.$sanitizedLinkText.'</a>';
+			$output = '<a href="#tab=' . $tabKey . '" class="tabLink">' . $sanitizedLinkText . '</a>';
 		}
 
 		return $parser->insertStripItem( $output, $parser->mStripState );
