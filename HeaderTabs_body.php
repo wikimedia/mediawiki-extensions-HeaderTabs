@@ -255,12 +255,12 @@ class HeaderTabs {
 
 		foreach ( $tabs as $i => $tab ) {
 			$tabhtml .= '<div id="' . $tab['tabid'] . '" class="section-'.$tab['section'];
-			
+
 			if ( $i != 0 ) { // hide content of all but first tab
 				$tabhtml .= ' unselected';
 			}
-			
-			$tabhtml .= '"><p>' . $tab['tabcontent'] . '</p></div>';
+
+			$tabhtml .= '"><div>' . $tab['tabcontent'] . '</div></div>';
 		}
 		$tabhtml .= '</div>';
 
@@ -272,7 +272,7 @@ class HeaderTabs {
 			$tabTitle = str_replace( ' ', '_', $tab['title'] );
 			$htTabIndexes[$tabTitle] = $i;
 		}
-		
+
 		return true;
 	}
 
