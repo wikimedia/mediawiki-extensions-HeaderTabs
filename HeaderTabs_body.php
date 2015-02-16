@@ -24,9 +24,12 @@ class HeaderTabs {
 
 		//! @todo handle __NOTABTOC__, __TABTOC__, __FORCETABTOC__ here (2011-12-12, ofb)
 
+		// Remove spans added if "auto-number headings" is enabled.
+		$simplifiedText = preg_replace( '/\<span class="mw-headline-number"\>\d*\<\/span\>/', '', $text );
+
 		// Where do we stop rendering tabs, and what is below it?
 		// if we don't have a stop point, then bail out
-		$aboveandbelow = explode( '<div id="nomoretabs"></div>', $text, 2 );
+		$aboveandbelow = explode( '<div id="nomoretabs"></div>', $simplifiedText, 2 );
 		if ( count( $aboveandbelow ) <= 1 ) {
 			if ( in_array( $parser->getTitle()->getNamespace(), $htAutomaticNamespaces ) === FALSE ) {
 				return true; // <headertabs/> tag is not found
