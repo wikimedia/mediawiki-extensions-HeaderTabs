@@ -3,10 +3,12 @@
 		"authors": [
 			"EugeneZelenko",
 			"Purodha",
-			"Shirayuki"
+			"Shirayuki",
+			"Liuxinyu970226"
 		]
 	},
 	"headertabs-desc": "{{desc|name=Header Tabs|url=http://www.mediawiki.org/wiki/Extension:Header_Tabs}}",
 	"headertabs-edittab": "{{Identical|Edit}}",
-	"headertabs-edittab-hint": "This is about a tab being edited."
+	"headertabs-edittab-hint": "This is about a tab being edited.",
+	"headertabs-edittab-key": "{{optional}}"
 }
