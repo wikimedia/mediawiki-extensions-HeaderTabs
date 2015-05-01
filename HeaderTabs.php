@@ -18,7 +18,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'Header Tabs',
 	'descriptionmsg' => 'headertabs-desc',
-	'version' => '1.0.1',
+	'version' => '1.0.2',
 	'author' => array( '[http://www.sergeychernyshev.com Sergey Chernyshev]', 'Yaron Koren', '[http://olivierbeaton.com Olivier Finlay Beaton]' ),
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs'
 );
