@@ -75,12 +75,13 @@ if ( isset( $wgConfigureAdditionalExtensions ) && is_array( $wgConfigureAddition
 
 } // $wgConfigureAdditionalExtensions exists
 
-$wgHooks['ParserFirstCallInit'][] = 'headerTabsParserFunctions';
-$wgHooks['BeforePageDisplay'][] = 'HeaderTabs::addHTMLHeader';
-$wgHooks['ParserAfterTidy'][] = 'HeaderTabs::replaceFirstLevelHeaders';
-$wgHooks['ResourceLoaderGetConfigVars'][] = 'HeaderTabs::addConfigVarsToJS';
-$wgHooks['MakeGlobalVariablesScript'][] = 'HeaderTabs::setGlobalJSVariables';
+$wgHooks['ParserFirstCallInit'][] = 'HeaderTabsHooks::registerParserFunctions';
+$wgHooks['BeforePageDisplay'][] = 'HeaderTabsHooks::addHTMLHeader';
+$wgHooks['ParserAfterTidy'][] = 'HeaderTabsHooks::replaceFirstLevelHeaders';
+$wgHooks['ResourceLoaderGetConfigVars'][] = 'HeaderTabsHooks::addConfigVarsToJS';
+$wgHooks['MakeGlobalVariablesScript'][] = 'HeaderTabsHooks::setGlobalJSVariables';
 
+$wgAutoloadClasses['HeaderTabsHooks'] = "$dir/HeaderTabs.hooks.php";
 $wgAutoloadClasses['HeaderTabs'] = "$dir/HeaderTabs_body.php";
 
 $wgResourceModules['ext.headertabs'] = array(
@@ -98,10 +99,3 @@ $wgResourceModules['ext.headertabs'] = array(
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'HeaderTabs',
 );
-
-# Parser function to insert a link changing a tab.
-function headerTabsParserFunctions( $parser ) {
-	$parser->setHook( 'headertabs', array( 'HeaderTabs', 'tag' ) );
-	$parser->setFunctionHook( 'switchtablink', array( 'HeaderTabs', 'renderSwitchTabLink' ) );
-	return true;
-}

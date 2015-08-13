@@ -17,27 +17,13 @@ class HeaderTabs {
 		return '<div id="nomoretabs"></div>';
 	}
 
-	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
+	public static function replaceFirstLevelHeaders( &$parser, &$text, $aboveandbelow ) {
 		global $wgVersion;
-		global $htRenderSingleTab, $htAutomaticNamespaces, $htDefaultFirstTab, $htDisableDefaultToc, $htGenerateTabTocs, $htStyle, $htEditTabLink;
+		global $htRenderSingleTab, $htDefaultFirstTab, $htDisableDefaultToc, $htGenerateTabTocs, $htStyle, $htEditTabLink;
 		global $htTabIndexes;
 
 		//! @todo handle __NOTABTOC__, __TABTOC__, __FORCETABTOC__ here (2011-12-12, ofb)
 
-		// Remove spans added if "auto-number headings" is enabled.
-		$simplifiedText = preg_replace( '/\<span class="mw-headline-number"\>\d*\<\/span\>/', '', $text );
-
-		// Where do we stop rendering tabs, and what is below it?
-		// if we don't have a stop point, then bail out
-		$aboveandbelow = explode( '<div id="nomoretabs"></div>', $simplifiedText, 2 );
-		if ( count( $aboveandbelow ) <= 1 ) {
-			if ( in_array( $parser->getTitle()->getNamespace(), $htAutomaticNamespaces ) === FALSE ) {
-				return true; // <headertabs/> tag is not found
-			} else {
-				// assume end of article is nomoretabs
-				$aboveandbelow[] = '';
-			}
-		}
 		$below = $aboveandbelow[1];
 
 		wfDebugLog('headertabs', __METHOD__.': detected header handling, checking');
@@ -279,35 +265,6 @@ class HeaderTabs {
 		return true;
 	}
 
-	public static function addConfigVarsToJS( &$vars ) {
-		global $htUseHistory, $htEditTabLink;
-
-		$vars['htUseHistory'] = $htUseHistory;
-		$vars['htEditTabLink'] = $htEditTabLink;
-
-		return true;
-	}
-
-	/**
-	 * @param $out OutputPage
-	 * @return bool
-	 */
-	public static function addHTMLHeader( &$out ) {
-		global $htScriptPath, $htStyle;
-
-		//! @todo we might be able to only load our js and styles if we are rendering tabs, speeding up pages that don't use it? but what about cached pages? (2011-12-12, ofb)
-
-		$out->addModules( 'ext.headertabs' );
-
-		// Add the CSS file for the specified style.
-		if ( !empty( $htStyle ) && $htStyle !== 'jquery' ) {
-			$styleFile = $htScriptPath . '/skins/ext.headertabs.' . $htStyle . '.css';
-			$out->addExtensionStyle( $styleFile );
-		}
-
-		return true;
-	}
-
 	public static function renderSwitchTabLink( &$parser, $tabName, $linkText, $anotherTarget = '' ) {
 		// The cache unfortunately needs to be disabled for the
 		// JavaScript for such links to work.
@@ -329,9 +286,4 @@ class HeaderTabs {
 		return $parser->insertStripItem( $output, $parser->mStripState );
 	}
 
-	static function setGlobalJSVariables( &$vars ) {
-		global $htTabIndexes;
-		$vars['htTabIndexes'] = $htTabIndexes;
-		return true;
-	}
 }
