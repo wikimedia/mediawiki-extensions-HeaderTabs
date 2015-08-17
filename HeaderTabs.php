@@ -10,9 +10,7 @@
  * @author Olivier Finlay Beaton
  */
 
-$htScriptPath = $wgScriptPath . '/extensions/HeaderTabs';
-
-$dir = dirname( __FILE__ );
+if ( !defined( 'MEDIAWIKI' ) ) die();
 
 $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
@@ -23,8 +21,10 @@ $wgExtensionCredits['parserhook'][] = array(
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs'
 );
 
+$dir = dirname( __FILE__ );
+
 // Translations
-$wgMessagesDirs['HeaderTabs'] = __DIR__ . '/i18n';
+$wgMessagesDirs['HeaderTabs'] = $dir . '/i18n';
 $wgExtensionMessagesFiles['HeaderTabs'] = $dir . '/HeaderTabs.i18n.php';
 
 //! @todo implement in tab parsing code instead... but problems like nowiki (2011-12-12, ofb)
@@ -35,17 +35,18 @@ $wgExtensionMessagesFiles['HeaderTabs'] = $dir . '/HeaderTabs.i18n.php';
 $wgExtensionMessagesFiles['HeaderTabsMagic'] = $dir . '/HeaderTabs.i18n.magic.php';
 
 // Config
-$htUseHistory = true;
-$htRenderSingleTab = false;
-$htAutomaticNamespaces = array();
-$htDefaultFirstTab = false;
-$htDisableDefaultToc = true;
-$htGenerateTabTocs = false;
-$htStyle = 'large';
-$htEditTabLink = true;
+$wgHeaderTabsScriptPath = $wgScripPath . "/extensions/HeaderTabs";
+$wgHeaderTabsUseHistory = true;
+$wgHeaderTabsRenderSingleTab = false;
+$wgHeaderTabsAutomaticNamespaces = array();
+$wgHeaderTabsDefaultFirstTab = false;
+$wgHeaderTabsDisableDefaultToc = true;
+$wgHeaderTabsGenerateTabTocs = false;
+$wgHeaderTabsStyle = 'large';
+$wgHeaderTabsEditTabLink = true;
 
 // Other variables
-$htTabIndexes = array();
+$wgHeaderTabsTabIndexes = array();
 
 // Extension:Configure
 if ( isset( $wgConfigureAdditionalExtensions ) && is_array( $wgConfigureAdditionalExtensions ) ) {
@@ -57,17 +58,17 @@ if ( isset( $wgConfigureAdditionalExtensions ) && is_array( $wgConfigureAddition
 	$wgConfigureAdditionalExtensions[] = array(
 			'name' => 'HeaderTabs',
 			'settings' => array(
-					'htUseHistory' => 'bool',
-					'htRenderSingleTab' => 'bool',
-					'htAutomaticNamespaces' => 'array',
-					'htDefaultFirstTab' => 'string',
-					'htDisableDefaultToc' => 'bool',
-					'htGenerateTabTocs' => 'bool',
-					'htStyle' => 'string',
-					'htEditTabLink' => 'bool',
+					'wgHeaderTabsUseHistory' => 'bool',
+					'wgHeaderTabsRenderSingleTab' => 'bool',
+					'wgHeaderTabsAutomaticNamespaces' => 'array',
+					'wgHeaderTabsDefaultFirstTab' => 'string',
+					'wgHeaderTabsDisableDefaultToc' => 'bool',
+					'wgHeaderTabsGenerateTabTocs' => 'bool',
+					'wgHeaderTabsStyle' => 'string',
+					'wgHeaderTabsEditTabLink' => 'bool',
 				),
 			'array' => array(
-					'htAutomaticNamespaces' => 'simple',
+					'wgHeaderTabsAutomaticNamespaces' => 'simple',
 				),
 			'schema' => false,
 			'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs',

@@ -84,18 +84,18 @@ function tabEditTabLink(hash) {
 }
 
 // page load behaviour
-if (mw.config.get("htEditTabLink")) {
+if (mw.config.get("wgHeaderTabsEditTabLink")) {
 	tabEditTabLink(window.location.hash);
 }
 
 // only fires when the user clicks on a tab, not on page load
 $tabs.bind('tabsshow', function(event, ui) {
 	// make the url show the current tab name for bookmarks
-	if (mw.config.get("htUseHistory")) {
+	if (mw.config.get("wgHeaderTabsUseHistory")) {
 		window.location.hash = '#tab='+ui.tab.hash.slice(1);
 	}
 
-	if (mw.config.get("htEditTabLink")) {
+	if (mw.config.get("wgHeaderTabsEditTabLink")) {
 		tabEditTabLink(ui.tab.hash);
 	}
 });
@@ -103,7 +103,7 @@ $tabs.bind('tabsshow', function(event, ui) {
 /* click a tab parserhook link */
 $(".tabLink").click( function() {
 	var tabName = $(this).attr('href').replace('#tab=', '');
-	var tabIndex = htTabIndexes[tabName];
+	var tabIndex = wgHeaderTabsTabIndexes[tabName];
 	$tabs.tabs('select', tabIndex ); //tabNameEscape(href));
 	return false;
 } );

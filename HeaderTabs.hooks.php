@@ -25,7 +25,7 @@ class HeaderTabsHooks {
 	 * on the cuurrent page, and exits if not.
 	 */
 	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
-		global $htAutomaticNamespaces;
+		global $wgHeaderTabsAutomaticNamespaces;
 
 		// Remove spans added if "auto-number headings" is enabled.
 		$simplifiedText = preg_replace( '/\<span class="mw-headline-number"\>\d*\<\/span\>/', '', $text );
@@ -34,7 +34,7 @@ class HeaderTabsHooks {
 		// if we don't have a stop point, then bail out
 		$aboveandbelow = explode( '<div id="nomoretabs"></div>', $simplifiedText, 2 );
 		if ( count( $aboveandbelow ) <= 1 ) {
-			if ( in_array( $parser->getTitle()->getNamespace(), $htAutomaticNamespaces ) ) {
+			if ( in_array( $parser->getTitle()->getNamespace(), $wgHeaderTabsAutomaticNamespaces ) ) {
 				// We'll act as if the end of article is
 				// nomoretabs.
 				$aboveandbelow[] = '';
@@ -47,10 +47,10 @@ class HeaderTabsHooks {
 	}
 
 	public static function addConfigVarsToJS( &$vars ) {
-		global $htUseHistory, $htEditTabLink;
+		global $wgHeaderTabsUseHistory, $wgHeaderTabsEditTabLink;
 
-		$vars['htUseHistory'] = $htUseHistory;
-		$vars['htEditTabLink'] = $htEditTabLink;
+		$vars['wgHeaderTabsUseHistory'] = $wgHeaderTabsUseHistory;
+		$vars['wgHeaderTabsEditTabLink'] = $wgHeaderTabsEditTabLink;
 
 		return true;
 	}
@@ -60,15 +60,15 @@ class HeaderTabsHooks {
 	 * @return bool
 	 */
 	public static function addHTMLHeader( &$out ) {
-		global $htScriptPath, $htStyle;
+		global $wgHeaderTabsScriptPath, $wgHeaderTabsStyle;
 
 		//! @todo we might be able to only load our js and styles if we are rendering tabs, speeding up pages that don't use it? but what about cached pages? (2011-12-12, ofb)
 
 		$out->addModules( 'ext.headertabs' );
 
 		// Add the CSS file for the specified style.
-		if ( !empty( $htStyle ) && $htStyle !== 'jquery' ) {
-			$styleFile = $htScriptPath . '/skins/ext.headertabs.' . $htStyle . '.css';
+		if ( !empty( $wgHeaderTabsStyle ) && $wgHeaderTabsStyle !== 'jquery' ) {
+			$styleFile = $wgHeaderTabsScriptPath . '/skins/ext.headertabs.' . $wgHeaderTabsStyle . '.css';
 			$out->addExtensionStyle( $styleFile );
 		}
 
@@ -76,8 +76,8 @@ class HeaderTabsHooks {
 	}
 
 	static function setGlobalJSVariables( &$vars ) {
-		global $htTabIndexes;
-		$vars['htTabIndexes'] = $htTabIndexes;
+		global $wgHeaderTabsTabIndexes;
+		$vars['wgHeaderTabsTabIndexes'] = $wgHeaderTabsTabIndexes;
 		return true;
 	}
 }
