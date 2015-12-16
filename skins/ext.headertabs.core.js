@@ -21,13 +21,6 @@ function tabNameEscape(tabName) {
 	return tabName;
 }
 
-function entryEscape(entryName) {
-    //Don't escape #'s for our entries
-    //Replacement code is courtesy of http://http://totaldev.com/content/escaping-characters-get-valid-jquery-id
-    //Retireved 2013/4/22
-    entryName = entryName.replace(/([;&,\.\+\*\~':"\!\^$%@\[\]\(\)=>\|])/g, '\\$1');
-    return entryName;
-}
 var $tabs = $("#headertabs").tabs();
 
 // delete the rule hiding unselected tabs
@@ -49,16 +42,20 @@ for (s = 0; s < sheets.length; s++ ) {
 	}
 }
 
-/* rewrite TOC 
- * Code originally written by Chad Catlett
- * Submitted with his permission. */
+/*
+ * Get links to tabs in Table of Contents to work.
+ * @author Chad Catlett
+ */
 $(document).ready(function(){
-    $(".toc ul a").each(function(){
-        $(this).click(function() {
-            var tabId = $(entryEscape(this.hash)).closest('.ui-tabs-panel').attr('id');
-            $tabs.tabs('select', tabNameEscape(tabId));
-        });
-    });
+	$(".toc ul a").each(function(){
+		$(this).click(function() {
+			// Don't escape #'s for our entries. Copied from:
+			// http://totaldev.com/content/escaping-characters-get-valid-jquery-id
+			var escapedHash = this.hash.replace(/([;&,\.\+\*\~':"\!\^$%@\[\]\(\)=>\|])/g, '\\$1');
+			var tabId = $(escapedHash).closest('.ui-tabs-panel').attr('id');
+			$tabs.tabs('select', tabNameEscape(tabId));
+		});
+	});
 
 });
 

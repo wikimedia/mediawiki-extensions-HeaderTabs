@@ -35,7 +35,7 @@ $wgExtensionMessagesFiles['HeaderTabs'] = $dir . '/HeaderTabs.i18n.php';
 $wgExtensionMessagesFiles['HeaderTabsMagic'] = $dir . '/HeaderTabs.i18n.magic.php';
 
 // Config
-$wgHeaderTabsScriptPath = $wgScripPath . "/extensions/HeaderTabs";
+$wgHeaderTabsScriptPath = $wgScriptPath . "/extensions/HeaderTabs";
 $wgHeaderTabsUseHistory = true;
 $wgHeaderTabsRenderSingleTab = false;
 $wgHeaderTabsAutomaticNamespaces = array();
@@ -86,17 +86,10 @@ $wgAutoloadClasses['HeaderTabsHooks'] = "$dir/HeaderTabs.hooks.php";
 $wgAutoloadClasses['HeaderTabs'] = "$dir/HeaderTabs_body.php";
 
 $wgResourceModules['ext.headertabs'] = array(
-	// JavaScript and CSS styles. To combine multiple files, just list them as an array.
 	'scripts' => 'skins/ext.headertabs.core.js',
-	// 'styles' => // the style is added in HeaderTabs::addHTMLHeader
+	// 'styles' => // the style is added in HeaderTabsHooks::addHTMLHeader()
 
-	// If your scripts need code from other modules, list their identifiers as dependencies
-	// and ResourceLoader will make sure they're loaded before you.
-	// You don't need to manually list 'mediawiki' or 'jquery', which are always loaded.
 	'dependencies' => array( 'jquery.ui.tabs' ),
-
-	// ResourceLoader needs to know where your files are; specify your
-	// subdir relative to "/extensions" (or $wgExtensionAssetsPath)
 	'localBasePath' => dirname( __FILE__ ),
 	'remoteExtPath' => 'HeaderTabs',
 );
