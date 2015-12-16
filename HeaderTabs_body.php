@@ -19,8 +19,10 @@ class HeaderTabs {
 
 	public static function replaceFirstLevelHeaders( &$parser, &$text, $aboveandbelow ) {
 		global $wgVersion;
-		global $htRenderSingleTab, $htDefaultFirstTab, $htDisableDefaultToc, $htGenerateTabTocs, $htStyle, $htEditTabLink;
-		global $htTabIndexes;
+		global $wgHeaderTabsRenderSingleTab, $wgHeaderTabsDefaultFirstTab,
+			$wgHeaderTabsDisableDefaultToc, $wgHeaderTabsGenerateTabTocs,
+			$wgHeaderTabsStyle, $wgHeaderTabsEditTabLink,
+			$wgHeaderTabsTabIndexes;
 
 		//! @todo handle __NOTABTOC__, __TABTOC__, __FORCETABTOC__ here (2011-12-12, ofb)
 
@@ -72,9 +74,9 @@ class HeaderTabs {
 		$above = '';
 
 		// auto tab and the first thing isn't a header (note we already removed the default toc, add it back later if needed)
-		if ( $htDefaultFirstTab !== FALSE && $parts[0] !== '' ) {
+		if ( $wgHeaderTabsDefaultFirstTab !== FALSE && $parts[0] !== '' ) {
 			// add the default header
-			$headline = '<h1><span class="mw-headline" id="'.str_replace(' ', '_', $htDefaultFirstTab).'">'.$htDefaultFirstTab.'</span></h1>';
+			$headline = '<h1><span class="mw-headline" id="'.str_replace(' ', '_', $wgHeaderTabsDefaultFirstTab).'">'.$wgHeaderTabsDefaultFirstTab.'</span></h1>';
 			array_unshift( $parts, $headline );
 			$above = ''; // explicit
 		} else {
@@ -83,7 +85,7 @@ class HeaderTabs {
 			array_shift( $parts ); // don't need above part anyway
 		}
 
-		$partslimit = $htRenderSingleTab ? 2 : 4;
+		$partslimit = $wgHeaderTabsRenderSingleTab ? 2 : 4;
 
 		wfDebugLog('headertabs', __METHOD__.': parts (limit '.$partslimit.'): '.count($parts));
 		if ( $above !== '' ) {
@@ -97,7 +99,7 @@ class HeaderTabs {
 		wfDebugLog('headertabs', __METHOD__.': split count OK, continuing');
 
 		// disable default TOC
-		if ( $htDisableDefaultToc ) {
+		if ( $wgHeaderTabsDisableDefaultToc ) {
 			// if it was somewhere else, we need to remove it
 			if ( count( $tocmatches ) > 0 && $tocmatches[0][1] !== 0 ) {
 				wfDebugLog('headertabs', __METHOD__.': removed non-standard-pos TOC');
@@ -130,7 +132,7 @@ class HeaderTabs {
 			preg_match( $tabpatternmatch, $parts[$i * 2], $matches );
 
 			// if this is a default tab, don't increment our section number
-			if ( $s !== 0 || $i !== 0 || $htDefaultFirstTab === FALSE || $matches[3] !== $htDefaultFirstTab ) {
+			if ( $s !== 0 || $i !== 0 || $wgHeaderTabsDefaultFirstTab === FALSE || $matches[3] !== $wgHeaderTabsDefaultFirstTab ) {
 				++$s;
 			}
 
@@ -164,7 +166,7 @@ class HeaderTabs {
 			}
 
 			//! @todo handle __TOC__, __FORCETOC__, __NOTOC__ here (2011-12-12, ofb)
-			if ( $htGenerateTabTocs ) {
+			if ( $wgHeaderTabsGenerateTabTocs ) {
 				// really? that was it?
 				// maybe a better way then clone... formatHeadings changes properties on the parser which we don't want to do
 				// would be better to have a 'clean' parser so the tab was treated as a new page
@@ -220,13 +222,13 @@ class HeaderTabs {
 		wfDebugLog( 'headertabs', __METHOD__ . ': generated ' . count( $tabs ) . ' tabs' );
 
 		$tabhtml = '<div id="headertabs"';
-		if (!empty($htStyle) && $htStyle !== 'jquery') {
-			$tabhtml .= ' class="'.$htStyle.'"';
+		if (!empty($wgHeaderTabsStyle) && $wgHeaderTabsStyle !== 'jquery') {
+			$tabhtml .= ' class="'.$wgHeaderTabsStyle.'"';
 		}
 		$tabhtml .= '>';
 
 		//! @todo handle __NOEDITTAB__ here (2011-12-12, ofb)
-		if ( $htEditTabLink ) {
+		if ( $wgHeaderTabsEditTabLink ) {
 			$tabhtml .= '<span class="ht-editsection" id="edittab">[<a href="" title="'.wfMessage('headertabs-edittab-hint')->text().'">'.wfMessage('headertabs-edittab')->text().'</a>]</span>';
 		}
 
@@ -259,7 +261,7 @@ class HeaderTabs {
 
 		foreach ( $tabs as $i => $tab ) {
 			$tabTitle = str_replace( ' ', '_', $tab['title'] );
-			$htTabIndexes[$tabTitle] = $i;
+			$wgHeaderTabsTabIndexes[$tabTitle] = $i;
 		}
 
 		return true;
