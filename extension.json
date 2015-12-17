@@ -1,0 +1,65 @@
+{
+	"name": "Header Tabs",
+	"version": "1.1-alpha",
+	"author": [
+		"[http://www.sergeychernyshev.com Sergey Chernyshev]",
+		"Yaron Koren",
+		"[http://olivierbeaton.com Olivier Finlay Beaton]"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:Header_Tabs",
+	"descriptionmsg": "headertabs-desc",
+	"type": "parserhook",
+	"MessagesDirs": {
+		"HeaderTabs": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"HeaderTabsMagic": "HeaderTabs.i18n.magic.php"
+	},
+	"AutoloadClasses": {
+		"HeaderTabsHooks": "HeaderTabs.hooks.php",
+		"HeaderTabs": "HeaderTabs_body.php"
+	},
+	"ResourceModules": {
+		"ext.headertabs": {
+			"scripts": "skins/ext.headertabs.core.js",
+			"dependencies": [
+				"jquery.ui.tabs"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "HeaderTabs"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"HeaderTabsHooks::registerParserFunctions"
+		],
+		"BeforePageDisplay": [
+			"HeaderTabsHooks::addHTMLHeader"
+		],
+		"ParserAfterTidy": [
+			"HeaderTabsHooks::replaceFirstLevelHeaders"
+		],
+		"ResourceLoaderGetConfigVars": [
+			"HeaderTabsHooks::addConfigVarsToJS"
+		],
+		"MakeGlobalVariablesScript": [
+			"HeaderTabsHooks::setGlobalJSVariables"
+		]
+	},
+	"config": {
+		"HeaderTabsUseHistory": true,
+		"HeaderTabsRenderSingleTab": false,
+		"HeaderTabsAutomaticNamespaces": [],
+		"HeaderTabsDefaultFirstTab": false,
+		"HeaderTabsDisableDefaultToc": true,
+		"HeaderTabsGenerateTabTocs": false,
+		"HeaderTabsStyle": "large",
+		"HeaderTabsEditTabLink": true,
+		"HeaderTabsTabIndexes": []
+	},
+	"manifest_version": 1
+}

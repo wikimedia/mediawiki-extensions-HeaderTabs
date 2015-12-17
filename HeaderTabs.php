@@ -10,18 +10,34 @@
  * @author Olivier Finlay Beaton
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) die();
+if ( !defined( 'MEDIAWIKI' ) ) {
+	die();
+}
+
+$dir = dirname( __FILE__ );
+$wgHeaderTabsScriptPath = $wgScriptPath . "/extensions/HeaderTabs";
+
+if ( function_exists( 'wfLoadExtension' ) ) {
+        wfLoadExtension( 'HeaderTabs' );
+        // Keep i18n globals so mergeMessageFileList.php doesn't break
+	$wgMessagesDirs['HeaderTabs'] = $dir . '/i18n';
+	$wgExtensionMessagesFiles['HeaderTabsMagic'] = $dir . '/HeaderTabs.i18n.magic.php';
+        /* wfWarn(
+                'Deprecated PHP entry point used for Semanti Forms extension. Please use wfLoadExtension instead, ' .
+                'see https://www.mediawiki.org/wiki/Extension_registration for more details.'
+        ); */
+        return;
+}
+
 
 $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'Header Tabs',
 	'descriptionmsg' => 'headertabs-desc',
-	'version' => '1.0.2',
+	'version' => '1.1-alpha',
 	'author' => array( '[http://www.sergeychernyshev.com Sergey Chernyshev]', 'Yaron Koren', '[http://olivierbeaton.com Olivier Finlay Beaton]' ),
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs'
 );
-
-$dir = dirname( __FILE__ );
 
 // Translations
 $wgMessagesDirs['HeaderTabs'] = $dir . '/i18n';
@@ -35,7 +51,6 @@ $wgExtensionMessagesFiles['HeaderTabs'] = $dir . '/HeaderTabs.i18n.php';
 $wgExtensionMessagesFiles['HeaderTabsMagic'] = $dir . '/HeaderTabs.i18n.magic.php';
 
 // Config
-$wgHeaderTabsScriptPath = $wgScriptPath . "/extensions/HeaderTabs";
 $wgHeaderTabsUseHistory = true;
 $wgHeaderTabsRenderSingleTab = false;
 $wgHeaderTabsAutomaticNamespaces = array();
@@ -56,23 +71,23 @@ if ( isset( $wgConfigureAdditionalExtensions ) && is_array( $wgConfigureAddition
 	 * @since 2011-09-22, 0.2
 	 */
 	$wgConfigureAdditionalExtensions[] = array(
-			'name' => 'HeaderTabs',
-			'settings' => array(
-					'wgHeaderTabsUseHistory' => 'bool',
-					'wgHeaderTabsRenderSingleTab' => 'bool',
-					'wgHeaderTabsAutomaticNamespaces' => 'array',
-					'wgHeaderTabsDefaultFirstTab' => 'string',
-					'wgHeaderTabsDisableDefaultToc' => 'bool',
-					'wgHeaderTabsGenerateTabTocs' => 'bool',
-					'wgHeaderTabsStyle' => 'string',
-					'wgHeaderTabsEditTabLink' => 'bool',
-				),
-			'array' => array(
-					'wgHeaderTabsAutomaticNamespaces' => 'simple',
-				),
-			'schema' => false,
-			'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs',
-		);
+		'name' => 'HeaderTabs',
+		'settings' => array(
+			'wgHeaderTabsUseHistory' => 'bool',
+			'wgHeaderTabsRenderSingleTab' => 'bool',
+			'wgHeaderTabsAutomaticNamespaces' => 'array',
+			'wgHeaderTabsDefaultFirstTab' => 'string',
+			'wgHeaderTabsDisableDefaultToc' => 'bool',
+			'wgHeaderTabsGenerateTabTocs' => 'bool',
+			'wgHeaderTabsStyle' => 'string',
+			'wgHeaderTabsEditTabLink' => 'bool',
+		),
+		'array' => array(
+			'wgHeaderTabsAutomaticNamespaces' => 'simple',
+		),
+		'schema' => false,
+		'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs',
+	);
 
 } // $wgConfigureAdditionalExtensions exists
 
