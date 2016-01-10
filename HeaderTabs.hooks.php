@@ -60,7 +60,7 @@ class HeaderTabsHooks {
 	 * @return bool
 	 */
 	public static function addHTMLHeader( &$out ) {
-		global $wgHeaderTabsScriptPath, $wgHeaderTabsStyle;
+		global $wgScriptPath, $wgHeaderTabsStyle;
 
 		//! @todo we might be able to only load our js and styles if we are rendering tabs, speeding up pages that don't use it? but what about cached pages? (2011-12-12, ofb)
 
@@ -68,7 +68,7 @@ class HeaderTabsHooks {
 
 		// Add the CSS file for the specified style.
 		if ( !empty( $wgHeaderTabsStyle ) && $wgHeaderTabsStyle !== 'jquery' ) {
-			$styleFile = $wgHeaderTabsScriptPath . '/skins/ext.headertabs.' . $wgHeaderTabsStyle . '.css';
+			$styleFile = $wgScriptPath . '/extensions/HeaderTabs/skins/ext.headertabs.' . $wgHeaderTabsStyle . '.css';
 			$out->addExtensionStyle( $styleFile );
 		}
 

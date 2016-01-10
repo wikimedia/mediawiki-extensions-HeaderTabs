@@ -15,7 +15,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 $dir = dirname( __FILE__ );
-$wgHeaderTabsScriptPath = $wgScriptPath . "/extensions/HeaderTabs";
 
 if ( function_exists( 'wfLoadExtension' ) ) {
         wfLoadExtension( 'HeaderTabs' );
