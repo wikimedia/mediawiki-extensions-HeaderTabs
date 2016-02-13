@@ -257,7 +257,7 @@ class HeaderTabs {
 
 		$text = $above . $tabhtml . $below;
 
-		$parser->getOutput()->addHeadItem(HTML::inlineScript( 'document.styleSheets[0].insertRule?document.styleSheets[0].insertRule(".unselected {display:none;}", 0):document.styleSheets[0].addRule(".unselected", "display:none");' ), true );
+		$parser->getOutput()->addHeadItem(Html::inlineScript( 'document.styleSheets[0].insertRule?document.styleSheets[0].insertRule(".unselected {display:none;}", 0):document.styleSheets[0].addRule(".unselected", "display:none");' ), true );
 
 		foreach ( $tabs as $i => $tab ) {
 			$tabTitle = str_replace( ' ', '_', $tab['title'] );
