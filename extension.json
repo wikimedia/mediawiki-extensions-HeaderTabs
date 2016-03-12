@@ -8,6 +8,7 @@
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:Header_Tabs",
 	"descriptionmsg": "headertabs-desc",
+	"license-name": "GPL-2.0+",
 	"type": "parserhook",
 	"MessagesDirs": {
 		"HeaderTabs": [
