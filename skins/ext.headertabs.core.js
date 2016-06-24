@@ -38,12 +38,13 @@ outer:
 for (s = 0; s < sheets.length; s++ ) {
 	var cursheet = sheets[s];
 	var rules = cursheet.cssRules ? cursheet.cssRules: cursheet.rules; // Yay IE
-	
-	for (r = 0; r < rules.length; r++){
-		if( rules[r].selectorText !== undefined ){
-			if( rules[r].selectorText.toLowerCase() === ".unselected" ){ //find ".unselected" rule
-				cursheet.deleteRule ? cursheet.deleteRule(r): cursheet.removeRule(r); // Yay IE
-				break outer;
+	if( rules ) {
+		for (r = 0; r < rules.length; r++) {
+			if (rules[r].selectorText !== undefined) {
+				if (rules[r].selectorText.toLowerCase() === ".unselected") { //find ".unselected" rule
+					cursheet.deleteRule ? cursheet.deleteRule(r) : cursheet.removeRule(r); // Yay IE
+					break outer;
+				}
 			}
 		}
 	}
