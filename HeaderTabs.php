@@ -35,9 +35,9 @@ $wgExtensionCredits['parserhook'][] = array(
 	'descriptionmsg' => 'headertabs-desc',
 	'version' => '1.1',
 	'author' => array(
-		'[http://www.sergeychernyshev.com Sergey Chernyshev]',
+		'[https://www.sergeychernyshev.com Sergey Chernyshev]',
 		'Yaron Koren',
-		'[http://olivierbeaton.com Olivier Finlay Beaton]',
+		'Olivier Finlay Beaton',
 		'...'
 	),
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs',
