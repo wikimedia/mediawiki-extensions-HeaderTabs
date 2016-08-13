@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Erdemaslancan",
-			"Mirzali"
+			"Mirzali",
+			"Kumkumuk"
 		]
 	},
+	"headertabs-desc": "Sewiya weçinena per abırnayışi rê tab dek",
 	"headertabs-edittab": "bıvurne",
 	"headertabs-edittab-hint": "Taber bıvurne"
 }
