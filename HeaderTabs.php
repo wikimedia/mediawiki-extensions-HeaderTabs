@@ -107,12 +107,24 @@ $wgHooks['MakeGlobalVariablesScript'][] = 'HeaderTabsHooks::setGlobalJSVariables
 $wgAutoloadClasses['HeaderTabsHooks'] = __DIR__ . '/HeaderTabs.hooks.php';
 $wgAutoloadClasses['HeaderTabs'] = __DIR__ . '/HeaderTabs_body.php';
 
-// Use modules
+// Register modules
 $wgResourceModules['ext.headertabs'] = array(
 	'scripts' => 'skins/ext.headertabs.core.js',
-	// 'styles' => // the style is added in HeaderTabsHooks::addHTMLHeader()
-
 	'dependencies' => array( 'jquery.ui.tabs' ),
+	'localBasePath' => __DIR__,
+	'remoteExtPath' => 'HeaderTabs',
+);
+
+$wgResourceModules['ext.headertabs.bare'] = array(
+	'styles' => 'skins/ext.headertabs.bare.css',
+	'dependencies' => array( 'ext.headertabs' ),
+	'localBasePath' => __DIR__,
+	'remoteExtPath' => 'HeaderTabs',
+);
+
+ $wgResourceModules['ext.headertabs.large'] = array(
+	'styles' => 'skins/ext.headertabs.large.css',
+	'dependencies' => array( 'ext.headertabs' ),
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'HeaderTabs',
 );

@@ -28,6 +28,12 @@
 			"dependencies": [
 				"jquery.ui.tabs"
 			]
+		},
+		"ext.headertabs.bare": {
+			"styles": "skins/ext.headertabs.bare.css"
+		},
+		"ext.headertabs.large": {
+			"styles": "skins/ext.headertabs.large.css"
 		}
 	},
 	"ResourceFileModulePaths": {

@@ -66,10 +66,11 @@ class HeaderTabsHooks {
 
 		$out->addModules( 'ext.headertabs' );
 
-		// Add the CSS file for the specified style.
-		if ( !empty( $wgHeaderTabsStyle ) && $wgHeaderTabsStyle !== 'jquery' ) {
-			$styleFile = $wgScriptPath . '/extensions/HeaderTabs/skins/ext.headertabs.' . $wgHeaderTabsStyle . '.css';
-			$out->addExtensionStyle( $styleFile );
+		// Add the module for the specified style.
+		if ( $wgHeaderTabsStyle == 'bare' ) {
+			$out->addModules( 'ext.headertabs.bare' );
+		} elseif ( $wgHeaderTabsStyle == 'large' ) {
+			$out->addModules( 'ext.headertabs.large' );
 		}
 
 		return true;
