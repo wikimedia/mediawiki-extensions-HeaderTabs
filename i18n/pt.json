@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"headertabs-desc": "Adiciona separadores à página, com as secções principais da página",
+	"headertabs-edittab": "editar",
+	"headertabs-edittab-hint": "Editar separador"
+}
