@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"headertabs-desc": "Legger til faner på siden som atskiller toppnivåseksjoner",
+	"headertabs-edittab": "rediger",
+	"headertabs-edittab-hint": "Rediger fane"
+}
