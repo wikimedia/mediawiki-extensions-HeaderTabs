@@ -127,7 +127,6 @@ $tabs.bind('tabsshow', function(event, ui) {
 
 /* click a tab parserhook link */
 jQuery( ".tabLink" ).click( function () {
-	var wgHeaderTabsTabIndexes;
 	tabName = jQuery( this ).attr( 'href' ).replace( '#tab=', '' );
 	var tabIndex = wgHeaderTabsTabIndexes[tabName];
 	$tabs.tabs( 'select', tabIndex ); //tabNameEscape(href));
