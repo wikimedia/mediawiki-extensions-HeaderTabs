@@ -12,6 +12,7 @@
 /*jshint -W030 */
 
 var tabName;
+var wgHeaderTabsTabIndexes;
 
 function tabNameEscape(tabName) {
 	tabName = escape( tabName );
