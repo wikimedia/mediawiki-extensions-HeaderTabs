@@ -46,7 +46,6 @@ $wgExtensionCredits['parserhook'][] = array(
 
 // Translations
 $wgMessagesDirs['HeaderTabs'] = __DIR__ . '/i18n';
-$wgExtensionMessagesFiles['HeaderTabs'] = __DIR__ . '/HeaderTabs.i18n.php';
 
 //! @todo implement in tab parsing code instead... but problems like nowiki (2011-12-12, ofb)
 // if you make them here, it will be article wide instead of tab-wide
