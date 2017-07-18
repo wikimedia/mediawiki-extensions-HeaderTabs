@@ -33,7 +33,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'Header Tabs',
 	'descriptionmsg' => 'headertabs-desc',
-	'version' => '1.1',
+	'version' => '1.2',
 	'author' => array(
 		'[https://www.sergeychernyshev.com Sergey Chernyshev]',
 		'Yaron Koren',
