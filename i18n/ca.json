@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido"
+		]
+	},
+	"headertabs-desc": "Afegeix pestanyes a la pàgina per a separar les seccions de nivell superior",
+	"headertabs-edittab": "modifica",
+	"headertabs-edittab-hint": "Modifica la pestanya"
+}
