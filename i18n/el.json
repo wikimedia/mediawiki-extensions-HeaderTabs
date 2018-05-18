@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"ZaDiak"
+			"ZaDiak",
+			"Nikosgranturismogt"
 		]
 	},
+	"headertabs-desc": "Προσθέτει καρτέλες στη σελίδα χωρίζοντας τα τμήματα ανωτάτου επιπέδου",
 	"headertabs-edittab": "επεξεργασία",
 	"headertabs-edittab-hint": "Επεξεργασία καρτέλας"
 }
