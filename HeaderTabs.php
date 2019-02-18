@@ -7,8 +7,8 @@
  *
  * @author Sergey Chernyshev
  * @author Yaron Koren
- * @author Olivier Finlay Beaton
- */
+ * @author Finlay Beaton
+  */
 
 // Protect against entries
 if ( !defined( 'MEDIAWIKI' ) ) {
@@ -33,11 +33,11 @@ $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'Header Tabs',
 	'descriptionmsg' => 'headertabs-desc',
-	'version' => '1.2',
+	'version' => '1.3',
 	'author' => array(
 		'[https://www.sergeychernyshev.com Sergey Chernyshev]',
 		'Yaron Koren',
-		'Olivier Finlay Beaton',
+		'[https://ofbeaton.com Finlay Beaton]',
 		'...'
 	),
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs',
@@ -67,34 +67,6 @@ $wgHeaderTabsEditTabLink = true;
 // Other variables
 $wgHeaderTabsTabIndexes = array();
 
-// Extension:Configure
-if ( isset( $wgConfigureAdditionalExtensions ) && is_array( $wgConfigureAdditionalExtensions ) ) {
-
-	/**
-	 * attempt to tell Extension:Configure how to web configure our extension
-	 * @since 2011-09-22, 0.2
-	 */
-	$wgConfigureAdditionalExtensions[] = array(
-		'name' => 'HeaderTabs',
-		'settings' => array(
-			'wgHeaderTabsUseHistory' => 'bool',
-			'wgHeaderTabsRenderSingleTab' => 'bool',
-			'wgHeaderTabsAutomaticNamespaces' => 'array',
-			'wgHeaderTabsDefaultFirstTab' => 'string',
-			'wgHeaderTabsDisableDefaultToc' => 'bool',
-			'wgHeaderTabsGenerateTabTocs' => 'bool',
-			'wgHeaderTabsStyle' => 'string',
-			'wgHeaderTabsEditTabLink' => 'bool',
-		),
-		'array' => array(
-			'wgHeaderTabsAutomaticNamespaces' => 'simple',
-		),
-		'schema' => false,
-		'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs',
-	);
-
-} // $wgConfigureAdditionalExtensions exists
-
 // Register hooks
 $wgHooks['ParserFirstCallInit'][] = 'HeaderTabsHooks::registerParserFunctions';
 $wgHooks['BeforePageDisplay'][] = 'HeaderTabsHooks::addHTMLHeader';
@@ -123,6 +95,13 @@ $wgResourceModules['ext.headertabs.bare'] = array(
 
  $wgResourceModules['ext.headertabs.large'] = array(
 	'styles' => 'skins/ext.headertabs.large.css',
+	'dependencies' => array( 'ext.headertabs' ),
+	'localBasePath' => __DIR__,
+	'remoteExtPath' => 'HeaderTabs',
+);
+
+$wgResourceModules['ext.headertabs.timeless'] = array(
+	'styles' => 'skins/ext.headertabs.timeless.css',
 	'dependencies' => array( 'ext.headertabs' ),
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'HeaderTabs',

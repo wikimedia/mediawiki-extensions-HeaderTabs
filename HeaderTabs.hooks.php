@@ -7,8 +7,8 @@
  *
  * @author Sergey Chernyshev
  * @author Yaron Koren
- * @author Olivier Finlay Beaton
- */
+ * @author Finlay Beaton
+  */
 
 class HeaderTabsHooks {
 
@@ -64,14 +64,7 @@ class HeaderTabsHooks {
 
 		//! @todo we might be able to only load our js and styles if we are rendering tabs, speeding up pages that don't use it? but what about cached pages? (2011-12-12, ofb)
 
-		$out->addModules( 'ext.headertabs' );
-
-		// Add the module for the specified style.
-		if ( $wgHeaderTabsStyle == 'bare' ) {
-			$out->addModules( 'ext.headertabs.bare' );
-		} elseif ( $wgHeaderTabsStyle == 'large' ) {
-			$out->addModules( 'ext.headertabs.large' );
-		}
+		$out->addModules( array('ext.headertabs', 'ext.headertabs.'.$wgHeaderTabsStyle ) );
 
 		return true;
 	}

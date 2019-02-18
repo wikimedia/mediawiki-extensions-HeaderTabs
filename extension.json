@@ -1,10 +1,10 @@
 {
 	"name": "Header Tabs",
-	"version": "1.2",
+	"version": "1.3",
 	"author": [
 		"[http://www.sergeychernyshev.com Sergey Chernyshev]",
 		"Yaron Koren",
-		"[http://olivierbeaton.com Olivier Finlay Beaton]"
+		"[https://ofbeaton.com Finlay Beaton]"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:Header_Tabs",
 	"descriptionmsg": "headertabs-desc",
@@ -34,6 +34,9 @@
 		},
 		"ext.headertabs.large": {
 			"styles": "skins/ext.headertabs.large.css"
+		},
+		"ext.headertabs.timeless": {
+			"styles": "skins/ext.headertabs.timeless.css"
 		}
 	},
 	"ResourceFileModulePaths": {
