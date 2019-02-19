@@ -7,7 +7,7 @@
  *
  * @author Sergey Chernyshev
  * @author Yaron Koren
- * @author Olivier Finlay Beaton
+ * @author Finlay Beaton
  */
 
 class HeaderTabs {

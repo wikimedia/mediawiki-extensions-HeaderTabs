@@ -6,7 +6,7 @@
  *
  * @author Sergey Chernyshev
  * @author Yaron Koren
- * @author Olivier Beaton
+ * @author Finlay Beaton
  */
 
 /*jshint -W030 */

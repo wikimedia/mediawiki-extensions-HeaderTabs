@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Header Tabs extension
@@ -7,7 +8,7 @@
  *
  * @author Sergey Chernyshev
  * @author Yaron Koren
- * @author Olivier Finlay Beaton
+ * @author Finlay Beaton
  */
 
 // Protect against entries
@@ -37,7 +38,7 @@ $wgExtensionCredits['parserhook'][] = array(
 	'author' => array(
 		'[https://www.sergeychernyshev.com Sergey Chernyshev]',
 		'Yaron Koren',
-		'Olivier Finlay Beaton',
+		'[https://ofbeaton.com Finlay Beaton]',
 		'...'
 	),
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Header_Tabs',
