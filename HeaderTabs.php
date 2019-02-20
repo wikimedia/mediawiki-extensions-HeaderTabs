@@ -94,8 +94,15 @@ $wgResourceModules['ext.headertabs.bare'] = array(
 	'remoteExtPath' => 'HeaderTabs',
 );
 
- $wgResourceModules['ext.headertabs.large'] = array(
+$wgResourceModules['ext.headertabs.large'] = array(
 	'styles' => 'skins/ext.headertabs.large.css',
+	'dependencies' => array( 'ext.headertabs' ),
+	'localBasePath' => __DIR__,
+	'remoteExtPath' => 'HeaderTabs',
+);
+
+$wgResourceModules['ext.headertabs.timeless'] = array(
+	'styles' => 'skins/ext.headertabs.timeless.css',
 	'dependencies' => array( 'ext.headertabs' ),
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'HeaderTabs',

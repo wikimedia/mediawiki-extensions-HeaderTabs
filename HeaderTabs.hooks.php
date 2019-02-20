@@ -71,6 +71,8 @@ class HeaderTabsHooks {
 			$out->addModules( 'ext.headertabs.bare' );
 		} elseif ( $wgHeaderTabsStyle == 'large' ) {
 			$out->addModules( 'ext.headertabs.large' );
+		} elseif ( $wgHeaderTabsStyle == 'timeless' ) {
+			$out->addModules( 'ext.headertabs.timeless' );
 		}
 
 		return true;

@@ -34,6 +34,9 @@
 		},
 		"ext.headertabs.large": {
 			"styles": "skins/ext.headertabs.large.css"
+		},
+		"ext.headertabs.timeless": {
+			"styles": "skins/ext.headertabs.timeless.css"
 		}
 	},
 	"ResourceFileModulePaths": {
