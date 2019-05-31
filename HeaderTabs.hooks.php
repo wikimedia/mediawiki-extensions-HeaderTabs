@@ -55,29 +55,6 @@ class HeaderTabsHooks {
 		return true;
 	}
 
-	/**
-	 * @param $out OutputPage
-	 * @return bool
-	 */
-	public static function addHTMLHeader( &$out ) {
-		global $wgScriptPath, $wgHeaderTabsStyle;
-
-		//! @todo we might be able to only load our js and styles if we are rendering tabs, speeding up pages that don't use it? but what about cached pages? (2011-12-12, ofb)
-
-		$out->addModules( 'ext.headertabs' );
-
-		// Add the module for the specified style.
-		if ( $wgHeaderTabsStyle == 'bare' ) {
-			$out->addModules( 'ext.headertabs.bare' );
-		} elseif ( $wgHeaderTabsStyle == 'large' ) {
-			$out->addModules( 'ext.headertabs.large' );
-		} elseif ( $wgHeaderTabsStyle == 'timeless' ) {
-			$out->addModules( 'ext.headertabs.timeless' );
-		}
-
-		return true;
-	}
-
 	static function setGlobalJSVariables( &$vars ) {
 		global $wgHeaderTabsTabIndexes;
 		$vars['wgHeaderTabsTabIndexes'] = $wgHeaderTabsTabIndexes;

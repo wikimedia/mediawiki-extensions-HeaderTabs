@@ -11,7 +11,30 @@
  */
 
 class HeaderTabs {
+
+	/**
+	 *
+	 * @global string $wgHeaderTabsStyle
+	 * @param string $input
+	 * @param array $args
+	 * @param \Parser $parser
+	 * @return string
+	 */
 	public static function tag( $input, $args, $parser ) {
+		global $wgHeaderTabsStyle;
+		$out = $parser->getOutput();
+		$out->addModules( 'ext.headertabs' );
+		$out->addModuleStyles( 'ext.headertabs.styles' );
+
+		// Add the module for the specified style.
+		if ( $wgHeaderTabsStyle == 'bare' ) {
+			$out->addModules( 'ext.headertabs.bare' );
+		} elseif ( $wgHeaderTabsStyle == 'large' ) {
+			$out->addModules( 'ext.headertabs.large' );
+		} elseif ( $wgHeaderTabsStyle == 'timeless' ) {
+			$out->addModules( 'ext.headertabs.timeless' );
+		}
+
 		// This tag, besides just enabling tabs, also designates
 		// the end of tabs. Can be used even if automatiic namespaced
 		return '<div id="nomoretabs"></div>';
@@ -256,8 +279,6 @@ class HeaderTabs {
 		$tabhtml .= '</div>';
 
 		$text = $above . $tabhtml . $below;
-
-		$parser->getOutput()->addHeadItem(Html::inlineScript( 'var ss = document.styleSheets[0]; ss.insertRule ? ss.insertRule(".unselected {display:none;}", ss.rules.length) : ss.addRule(".unselected", "display:none");' ), true );
 
 		foreach ( $tabs as $i => $tab ) {
 			$tabTitle = str_replace( ' ', '_', $tab['title'] );

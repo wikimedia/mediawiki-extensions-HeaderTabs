@@ -27,29 +27,7 @@ function tabNameEscape(tabName) {
 }
 
 var $tabs = jQuery("#headertabs").tabs();
-
-// delete the rule hiding unselected tabs
-var sheets = document.styleSheets;
-
-var s;
-var r;
-
-// Could be somebody else inserted something, so we cannot just delete rule 0 of sheet 0
-outer:
-for (s = 0; s < sheets.length; s++ ) {
-	var cursheet = sheets[s];
-	var rules = cursheet.cssRules ? cursheet.cssRules: cursheet.rules; // Yay IE
-	if( rules ) {
-		for (r = 0; r < rules.length; r++) {
-			if (rules[r].selectorText !== undefined) {
-				if (rules[r].selectorText.toLowerCase() === ".unselected") { //find ".unselected" rule
-					cursheet.deleteRule ? cursheet.deleteRule(r) : cursheet.removeRule(r); // Yay IE
-					break outer;
-				}
-			}
-		}
-	}
-}
+jQuery(".unselected").removeClass( 'unselected' );
 
 /*
  * Get links to tabs in Table of Contents to work.

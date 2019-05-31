@@ -29,6 +29,9 @@
 				"jquery.ui.tabs"
 			]
 		},
+		"ext.headertabs.styles": {
+			"styles": "skins/ext.headertabs.core.css"
+		},
 		"ext.headertabs.bare": {
 			"styles": "skins/ext.headertabs.bare.css"
 		},
@@ -46,9 +49,6 @@
 	"Hooks": {
 		"ParserFirstCallInit": [
 			"HeaderTabsHooks::registerParserFunctions"
-		],
-		"BeforePageDisplay": [
-			"HeaderTabsHooks::addHTMLHeader"
 		],
 		"ParserAfterTidy": [
 			"HeaderTabsHooks::replaceFirstLevelHeaders"

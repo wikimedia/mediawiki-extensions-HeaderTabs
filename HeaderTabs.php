@@ -70,7 +70,6 @@ $wgHeaderTabsTabIndexes = array();
 
 // Register hooks
 $wgHooks['ParserFirstCallInit'][] = 'HeaderTabsHooks::registerParserFunctions';
-$wgHooks['BeforePageDisplay'][] = 'HeaderTabsHooks::addHTMLHeader';
 $wgHooks['ParserAfterTidy'][] = 'HeaderTabsHooks::replaceFirstLevelHeaders';
 $wgHooks['ResourceLoaderGetConfigVars'][] = 'HeaderTabsHooks::addConfigVarsToJS';
 $wgHooks['MakeGlobalVariablesScript'][] = 'HeaderTabsHooks::setGlobalJSVariables';
