@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Header Tabs extension
