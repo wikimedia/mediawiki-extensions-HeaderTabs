@@ -71,5 +71,8 @@
 		"HeaderTabsEditTabLink": true,
 		"HeaderTabsTabIndexes": []
 	},
-	"manifest_version": 1
+	"manifest_version": 1,
+	"requires": {
+		"MediaWiki": ">= 1.16.3"
+	}
 }

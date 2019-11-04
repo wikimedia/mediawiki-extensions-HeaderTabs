@@ -291,7 +291,7 @@ class HeaderTabs {
 	public static function renderSwitchTabLink( &$parser, $tabName, $linkText, $anotherTarget = '' ) {
 		// The cache unfortunately needs to be disabled for the
 		// JavaScript for such links to work.
-		$parser->disableCache();
+		$parser->getOutput()->updateCacheExpiry( 0 );
 
 		$tabTitle = Title::newFromText( $tabName );
 		$tabKey = $tabTitle->getDBkey();
