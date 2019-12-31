@@ -86,7 +86,7 @@
 		var $anchor = $( '#edittab' ).find( 'a' );
 		$anchor.attr(
 			'href',
-			mw.util.getUrl( 'Hauptseite', { action:'edit' } ) + section
+			mw.util.getUrl( null, { action:'edit' } ) + section
 		);
 	}
 
