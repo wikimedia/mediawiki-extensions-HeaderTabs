@@ -60,4 +60,40 @@ class HeaderTabsHooks {
 		$vars['wgHeaderTabsTabIndexes'] = $wgHeaderTabsTabIndexes;
 		return true;
 	}
+
+	/**
+	 * ResourceLoaderRegisterModules hook handler
+	 *
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ResourceLoaderRegisterModules
+	 *
+	 * @param ResourceLoader &$resourceLoader The ResourceLoader object
+	 * @return bool Always true
+	 */
+	public static function registerModules( ResourceLoader &$resourceLoader ) {
+		global $wgVersion;
+
+		$htDir = __DIR__;
+
+		// In MW 1.34, all the jquery.ui.* modules were merged into one
+		// big jquery.ui module.
+		if ( version_compare( $wgVersion, '1.34', '>=' ) ) {
+			$jquiTabsModule = 'jquery.ui';
+		} else {
+			$jquiTabsModule = 'jquery.ui.tabs';
+		}
+
+		$resourceLoader->register( [
+			"ext.headertabs" => [
+				'localBasePath' => $htDir,
+				'remoteExtPath' => 'HeaderTabs',
+				"scripts" => "skins/ext.headertabs.core.js",
+				"dependencies" => [
+					$jquiTabsModule
+				]
+			]
+		] );
+
+		return true;
+	}
+
 }

@@ -23,12 +23,6 @@
 		"HeaderTabs": "HeaderTabs_body.php"
 	},
 	"ResourceModules": {
-		"ext.headertabs": {
-			"scripts": "skins/ext.headertabs.core.js",
-			"dependencies": [
-				"jquery.ui.tabs"
-			]
-		},
 		"ext.headertabs.styles": {
 			"styles": "skins/ext.headertabs.core.css"
 		},
@@ -58,6 +52,9 @@
 		],
 		"MakeGlobalVariablesScript": [
 			"HeaderTabsHooks::setGlobalJSVariables"
+		],
+		"ResourceLoaderRegisterModules": [
+			"HeaderTabsHooks::registerModules"
 		]
 	},
 	"config": {

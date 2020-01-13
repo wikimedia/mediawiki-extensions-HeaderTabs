@@ -1,4 +1,9 @@
 {
+	"name": "mediawiki/header-tabs",
+	"type": "mediawiki-extension",
+	"description": "Enable tabs within wiki pages",
+	"homepage": "https://www.mediawiki.org/wiki/Extension:Header_Tabs",
+	"license": "GPL-2.0-or-later",
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "1.0.0",
 		"jakub-onderka/php-console-highlighter": "0.3.2",
