@@ -1,6 +1,6 @@
 <?php
 /**
- * File for the HeaderTabs class.
+ * File for the HeaderTabsHooks class.
  *
  * @file
  * @ingroup Extensions
