@@ -19,26 +19,26 @@
 		"HeaderTabsMagic": "HeaderTabs.i18n.magic.php"
 	},
 	"AutoloadClasses": {
-		"HeaderTabsHooks": "HeaderTabs.hooks.php",
-		"HeaderTabs": "HeaderTabs_body.php"
+		"HeaderTabsHooks": "includes/HeaderTabsHooks.php",
+		"HeaderTabs": "includes/HeaderTabs.php"
 	},
 	"ResourceModules": {
 		"ext.headertabs.styles": {
-			"styles": "skins/ext.headertabs.core.css"
+			"styles": "css/ext.headertabs.core.css"
 		},
 		"ext.headertabs.bare": {
-			"styles": "skins/ext.headertabs.bare.css"
+			"styles": "css/ext.headertabs.bare.css"
 		},
 		"ext.headertabs.large": {
-			"styles": "skins/ext.headertabs.large.css"
+			"styles": "css/ext.headertabs.large.css"
 		},
 		"ext.headertabs.timeless": {
-			"styles": "skins/ext.headertabs.timeless.css"
+			"styles": "css/ext.headertabs.timeless.css"
 		}
 	},
 	"ResourceFileModulePaths": {
-		"localBasePath": "",
-		"remoteExtPath": "HeaderTabs"
+		"localBasePath": "resources",
+		"remoteExtPath": "HeaderTabs/resources"
 	},
 	"Hooks": {
 		"ParserFirstCallInit": [

@@ -86,7 +86,7 @@ class HeaderTabsHooks {
 			"ext.headertabs" => [
 				'localBasePath' => $htDir,
 				'remoteExtPath' => 'HeaderTabs',
-				"scripts" => "skins/ext.headertabs.core.js",
+				"scripts" => "../resources/js/ext.headertabs.core.js",
 				"dependencies" => [
 					$jquiTabsModule
 				]
