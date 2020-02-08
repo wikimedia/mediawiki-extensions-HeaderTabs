@@ -14,7 +14,7 @@
  * for use with $htEditTabLink.
  */
 span.ht-editsection {
-        float: right;
+	float: right;
 }
 
 #headertabs.large.ui-widget {
@@ -23,13 +23,40 @@ span.ht-editsection {
 }
 
 /* section by 70.189.238.136 */
-#headertabs.large .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: inherit; font-size: 1em; } /* IE doesn't like inherit here */
-#headertabs.large .ui-widget-content a { color:#0645AD; }
-#headertabs.large .ui-widget-content a:visited { color:#0b0080; }
-#headertabs.large .ui-widget-content a.new { color:#CC2200; }
-#headertabs.large .ui-widget-content a.new:visited { color:#A55858; }
-#headertabs.large .ui-widget-content a.extiw { color:#3366BB; }
-#headertabs.large .ui-widget-content a.redirect { color:#308050; }
-#headertabs.large .ui-widget-content a.redirect:visited { color:#3070A0; }
+#headertabs.large .ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+	font-family: inherit;
+	font-size: 1em;
+} /* IE doesn't like inherit here */
+
+#headertabs.large .ui-widget-content a {
+	color: #0645AD;
+}
+
+#headertabs.large .ui-widget-content a:visited {
+	color: #0b0080;
+}
+
+#headertabs.large .ui-widget-content a.new {
+	color: #CC2200;
+}
+
+#headertabs.large .ui-widget-content a.new:visited {
+	color: #A55858;
+}
+
+#headertabs.large .ui-widget-content a.extiw {
+	color: #3366BB;
+}
+
+#headertabs.large .ui-widget-content a.redirect {
+	color: #308050;
+}
+
+#headertabs.large .ui-widget-content a.redirect:visited {
+	color: #3070A0;
+}
 
 /* end JQuery UI tabs style clearer */

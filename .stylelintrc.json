@@ -1,0 +1,11 @@
+{
+	"extends": "stylelint-config-wikimedia",
+	"rules": {
+		"color-hex-case": null,
+		"color-hex-length": null,
+		"declaration-block-no-redundant-longhand-properties": null,
+		"declaration-property-value-blacklist": null,
+		"no-descending-specificity": null,
+		"selector-max-id": null
+	}
+}
