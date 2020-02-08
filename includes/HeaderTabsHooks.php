@@ -13,8 +13,8 @@
 class HeaderTabsHooks {
 
 	public static function registerParserFunctions( $parser ) {
-		$parser->setHook( 'headertabs', array( 'HeaderTabs', 'tag' ) );
-		$parser->setFunctionHook( 'switchtablink', array( 'HeaderTabs', 'renderSwitchTabLink' ) );
+		$parser->setHook( 'headertabs', [ 'HeaderTabs', 'tag' ] );
+		$parser->setFunctionHook( 'switchtablink', [ 'HeaderTabs', 'renderSwitchTabLink' ] );
 		return true;
 	}
 

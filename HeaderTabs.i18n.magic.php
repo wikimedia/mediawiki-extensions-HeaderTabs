@@ -3,9 +3,9 @@
  *  Magic words for extension.
  */
 
-$magicWords = array();
+$magicWords = [];
 
 /** English (English) */
-$magicWords['en'] = array(
-	'switchtablink' => array( 0, 'switchtablink' ),
-);
+$magicWords['en'] = [
+	'switchtablink' => [ 0, 'switchtablink' ],
+];
