@@ -41,21 +41,11 @@
 		"remoteExtPath": "HeaderTabs/resources"
 	},
 	"Hooks": {
-		"ParserFirstCallInit": [
-			"HeaderTabsHooks::registerParserFunctions"
-		],
-		"ParserAfterTidy": [
-			"HeaderTabsHooks::replaceFirstLevelHeaders"
-		],
-		"ResourceLoaderGetConfigVars": [
-			"HeaderTabsHooks::addConfigVarsToJS"
-		],
-		"MakeGlobalVariablesScript": [
-			"HeaderTabsHooks::setGlobalJSVariables"
-		],
-		"ResourceLoaderRegisterModules": [
-			"HeaderTabsHooks::registerModules"
-		]
+		"ParserFirstCallInit": "HeaderTabsHooks::registerParserFunctions",
+		"ParserAfterTidy": "HeaderTabsHooks::replaceFirstLevelHeaders",
+		"ResourceLoaderGetConfigVars": "HeaderTabsHooks::addConfigVarsToJS",
+		"MakeGlobalVariablesScript": "HeaderTabsHooks::setGlobalJSVariables",
+		"ResourceLoaderRegisterModules": "HeaderTabsHooks::registerModules"
 	},
 	"config": {
 		"HeaderTabsUseHistory": true,
