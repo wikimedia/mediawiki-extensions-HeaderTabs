@@ -85,7 +85,7 @@ class HeaderTabsHooks {
 		$resourceLoader->register( [
 			"ext.headertabs" => [
 				'localBasePath' => $htDir,
-				'remoteExtPath' => 'HeaderTabs',
+				'remoteExtPath' => 'HeaderTabs/includes',
 				"scripts" => "../resources/js/ext.headertabs.core.js",
 				"dependencies" => [
 					$jquiTabsModule
