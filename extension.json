@@ -4,7 +4,8 @@
 	"author": [
 		"[http://www.sergeychernyshev.com Sergey Chernyshev]",
 		"Yaron Koren",
-		"[https://ofbeaton.com Finlay Beaton]"
+		"[https://ofbeaton.com Finlay Beaton]",
+		"Priyanshu Varshney"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:Header_Tabs",
 	"descriptionmsg": "headertabs-desc",
@@ -23,17 +24,17 @@
 		"HeaderTabs": "includes/HeaderTabs.php"
 	},
 	"ResourceModules": {
+		"ext.headertabs": {
+			"scripts": "js/ext.headertabs.core.js",
+			"styles": "css/ext.headertabs.core.css",
+			"dependencies": [
+				"oojs-ui-core",
+				"oojs-ui-widgets",
+				"oojs-ui-windows"
+			]
+		},
 		"ext.headertabs.styles": {
 			"styles": "css/ext.headertabs.core.css"
-		},
-		"ext.headertabs.bare": {
-			"styles": "css/ext.headertabs.bare.css"
-		},
-		"ext.headertabs.large": {
-			"styles": "css/ext.headertabs.large.css"
-		},
-		"ext.headertabs.timeless": {
-			"styles": "css/ext.headertabs.timeless.css"
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -43,9 +44,7 @@
 	"Hooks": {
 		"ParserFirstCallInit": "HeaderTabsHooks::registerParserFunctions",
 		"ParserAfterTidy": "HeaderTabsHooks::replaceFirstLevelHeaders",
-		"ResourceLoaderGetConfigVars": "HeaderTabsHooks::addConfigVarsToJS",
-		"MakeGlobalVariablesScript": "HeaderTabsHooks::setGlobalJSVariables",
-		"ResourceLoaderRegisterModules": "HeaderTabsHooks::registerModules"
+		"ResourceLoaderGetConfigVars": "HeaderTabsHooks::addConfigVarsToJS"
 	},
 	"config": {
 		"HeaderTabsUseHistory": true,
@@ -54,9 +53,7 @@
 		"HeaderTabsDefaultFirstTab": false,
 		"HeaderTabsDisableDefaultToc": true,
 		"HeaderTabsGenerateTabTocs": false,
-		"HeaderTabsStyle": "large",
-		"HeaderTabsEditTabLink": true,
-		"HeaderTabsTabIndexes": []
+		"HeaderTabsEditTabLink": true
 	},
 	"manifest_version": 1,
 	"requires": {

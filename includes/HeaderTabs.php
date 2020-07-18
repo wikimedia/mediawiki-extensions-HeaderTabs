@@ -8,32 +8,22 @@
  * @author Sergey Chernyshev
  * @author Yaron Koren
  * @author Finlay Beaton
+ * @author Priyanshu Varshney
  */
+use OOUI\WikimediaUITheme;
 
 class HeaderTabs {
 
 	/**
 	 *
-	 * @global string $wgHeaderTabsStyle
 	 * @param string $input
 	 * @param array $args
 	 * @param \Parser $parser
 	 * @return string
 	 */
 	public static function tag( $input, $args, $parser ) {
-		global $wgHeaderTabsStyle;
 		$out = $parser->getOutput();
 		$out->addModules( 'ext.headertabs' );
-		$out->addModuleStyles( 'ext.headertabs.styles' );
-
-		// Add the module for the specified style.
-		if ( $wgHeaderTabsStyle == 'bare' ) {
-			$out->addModules( 'ext.headertabs.bare' );
-		} elseif ( $wgHeaderTabsStyle == 'large' ) {
-			$out->addModules( 'ext.headertabs.large' );
-		} elseif ( $wgHeaderTabsStyle == 'timeless' ) {
-			$out->addModules( 'ext.headertabs.timeless' );
-		}
 
 		// This tag, besides just enabling tabs, also designates
 		// the end of tabs. Can be used even if automatiic namespaced
@@ -42,9 +32,7 @@ class HeaderTabs {
 
 	public static function replaceFirstLevelHeaders( &$parser, &$text, $aboveandbelow ) {
 		global $wgHeaderTabsRenderSingleTab, $wgHeaderTabsDefaultFirstTab,
-			$wgHeaderTabsDisableDefaultToc, $wgHeaderTabsGenerateTabTocs,
-			$wgHeaderTabsStyle, $wgHeaderTabsEditTabLink,
-			$wgHeaderTabsTabIndexes;
+			$wgHeaderTabsDisableDefaultToc, $wgHeaderTabsGenerateTabTocs, $wgHeaderTabsEditTabLink;
 
 		// ! @todo handle __NOTABTOC__, __TABTOC__, __FORCETABTOC__ here (2011-12-12, ofb)
 
@@ -224,47 +212,66 @@ class HeaderTabs {
 
 		wfDebugLog( 'headertabs', __METHOD__ . ': generated ' . count( $tabs ) . ' tabs' );
 
+		OOUI\Theme::setSingleton( new WikimediaUITheme() );
+		OOUI\Element::setDefaultDir( 'ltr' );
 		$tabhtml = '<div id="headertabs"';
-		if ( !empty( $wgHeaderTabsStyle ) && $wgHeaderTabsStyle !== 'jquery' ) {
-			$tabhtml .= ' class="' . $wgHeaderTabsStyle . '"';
-		}
 		$tabhtml .= '>';
+		$pageName = $parser->getTitle()->getPrefixedURL();
 
-		// ! @todo handle __NOEDITTAB__ here (2011-12-12, ofb)
-		if ( $wgHeaderTabsEditTabLink ) {
-			$tabhtml .= '<span class="ht-editsection" id="edittab">[<a href="" title="' . wfMessage( 'headertabs-edittab-hint' )->text() . '">' . wfMessage( 'headertabs-edittab' )->text() . '</a>]</span>';
+		if ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ) {
+			$url = 'https://';
+		} else {
+			$url = 'http://';
 		}
+		// Append the host(domain name, ip) to the URL.
+		$url .= $_SERVER['HTTP_HOST'];
 
-		$tabhtml .= '<ul>';
-		foreach ( $tabs as $i => $tab ) {
-			$tabhtml .= '<li';
-			if ( $i == 0 ) {
-				$tabhtml .= ' class="selected" ';
-			} else { // hide selector of all but first tab
-				$tabhtml .= ' class="unselected"';
-			}
-			$tabhtml .= '><a href="#' . $tab['tabid'] . '">' . $tab['title'] . "</a></li>\n";
-		}
-		$tabhtml .= '</ul>';
+		// Append the requested resource location to the URL
+		$url .= $_SERVER['REQUEST_URI'];
+		$url = str_replace( '/' . $pageName, '', $url );
 
 		foreach ( $tabs as $i => $tab ) {
-			$tabhtml .= '<div id="' . $tab['tabid'] . '" class="section-' . $tab['section'];
-
-			if ( $i != 0 ) { // hide content of all but first tab
-				$tabhtml .= ' unselected';
+			$editHTML = '';
+			if ( $wgHeaderTabsEditTabLink ) {
+				$url = $url . '?title=' . $pageName . '&action=edit&section=' . $tab['section'];
+				$editHTML = '<span class="ht-editsection" id="edittab">[<a href="' . $url . '">' . wfMessage( 'headertabs-edittab' )->text() . '</a>]</span>';
 			}
-
-			$tabhtml .= '"><div>' . $tab['tabcontent'] . '</div></div>';
+			$tabPanels[] = new OOUI\TabPanelLayout( $tab['tabid'], [
+				'classes' => [ 'section-' . $tab['section'] ],
+				'label' => $tab['title'],
+				'id' => $tab['tabid'],
+				'content' => new OOUI\FieldsetLayout( [
+					// 'label' => $tab['title'],
+					'items' => [
+						new OOUI\Widget( [
+							'content' => new OOUI\HtmlSnippet( $editHTML . $tab['tabcontent'] )
+						] ),
+					],
+				] ),
+				'expanded' => false,
+				'framed' => true,
+			] );
 		}
+		$tabsIndexLayout = new OOUI\IndexLayout( [
+			'infusable' => true,
+			'expanded' => false,
+			'autoFocus' => false,
+			'id' => 'mw-tabs-id',
+			'classes' => [ 'mw-tabs' ],
+		] );
+		$tabsIndexLayout->addTabPanels( $tabPanels );
+		$tabsIndexLayout->setInfusable( true );
+		$tabsPanelLayout = new OOUI\PanelLayout( [
+			'framed' => true,
+			'expanded' => false,
+			'classes' => [ 'mw-header-tabs-wrapper' ],
+			'content' => $tabsIndexLayout
+		] );
+		$tabhtml .= $tabsPanelLayout;
+
 		$tabhtml .= '</div>';
 
 		$text = $above . $tabhtml . $below;
-
-		foreach ( $tabs as $i => $tab ) {
-			$tabTitle = str_replace( ' ', '_', $tab['title'] );
-			$wgHeaderTabsTabIndexes[$tabTitle] = $i;
-		}
-
 		return true;
 	}
 
