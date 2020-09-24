@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Hedda",
+			"MuratTheTurkish",
 			"Sadrettin"
 		]
 	},
 	"headertabs-desc": "Üst düzey bölümleri ayıran sayfaya sekmeler ekler",
 	"headertabs-edittab": "düzenle",
-	"headertabs-edittab-hint": "Etiketi düzenle"
+	"headertabs-edittab-hint": "Sekmeyi düzenle"
 }
