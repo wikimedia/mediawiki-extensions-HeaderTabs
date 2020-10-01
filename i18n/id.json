@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Daud I.F. Argana",
 			"Farras"
 		]
 	},
-	"headertabs-edittab": "sunting"
+	"headertabs-desc": "Menambahkan tab ke halaman untuk memisahkan bagian-bagian tingkat teratas",
+	"headertabs-edittab": "sunting",
+	"headertabs-edittab-hint": "Sunting tab"
 }
