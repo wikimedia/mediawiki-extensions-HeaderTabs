@@ -288,7 +288,7 @@ class HeaderTabs {
 			$output = '<a href="#tab=' . $tabKey . '" class="tabLink">' . $sanitizedLinkText . '</a>';
 		}
 
-		return $parser->insertStripItem( $output, $parser->mStripState );
+		return [ $output, 'noparse' => true, 'isHTML' => true ];
 	}
 
 }
