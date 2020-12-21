@@ -169,17 +169,12 @@ class HeaderTabs {
 				++$s;
 			}
 
-			// ! @todo handle __TOC__, __FORCETOC__, __NOTOC__ here (2011-12-12, ofb)
 			if ( $wgHeaderTabsGenerateTabTocs ) {
-				// really? that was it?
-				// maybe a better way then clone... formatHeadings changes properties on the parser which we don't want to do
-				// would be better to have a 'clean' parser so the tab was treated as a new page
-				// maybe use LinkerOutput's generateTOC?
-
-				//! @todo insert the toc after the first paragraph, maybe we can steal the location from formatHeadings despite the changed html? (2011-12-12, ofb)
-
+				// @TODO This parsing no longer works in MW
+				// 1.35 (and maybe even earlier versions).
+				// @TODO Handle __TOC__, __FORCETOC__, __NOTOC__ here
 				$tocparser = clone $parser;
-				$tabtocraw = $tocparser->formatHeadings( $content, '' );
+				$tabtocraw = $tocparser->internalParse( $content );
 				if ( preg_match( $tocpattern, $tabtocraw, $tabtocmatches ) === 1 ) {
 					wfDebugLog( 'headertabs', __METHOD__ . ': generated toc for tab' );
 					$tabtocraw = $tabtocmatches[0];
