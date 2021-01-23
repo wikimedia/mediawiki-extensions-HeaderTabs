@@ -30,6 +30,12 @@ class HeaderTabs {
 		return '<div id="nomoretabs"></div>';
 	}
 
+	/**
+	 * @param Parser &$parser
+	 * @param string &$text
+	 * @param string[] $aboveandbelow
+	 * @return true
+	 */
 	public static function replaceFirstLevelHeaders( &$parser, &$text, $aboveandbelow ) {
 		global $wgHeaderTabsRenderSingleTab, $wgHeaderTabsDefaultFirstTab,
 			$wgHeaderTabsDisableDefaultToc, $wgHeaderTabsGenerateTabTocs, $wgHeaderTabsEditTabLink;
@@ -270,6 +276,13 @@ class HeaderTabs {
 		return true;
 	}
 
+	/**
+	 * @param Parser &$parser
+	 * @param string $tabName
+	 * @param string $linkText
+	 * @param string $anotherTarget
+	 * @return array
+	 */
 	public static function renderSwitchTabLink( &$parser, $tabName, $linkText, $anotherTarget = '' ) {
 		// The cache unfortunately needs to be disabled for the
 		// JavaScript for such links to work.

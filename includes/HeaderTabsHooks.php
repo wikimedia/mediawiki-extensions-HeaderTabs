@@ -13,6 +13,10 @@
 
 class HeaderTabsHooks {
 
+	/**
+	 * @param Parser $parser
+	 * @return true
+	 */
 	public static function registerParserFunctions( $parser ) {
 		$parser->setHook( 'headertabs', [ 'HeaderTabs', 'tag' ] );
 		$parser->setFunctionHook( 'switchtablink', [ 'HeaderTabs', 'renderSwitchTabLink' ] );
@@ -24,6 +28,9 @@ class HeaderTabsHooks {
 	 * most of the actual work.
 	 * This function mostly just determines if there are any header tabs
 	 * on the cuurrent page, and exits if not.
+	 * @param Parser &$parser
+	 * @param string &$text
+	 * @return true
 	 */
 	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
 		global $wgHeaderTabsAutomaticNamespaces;
@@ -47,6 +54,10 @@ class HeaderTabsHooks {
 		return HeaderTabs::replaceFirstLevelHeaders( $parser, $text, $aboveandbelow );
 	}
 
+	/**
+	 * @param array &$vars
+	 * @return true
+	 */
 	public static function addConfigVarsToJS( &$vars ) {
 		global $wgHeaderTabsUseHistory, $wgHeaderTabsEditTabLink;
 
