@@ -6,7 +6,6 @@
 		"wikimedia/mediawiki"
 	],
 	"rules": {
-		"one-var": "off",
 		"no-jquery/no-bind": "off",
 		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-ready-shorthand": "off",
