@@ -10,7 +10,6 @@
 		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-ready-shorthand": "off",
 		"no-useless-escape": "off",
-		"vars-on-top": "off",
 		"no-shadow": "warn"
 	}
 }
