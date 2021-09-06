@@ -295,11 +295,13 @@ class HeaderTabs {
 		if ( $anotherTarget != '' ) {
 			$targetTitle = Title::newFromText( $anotherTarget );
 			$targetURL = $targetTitle->getFullURL();
-
-			$output = '<a href="' . $targetURL . '#tab=' . $tabKey . '">' . $sanitizedLinkText . '</a>';
+			$linkAttrs = [ 'href' => $targetURL . '#tab=' . $tabKey ];
 		} else {
-			$output = '<a href="#tab=' . $tabKey . '" class="tabLink">' . $sanitizedLinkText . '</a>';
+			$linkAttrs = [ 'href' => '#tab=' . $tabKey, 'class' => 'tabLink' ];
 		}
+
+		$sanitizedLinkText = $parser->recursiveTagParse( $linkText );
+		$output = Html::element( 'a', $linkAttrs, $sanitizedLinkText );
 
 		return [ $output, 'noparse' => true, 'isHTML' => true ];
 	}
