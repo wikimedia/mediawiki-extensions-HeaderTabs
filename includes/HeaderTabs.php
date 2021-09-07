@@ -220,22 +220,23 @@ class HeaderTabs {
 		$pageName = $parser->getTitle()->getPrefixedURL();
 
 		if ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ) {
-			$url = 'https://';
+			$baseURL = 'https://';
 		} else {
-			$url = 'http://';
+			$baseURL = 'http://';
 		}
 		// Append the host(domain name, ip) to the URL.
-		$url .= $_SERVER['HTTP_HOST'];
+		$baseURL .= $_SERVER['HTTP_HOST'];
 
 		// Append the requested resource location to the URL
-		$url .= $_SERVER['REQUEST_URI'];
-		$url = str_replace( '/' . $pageName, '', $url );
+		$baseURL .= $_SERVER['REQUEST_URI'];
+		$baseURL = str_replace( '/' . $pageName, '', $url );
 
 		foreach ( $tabs as $i => $tab ) {
 			$editHTML = '';
 			if ( $wgHeaderTabsEditTabLink ) {
-				$url = $url . '?title=' . $pageName . '&action=edit&section=' . $tab['section'];
-				$editHTML = '<span class="ht-editsection" id="edittab">[<a href="' . $url . '">' . wfMessage( 'headertabs-edittab' )->text() . '</a>]</span>';
+				$url = $baseURL . '?title=' . $pageName . '&action=edit&section=' . $tab['section'];
+				$editLink = Html::element( 'a', [ 'href' => $url ], wfMessage( 'headertabs-edittab' )->text() );
+				$editHTML = Html::rawElement( 'span', [ 'class' => 'ht-editsection', 'id' => 'edittab' ], "[$editLink]" );
 			}
 			$tabPanels[] = new OOUI\TabPanelLayout( $tab['tabid'], [
 				'classes' => [ 'section-' . $tab['section'] ],
