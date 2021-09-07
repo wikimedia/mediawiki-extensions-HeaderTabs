@@ -215,8 +215,6 @@ class HeaderTabs {
 
 		OOUI\Theme::setSingleton( new WikimediaUITheme() );
 		OOUI\Element::setDefaultDir( 'ltr' );
-		$tabhtml = '<div id="headertabs"';
-		$tabhtml .= '>';
 		$pageName = $parser->getTitle()->getPrefixedURL();
 
 		if ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ) {
@@ -229,7 +227,7 @@ class HeaderTabs {
 
 		// Append the requested resource location to the URL
 		$baseURL .= $_SERVER['REQUEST_URI'];
-		$baseURL = str_replace( '/' . $pageName, '', $url );
+		$baseURL = str_replace( '/' . $pageName, '', $baseURL );
 
 		foreach ( $tabs as $i => $tab ) {
 			$editHTML = '';
@@ -269,11 +267,9 @@ class HeaderTabs {
 			'classes' => [ 'mw-header-tabs-wrapper' ],
 			'content' => $tabsIndexLayout
 		] );
-		$tabhtml .= $tabsPanelLayout;
+		$tabHTML = Html::rawElement( 'div', [ 'id' => 'headertabs' ], $tabsPanelLayout );
 
-		$tabhtml .= '</div>';
-
-		$text = $above . $tabhtml . $below;
+		$text = $above . $tabHTML . $below;
 		return true;
 	}
 
