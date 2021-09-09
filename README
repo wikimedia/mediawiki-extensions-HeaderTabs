@@ -1,0 +1,46 @@
+Header Tabs extension
+
+        Version 2.1
+        Sergey Chernyshev, Yaron Koren et al.
+
+This is free software licensed under the GNU General Public License. Please
+see http://www.gnu.org/copyleft/gpl.html for further details, including the
+full text and terms of the license.
+
+== Overview ==
+
+Header Tabs is an extension to MediaWiki that transforms top-level MediaWiki
+headers (those with a single "=" around them) into JavaScript-based tabs.
+
+For more information, see the extension homepage at:
+https://www.mediawiki.org/wiki/Extension:Header_Tabs
+
+== Requirements ==
+
+This version of the Header Tabs extension requires MediaWiki 1.33 or higher.
+
+== Installation ==
+
+To install the extension, place the entire 'HeaderTabs' directory within
+your MediaWiki 'extensions' directory, then add the following line to
+your 'LocalSettings.php' file:
+
+     wfLoadExtension( 'HeaderTabs' );
+
+== Credits ==
+
+Header Tabs was created by Sergey Chernyshev. It was significantly
+rewritten, and is currently maintained, by Yaron Koren.
+
+Important code contributions have also been made by Finlay Beaton,
+Priyanshu Varshney and others.
+
+== Contact ==
+
+Comments, questions, suggestions and bug reports can be sent to the
+MediaWiki mailing list:
+
+ https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+If possible, please add "[Header Tabs]" at the beginning of the subject line, to
+clarify the subject matter.
