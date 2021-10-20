@@ -215,24 +215,11 @@ class HeaderTabs {
 
 		OOUI\Theme::setSingleton( new WikimediaUITheme() );
 		OOUI\Element::setDefaultDir( 'ltr' );
-		$pageName = $parser->getTitle()->getPrefixedURL();
-
-		if ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] === 'on' ) {
-			$baseURL = 'https://';
-		} else {
-			$baseURL = 'http://';
-		}
-		// Append the host(domain name, ip) to the URL.
-		$baseURL .= $_SERVER['HTTP_HOST'];
-
-		// Append the requested resource location to the URL
-		$baseURL .= $_SERVER['REQUEST_URI'];
-		$baseURL = str_replace( '/' . $pageName, '', $baseURL );
 
 		foreach ( $tabs as $i => $tab ) {
 			$editHTML = '';
 			if ( $wgHeaderTabsEditTabLink ) {
-				$url = $baseURL . '?title=' . $pageName . '&action=edit&section=' . $tab['section'];
+				$url = $parser->getTitle()->getInternalURL( [ 'action' => 'edit', 'section' => $tab['section'] ] );
 				$editLink = Html::element( 'a', [ 'href' => $url ], wfMessage( 'headertabs-edittab' )->text() );
 				$editHTML = Html::rawElement( 'span', [ 'class' => 'ht-editsection', 'id' => 'edittab' ], "[$editLink]" );
 			}
