@@ -69,4 +69,33 @@
 		tabs.setTabPanel( tabNameEscape( tabName ) );
 		return false;
 	} );
+
+	/**
+	 * We override window.print in order to remove tabs from the "printable version"
+	 * of any page (which uses window.print), and display the page more or less as it
+	 * would look if Header Tabs were not installed, so that all content can be seen.
+	 * This has to be done in JS and not CSS, because the name of each tab (i.e., the
+	 * section header) has become separated from the tab contents.
+	 */
+	var defaultPrinter = window.print;
+	window.print = function () {
+		var $actualContent, $section, $wrapper = null;
+		$actualContent = $( '#headertabs' ).clone( true );
+		$( '#headertabs' ).empty();
+		$actualContent.find( '.oo-ui-tabOptionWidget > .oo-ui-labelElement-label' ).each(
+			function ( index ) {
+				$section = $actualContent.find( '.section-' + ( index + 1 ) ).clone( true )
+					.find( '.oo-ui-fieldsetLayout' );
+				$section.find( '.ht-editsection' ).remove();
+				$wrapper = $( '<div>' );
+				$( '<h1>' ).text( $( this ).text() ).appendTo( $wrapper );
+				$section.appendTo( $wrapper );
+				$( '#headertabs' ).append( $wrapper );
+			}
+		);
+		defaultPrinter();
+		// Reload the page so that the tabs appear again after the user has
+		// finished printing.
+		location.reload();
+	};
 }( document ) );
