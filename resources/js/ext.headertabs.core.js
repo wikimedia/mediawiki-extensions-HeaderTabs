@@ -98,4 +98,25 @@
 		// finished printing.
 		location.reload();
 	};
+
+	/**
+	 * Remove tab headings from TOC when <notabtoc/> is passed in wikitext or
+	 * when wgHeaderTabsNoTabsInToc is set to true
+	 */
+	if ( mw.config.get( 'wgHeaderTabsNoTabsInToc' ) || $( '#noTabTOC' ).length ) {
+		var tabsArray = [];
+		$( '.oo-ui-tabPanelLayout' ).each( function () {
+			tabsArray.push( $( this ).attr( 'id' ) );
+		} );
+		$( '.toc' ).find( 'li' ).each( function () {
+			var id = $( this ).find( 'a' ).attr( 'href' ).replace( '#', '' );
+			if ( tabsArray.indexOf( id ) !== -1 ) {
+				$( this ).remove();
+			}
+		} );
+		$( '.toc' ).find( 'li' ).each( function ( index ) {
+			$( this ).find( 'a' ).find( '.tocnumber' ).text( index + 1 );
+		} );
+	}
+
 }( document ) );

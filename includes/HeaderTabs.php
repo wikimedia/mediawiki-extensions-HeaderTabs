@@ -30,6 +30,10 @@ class HeaderTabs {
 		return '<div id="nomoretabs"></div>';
 	}
 
+	public static function noTabTOC() {
+		return '<div id="noTabTOC"></div>';
+	}
+
 	/**
 	 * @param Parser &$parser
 	 * @param string &$text

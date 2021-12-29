@@ -19,6 +19,7 @@ class HeaderTabsHooks {
 	 */
 	public static function registerParserFunctions( $parser ) {
 		$parser->setHook( 'headertabs', [ 'HeaderTabs', 'tag' ] );
+		$parser->setHook( 'notabtoc', [ 'HeaderTabs', 'noTabTOC' ] );
 		$parser->setFunctionHook( 'switchtablink', [ 'HeaderTabs', 'renderSwitchTabLink' ] );
 		return true;
 	}
@@ -59,10 +60,11 @@ class HeaderTabsHooks {
 	 * @return true
 	 */
 	public static function addConfigVarsToJS( &$vars ) {
-		global $wgHeaderTabsUseHistory, $wgHeaderTabsEditTabLink;
+		global $wgHeaderTabsUseHistory, $wgHeaderTabsEditTabLink, $wgHeaderTabsNoTabsInToc;
 
 		$vars['wgHeaderTabsUseHistory'] = $wgHeaderTabsUseHistory;
 		$vars['wgHeaderTabsEditTabLink'] = $wgHeaderTabsEditTabLink;
+		$vars['wgHeaderTabsNoTabsInToc'] = $wgHeaderTabsNoTabsInToc;
 
 		return true;
 	}

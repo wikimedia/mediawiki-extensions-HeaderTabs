@@ -53,7 +53,8 @@
 		"HeaderTabsDefaultFirstTab": false,
 		"HeaderTabsDisableDefaultToc": true,
 		"HeaderTabsGenerateTabTocs": false,
-		"HeaderTabsEditTabLink": true
+		"HeaderTabsEditTabLink": true,
+		"HeaderTabsNoTabsInToc": false
 	},
 	"manifest_version": 1,
 	"requires": {
