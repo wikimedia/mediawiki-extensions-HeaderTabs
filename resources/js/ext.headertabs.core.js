@@ -119,4 +119,17 @@
 		} );
 	}
 
+	/**
+	 * Move misplaced headings inside the TOC from second level to the first level
+	 * By default, the parser considers the successive <h2> headings (==) after the <headertabs/>
+	 * tag to be a sub heading of the last known header tab <h1> (=).
+	 */
+	$( '#toc' ).find( 'li.toclevel-2' ).each( function () {
+		var id = $( this ).find( 'a' ).attr( 'href' );
+		if ( $( '#headertabs' ).find( id ).length === 0 ) {
+			$( this ).appendTo( '#toc ul:first' );
+		}
+	} );
+	// Remove existing numbering provided by TOC and use CSS based counters
+	$( '.tocnumber' ).remove();
 }( document ) );
