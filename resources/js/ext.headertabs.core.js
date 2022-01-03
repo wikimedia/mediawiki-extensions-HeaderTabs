@@ -132,4 +132,16 @@
 	} );
 	// Remove existing numbering provided by TOC and use CSS based counters
 	$( '.tocnumber' ).remove();
+
+	// Change the TOC link of each header tab from #id to point to #tab=id
+	var tabsList = [];
+	$( '.oo-ui-tabPanelLayout' ).each( function () {
+		tabsList.push( $( this ).attr( 'id' ) );
+	} );
+	$( '.toc' ).find( 'li' ).each( function () {
+		var id = $( this ).find( 'a' ).first().attr( 'href' ).replace( '#', '' );
+		if ( tabsList.indexOf( id ) !== -1 ) {
+			$( this ).find( 'a' ).first().attr( 'href', '#tab=' + id );
+		}
+	} );
 }( document ) );
