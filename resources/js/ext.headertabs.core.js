@@ -27,11 +27,11 @@
 	}
 
 	/*
-	 * Get links to tabs in Table of Contents to work.
+	 * Add event handler to the TOC links and switchtablinks
 	 * @author Chad Catlett
 	 */
 	$( d ).ready( function () {
-		$( '.toc ul a' ).each( function () {
+		$( '.toc ul a, .tabLink' ).each( function () {
 			$( this ).on( 'click', function () {
 				// Don't escape #'s for our entries. Copied from:
 				// http://totaldev.com/content/escaping-characters-get-valid-jquery-id
@@ -39,7 +39,6 @@
 				tabs.setTabPanel( escapedHash.substr( 1 ) );
 			} );
 		} );
-
 	} );
 
 	$( window ).on( 'hashchange', function () {
@@ -61,13 +60,6 @@
 		if ( mw.config.get( 'wgHeaderTabsUseHistory' ) ) {
 			window.location.hash = '#tab=' + tabNameEscape( tabCurrentTabPanelName );
 		}
-	} );
-
-	/* click a tab parserhook link */
-	$( '.tabLink' ).on( 'click', function () {
-		tabName = $( this ).attr( 'href' ).replace( '#tab=', '' );
-		tabs.setTabPanel( tabNameEscape( tabName ) );
-		return false;
 	} );
 
 	/**
@@ -136,11 +128,11 @@
 	// Change the TOC link of each header tab from #id to point to #tab=id
 	var tabsList = [];
 	$( '.oo-ui-tabPanelLayout' ).each( function () {
-		tabsList.push( $( this ).attr( 'id' ) );
+		tabsList.push( tabNameEscape( $( this ).attr( 'id' ) ) );
 	} );
 	$( '.toc' ).find( 'li' ).each( function () {
 		var id = $( this ).find( 'a' ).first().attr( 'href' ).replace( '#', '' );
-		if ( tabsList.indexOf( id ) !== -1 ) {
+		if ( tabsList.indexOf( tabNameEscape( id ) ) !== -1 ) {
 			$( this ).find( 'a' ).first().attr( 'href', '#tab=' + id );
 		}
 	} );
