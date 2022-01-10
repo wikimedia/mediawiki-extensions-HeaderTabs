@@ -26,7 +26,7 @@ class HeaderTabs {
 		$out->addModules( 'ext.headertabs' );
 
 		// This tag, besides just enabling tabs, also designates
-		// the end of tabs. Can be used even if automatiic namespaced
+		// the end of tabs. Can be used even if automatic namespaced.
 		return '<div id="nomoretabs"></div>';
 	}
 
@@ -56,19 +56,22 @@ class HeaderTabs {
 
 		// grab the TOC
 		$toc = '';
-		$tocpattern = '%<div id="toc" class="toc"><div id="toctitle"><h2>.+?</h2></div>' . "\n+" . '(<ul>' . "\n+" . '.+?</ul>)' . "\n+" . '</div>' . "\n+" . '%ms';
+		$tocpattern = '%<div id="toc" class="toc"><div id="toctitle"><h2>.+?</h2></div>' .
+			"\n+" . '(<ul>' . "\n+" . '.+?</ul>)' . "\n+" . '</div>' . "\n+" . '%ms';
 		if ( preg_match( $tocpattern, $aboveandbelow[0], $tocmatches, PREG_OFFSET_CAPTURE ) === 1 ) {
 			wfDebugLog( 'headertabs', __METHOD__ . ': found the toc: ' . $tocmatches[0][1] );
 			$toc = $tocmatches[0][0];
 			// toc is first thing
 			if ( $tocmatches[0][1] === 0 ) {
 				wfDebugLog( 'headertabs', __METHOD__ . ': removed standard-pos TOC' );
-				$aboveandbelow[0] = substr_replace( $aboveandbelow[0], '', $tocmatches[0][1], strlen( $tocmatches[0][0] ) );
+				$aboveandbelow[0] = substr_replace( $aboveandbelow[0], '', $tocmatches[0][1],
+					strlen( $tocmatches[0][0] ) );
 			}
 		}
 		// toc is tricky, if you allow the auto-gen-toc,
 		//	 and it's not at the top, but you end up with tabs... it could be embedded in a tab
-		//	 but if it is at the top, and you have auto-first-tab, but only a toc is there, you don't really have an auto-tab
+		//	 but if it is at the top, and you have auto-first-tab, but only a toc is there,
+		//	 	you don't really have an auto-tab
 
 		// how many headers parts do we have? if not enough, bail out
 		// text -- with defaulttab off = 1 parts
@@ -87,10 +90,12 @@ class HeaderTabs {
 		$parts = preg_split( $tabpatternsplit, trim( $aboveandbelow[0] ), -1, PREG_SPLIT_DELIM_CAPTURE );
 		$above = '';
 
-		// auto tab and the first thing isn't a header (note we already removed the default toc, add it back later if needed)
+		// auto tab and the first thing isn't a header
+		// (note we already removed the default toc, add it back later if needed)
 		if ( $wgHeaderTabsDefaultFirstTab !== false && $parts[0] !== '' ) {
 			// add the default header
-			$headline = '<h1><span class="mw-headline" id="' . str_replace( ' ', '_', $wgHeaderTabsDefaultFirstTab ) . '">' . $wgHeaderTabsDefaultFirstTab . '</span></h1>';
+			$firstTabID = str_replace( ' ', '_', $wgHeaderTabsDefaultFirstTab );
+			$headline = "<h1><span class=\"mw-headline\" id=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab</span></h1>";
 			array_unshift( $parts, $headline );
 			$above = ''; // explicit
 		} else {
@@ -125,7 +130,8 @@ class HeaderTabs {
 					// it's in a tab
 					for ( $i = 0; ( $i < count( $parts ) / 2 ); $i++ ) {
 						if ( $tocmatches[0][1] < strlen( $parts[( $i * 2 ) + 1] ) ) {
-							$parts[( $i * 2 ) + 1] = substr_replace( $parts[( $i * 2 ) + 1], '', $tocmatches[0][1], strlen( $tocmatches[0][0] ) );
+							$parts[( $i * 2 ) + 1] = substr_replace( $parts[( $i * 2 ) + 1], '',
+								$tocmatches[0][1], strlen( $tocmatches[0][0] ) );
 							break;
 						}
 						$tocmatches[0][1] -= strlen( $parts[( $i * 2 ) + 1] );
@@ -146,7 +152,8 @@ class HeaderTabs {
 			preg_match( $tabpatternmatch, $parts[$i * 2], $matches );
 
 			// if this is a default tab, don't increment our section number
-			if ( $s !== 0 || $i !== 0 || $wgHeaderTabsDefaultFirstTab === false || $matches[3] !== $wgHeaderTabsDefaultFirstTab ) {
+			if ( $s !== 0 || $i !== 0 || $wgHeaderTabsDefaultFirstTab === false ||
+				$matches[3] !== $wgHeaderTabsDefaultFirstTab ) {
 				++$s;
 			}
 
@@ -167,8 +174,10 @@ class HeaderTabs {
 			wfDebugLog( 'headertabs', __METHOD__ . ': found tab: ' . $tabtitle );
 
 			// toc and section counter
-			$subpatternsplit = '/(<h[2-6].+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]*>\s*.*?\s*<\/span>.*?<\/h[2-6]>)/';
-			$subpatternmatch = '/<h([2-6]).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]*>\s*(.*?)\s*<\/span>.*?<\/h[2-6]>/';
+			$subpatternsplit = '/(<h[2-6].+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]*>' .
+				'\s*.*?\s*<\/span>.*?<\/h[2-6]>)/';
+			$subpatternmatch = '/<h([2-6]).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]*>' .
+				'\s*(.*?)\s*<\/span>.*?<\/h[2-6]>/';
 			$subparts = preg_split( $subpatternsplit, $content, -1, PREG_SPLIT_DELIM_CAPTURE );
 			if ( ( count( $subparts ) % 2 ) !== 0 ) {
 				// don't need anything above first header
@@ -189,13 +198,17 @@ class HeaderTabs {
 					wfDebugLog( 'headertabs', __METHOD__ . ': generated toc for tab' );
 					$tabtocraw = $tabtocmatches[0];
 					$tabtoc = $tabtocraw;
-					$itempattern = '/<li class="toclevel-[0-9]+"><a href="(#[^"]+)"><span class="tocnumber">[0-9.]+<\/span> <span class="toctext">(<span>([^<]+)<\/span>[^<]+)<\/span><\/a>/';
+					$itempattern = '/<li class="toclevel-[0-9]+"><a href="(#[^"]+)">' .
+						'<span class="tocnumber">[0-9.]+<\/span> ' .
+						'<span class="toctext">(<span>([^<]+)<\/span>[^<]+)<\/span><\/a>/';
 					if ( preg_match_all( $itempattern, $tabtocraw, $tabtocitemmatches, PREG_SET_ORDER ) > 0 ) {
 						foreach ( $tabtocitemmatches as $match ) {
 							$newitem = $match[0];
 
 							if ( count( $matches ) == 4 ) {
-								$newitem = str_replace( $match[1], '#' . trim( substr( $match[1], ( strlen( $match[1] ) / 2 ) + 1 ) ), $newitem );
+								$oldHref = $match[1];
+								$newHref = '#' . trim( substr( $oldHref, ( strlen( $oldHref ) / 2 ) + 1 ) );
+								$newitem = str_replace( $oldHref, $newHref, $newitem );
 								$newitem = str_replace( $match[2], trim( $match[3] ), $newitem );
 							}
 							$tabtoc = str_replace( $match[0], $newitem, $tabtoc );
@@ -225,7 +238,8 @@ class HeaderTabs {
 			if ( $wgHeaderTabsEditTabLink ) {
 				$url = $parser->getTitle()->getInternalURL( [ 'action' => 'edit', 'section' => $tab['section'] ] );
 				$editLink = Html::element( 'a', [ 'href' => $url ], wfMessage( 'headertabs-edittab' )->text() );
-				$editHTML = Html::rawElement( 'span', [ 'class' => 'ht-editsection', 'id' => 'edittab' ], "[$editLink]" );
+				$editHTML = Html::rawElement( 'span', [ 'class' => 'ht-editsection', 'id' => 'edittab' ],
+					"[$editLink]" );
 			}
 			$tabPanels[] = new OOUI\TabPanelLayout( $tab['tabid'], [
 				'classes' => [ 'section-' . $tab['section'] ],
