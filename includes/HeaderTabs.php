@@ -160,15 +160,7 @@ class HeaderTabs {
 			$tabsection = $s;
 			$content = $parts[$i * 2 + 1];
 
-			// Almost all special characters in tab IDs
-			// cause a problem in the jQuery UI tabs()
-			// function - in the URLs they already come out
-			// as URL-encoded, which is good, but for some
-			// reason it's as ".2F", etc., instead of
-			// "%2F" - so replace all "." with "_", and
-			// everything should be fine.
-			$tabid = str_replace( '.', '_', $matches[2] );
-
+			$tabid = $matches[2];
 			$tabtitle = $matches[3];
 
 			wfDebugLog( 'headertabs', __METHOD__ . ': found tab: ' . $tabtitle );
