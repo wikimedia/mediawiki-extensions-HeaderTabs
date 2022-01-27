@@ -32,9 +32,6 @@
 				"oojs-ui-widgets",
 				"oojs-ui-windows"
 			]
-		},
-		"ext.headertabs.styles": {
-			"styles": "css/ext.headertabs.core.css"
 		}
 	},
 	"ResourceFileModulePaths": {
