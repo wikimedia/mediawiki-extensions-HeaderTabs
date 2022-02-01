@@ -118,7 +118,7 @@
 	 */
 	$( '#toc' ).find( 'li.toclevel-2' ).each( function () {
 		var id = $( this ).find( 'a' ).attr( 'href' );
-		if ( $( '#headertabs' ).find( id ).length === 0 ) {
+		if ( $( '#headertabs' ).find( tabNameEscape( id ) ).length === 0 ) {
 			$( this ).appendTo( '#toc ul:first' );
 		}
 	} );
