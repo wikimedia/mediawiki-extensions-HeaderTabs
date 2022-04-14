@@ -1,4 +1,5 @@
 {
+	"name": "HeaderTabs",
 	"private": true,
 	"scripts": {
 		"test": "grunt test"
