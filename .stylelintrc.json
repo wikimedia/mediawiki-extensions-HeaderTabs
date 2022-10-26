@@ -4,7 +4,7 @@
 		"color-hex-case": null,
 		"color-hex-length": null,
 		"declaration-block-no-redundant-longhand-properties": null,
-		"declaration-property-value-blacklist": null,
+		"declaration-property-value-disallowed-list": null,
 		"no-descending-specificity": null,
 		"selector-max-id": null
 	}
