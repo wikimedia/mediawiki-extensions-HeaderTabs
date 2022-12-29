@@ -23,7 +23,7 @@ class HeaderTabs {
 	 */
 	public static function tag( $input, $args, $parser ) {
 		$out = $parser->getOutput();
-		$out->addModules( 'ext.headertabs' );
+		$out->addModules( [ 'ext.headertabs' ] );
 
 		// This tag, besides just enabling tabs, also designates
 		// the end of tabs. Can be used even if automatic namespaced.
