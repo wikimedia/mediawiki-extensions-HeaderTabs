@@ -3,10 +3,11 @@
 		"authors": [
 			"Hedda",
 			"MuratTheTurkish",
-			"Sadrettin"
+			"Sadrettin",
+			"Rapsar"
 		]
 	},
 	"headertabs-desc": "Üst düzey bölümleri ayıran sayfaya sekmeler ekler",
-	"headertabs-edittab": "düzenle",
-	"headertabs-edittab-hint": "Sekmeyi düzenle"
+	"headertabs-edittab": "değiştir",
+	"headertabs-edittab-hint": "Sekmeyi değiştir"
 }
