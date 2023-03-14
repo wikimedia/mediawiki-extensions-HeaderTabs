@@ -6,6 +6,7 @@
 		"declaration-block-no-redundant-longhand-properties": null,
 		"declaration-property-value-disallowed-list": null,
 		"no-descending-specificity": null,
-		"selector-max-id": null
+		"selector-max-id": null,
+		"selector-pseudo-element-colon-notation": null
 	}
 }

@@ -36,7 +36,7 @@
 				// Don't escape #'s for our entries. Copied from:
 				// http://totaldev.com/content/escaping-characters-get-valid-jquery-id
 				var escapedHash = this.hash.replace( /([;&,\.\+\*\~':"\!\^$%@\[\]\(\)=>\|])/g, '\\$1' );
-				tabs.setTabPanel( escapedHash.substr( 1 ) );
+				tabs.setTabPanel( escapedHash.slice( 1 ) );
 			} );
 		} );
 	} );
