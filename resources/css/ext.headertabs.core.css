@@ -14,7 +14,7 @@ span.ht-editsection {
 	display: block;
 }
 
-.toc ul li:before {
+.toc ul li::before {
 	content: counters( item, '.' ) '.';
 	counter-increment: item;
 }
