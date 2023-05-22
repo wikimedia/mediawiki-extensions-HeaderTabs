@@ -5,5 +5,7 @@
 			"Nokeoo"
 		]
 	},
-	"headertabs-edittab": "redaguoti"
+	"headertabs-desc": "Puslapyje pridedami skirtukai, atskiriantys aukščiausio lygio skyrius",
+	"headertabs-edittab": "redaguoti",
+	"headertabs-edittab-hint": "Redaguoti skirtuką"
 }
