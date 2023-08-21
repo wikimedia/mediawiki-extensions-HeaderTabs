@@ -43,6 +43,7 @@
 
 	$( window ).on( 'hashchange', function () {
 		tabName = window.location.hash.replace( '#tab=', '' );
+		tabName = decodeURI( tabName );
 		tabs.setTabPanel( tabName );
 	} );
 
@@ -58,7 +59,7 @@
 	$( '.mw-tabs' ).on( 'click', function () {
 		var tabCurrentTabPanelName = tabs.getCurrentTabPanelName();
 		if ( mw.config.get( 'wgHeaderTabsUseHistory' ) ) {
-			window.location.hash = '#tab=' + tabNameEscape( tabCurrentTabPanelName );
+			window.location.hash = '#tab=' + tabCurrentTabPanelName;
 		}
 	} );
 
