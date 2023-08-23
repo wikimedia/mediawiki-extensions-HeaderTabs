@@ -52,6 +52,7 @@
 	if ( curHash.indexOf( '#tab=' ) === 0 ) {
 		// remove the fragment identifier, we're using it for the name of the tab.
 		tabName = curHash.replace( '#tab=', '' );
+		tabName = decodeURI( tabName );
 		tabs.setTabPanel( tabName );
 	}
 
