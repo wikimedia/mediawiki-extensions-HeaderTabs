@@ -1,6 +1,7 @@
 /**
  * JavaScript code for Header Tabs extension.
  *
+ * @param d
  * @file
  * @ingroup Extensions
  *
