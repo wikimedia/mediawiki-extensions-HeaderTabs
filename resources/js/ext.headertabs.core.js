@@ -42,20 +42,50 @@
 		} );
 	} );
 
-	$( window ).on( 'hashchange', function () {
-		tabName = window.location.hash.replace( '#tab=', '' );
-		tabName = decodeURI( tabName );
-		tabs.setTabPanel( tabName );
-	} );
 
-	/* follow a # anchor to a tab OR a heading */
-	var curHash = window.location.hash;
-	if ( curHash.indexOf( '#tab=' ) === 0 ) {
-		// remove the fragment identifier, we're using it for the name of the tab.
-		tabName = curHash.replace( '#tab=', '' );
-		tabName = decodeURI( tabName );
-		tabs.setTabPanel( tabName );
+	/**
+	 * If the URL is http://example.com/wiki/Page#heading
+	 * The function will find which tab 'heading' is within, activate that tab, and scroll to 'heading'.
+	 */
+	function tryToActivateTabOfElement( hash ) {
+		// Find the element by ID
+		var element = document.getElementById(hash);
+		if (element) {
+			// Traverse up the DOM tree to find the closest tab panel container
+			var tabPanel = $(element).closest('.oo-ui-tabPanelLayout');
+			if (tabPanel.length > 0) {
+				// Get the ID of the tab panel, which corresponds to the tab name
+				var tabName = tabPanel.attr('id');
+				// Set the correct tab to active
+				tabs.setTabPanel(tabName);
+
+				// Scroll to the element after a slight delay to allow the tab change to complete
+				setTimeout(function() {
+					element.scrollIntoView();
+				}, 100);
+			}
+		}
 	}
+
+	function onHashChange( curHash ) {
+		/* follow a # anchor to a tab OR a heading */
+		if ( curHash.indexOf( '#tab=' ) === 0 ) {
+			// remove the fragment identifier, we're using it for the name of the tab.
+			tabName = curHash.replace( '#tab=', '' );
+			tabName = decodeURI( tabName );
+			tabs.setTabPanel( tabName );
+		} else if ( curHash.indexOf( '#' ) === 0 ) {
+			curHash = curHash.replace('#', '');
+			if (curHash)
+				tryToActivateTabOfElement(curHash);
+		}
+	}
+
+	$(window).on('hashchange', function () {
+		onHashChange(window.location.hash);
+	});
+
+	onHashChange(window.location.hash);
 
 	// only fires when the user clicks on a tab, not on page load
 	$( '.mw-tabs' ).on( 'click', function () {
