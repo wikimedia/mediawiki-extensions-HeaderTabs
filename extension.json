@@ -44,7 +44,6 @@
 		"ResourceLoaderGetConfigVars": "HeaderTabsHooks::addConfigVarsToJS"
 	},
 	"config": {
-		"HeaderTabsUseHistory": true,
 		"HeaderTabsRenderSingleTab": false,
 		"HeaderTabsAutomaticNamespaces": [],
 		"HeaderTabsDefaultFirstTab": false,

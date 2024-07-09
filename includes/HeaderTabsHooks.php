@@ -60,9 +60,8 @@ class HeaderTabsHooks {
 	 * @return true
 	 */
 	public static function addConfigVarsToJS( &$vars ) {
-		global $wgHeaderTabsUseHistory, $wgHeaderTabsEditTabLink, $wgHeaderTabsNoTabsInToc;
+		global $wgHeaderTabsEditTabLink, $wgHeaderTabsNoTabsInToc;
 
-		$vars['wgHeaderTabsUseHistory'] = $wgHeaderTabsUseHistory;
 		$vars['wgHeaderTabsEditTabLink'] = $wgHeaderTabsEditTabLink;
 		$vars['wgHeaderTabsNoTabsInToc'] = $wgHeaderTabsNoTabsInToc;
 

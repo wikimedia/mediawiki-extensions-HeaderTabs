@@ -57,14 +57,6 @@
 		tabs.setTabPanel( tabName );
 	}
 
-	// only fires when the user clicks on a tab, not on page load
-	$( '.mw-tabs' ).on( 'click', function () {
-		var tabCurrentTabPanelName = tabs.getCurrentTabPanelName();
-		if ( mw.config.get( 'wgHeaderTabsUseHistory' ) ) {
-			window.location.hash = '#tab=' + tabCurrentTabPanelName;
-		}
-	} );
-
 	/**
 	 * We override window.print in order to remove tabs from the "printable version"
 	 * of any page (which uses window.print), and display the page more or less as it
