@@ -67,4 +67,34 @@ class HeaderTabsHooks {
 
 		return true;
 	}
+
+	/**
+	 * This method is a hook handler for the "EditPageGetPreviewContent" hook.
+	 * It is used to add the "ext.headertabs" module to the page output if HeaderTabs tagging is enabled.
+	 *
+	 * @param EditPage $editPage The EditPage object.
+	 * @param string &$content The preview content.
+	 */
+	public static function onEditPageGetPreviewContent( $editPage, &$content ) {
+		if ( HeaderTabs::$isUsed ) {
+			$editPage->getContext()->getOutput()->addModules( [ 'ext.headertabs' ] );
+		}
+	}
+
+	/**
+	 * Retrieves the diff content for the edit page.
+	 *
+	 * This function checks if the HeaderTabs are tagged, and if true, adds the 'ext.headertabs' module to the
+	 * page's output.
+	 *
+	 * @param EditPage $editPage The edit page object.
+	 * @param string &$newtext The new text being edited.
+	 *
+	 * @return void
+	 */
+	public static function onEditPageGetDiffContent( $editPage, &$newtext ) {
+		if ( HeaderTabs::$isUsed ) {
+			$editPage->getContext()->getOutput()->addModules( [ 'ext.headertabs' ] );
+		}
+	}
 }

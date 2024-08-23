@@ -14,6 +14,8 @@ use OOUI\WikimediaUITheme;
 
 class HeaderTabs {
 
+	public static bool $isUsed = false;
+
 	/**
 	 *
 	 * @param string $input
@@ -24,6 +26,8 @@ class HeaderTabs {
 	public static function tag( $input, $args, $parser ) {
 		$out = $parser->getOutput();
 		$out->addModules( [ 'ext.headertabs' ] );
+
+		self::$isUsed = true;
 
 		// This tag, besides just enabling tabs, also designates
 		// the end of tabs. Can be used even if automatic namespaced.
