@@ -42,7 +42,6 @@ class HeaderTabs {
 	 * @param Parser &$parser
 	 * @param string &$text
 	 * @param string[] $aboveandbelow
-	 * @return true
 	 */
 	public static function replaceFirstLevelHeaders( &$parser, &$text, $aboveandbelow ) {
 		global $wgHeaderTabsRenderSingleTab, $wgHeaderTabsDefaultFirstTab,
@@ -116,7 +115,7 @@ class HeaderTabs {
 		}
 
 		if ( count( $parts ) < $partslimit ) {
-			return true;
+			return;
 		}
 
 		wfDebugLog( 'headertabs', __METHOD__ . ': split count OK, continuing' );
@@ -271,7 +270,6 @@ class HeaderTabs {
 		$tabHTML = Html::rawElement( 'div', [ 'id' => 'headertabs' ], $tabsPanelLayout );
 
 		$text = $above . $tabHTML . $below;
-		return true;
 	}
 
 	/**

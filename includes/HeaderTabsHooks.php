@@ -15,13 +15,11 @@ class HeaderTabsHooks {
 
 	/**
 	 * @param Parser $parser
-	 * @return true
 	 */
 	public static function registerParserFunctions( $parser ) {
 		$parser->setHook( 'headertabs', [ 'HeaderTabs', 'tag' ] );
 		$parser->setHook( 'notabtoc', [ 'HeaderTabs', 'noTabTOC' ] );
 		$parser->setFunctionHook( 'switchtablink', [ 'HeaderTabs', 'renderSwitchTabLink' ] );
-		return true;
 	}
 
 	/**
@@ -31,7 +29,6 @@ class HeaderTabsHooks {
 	 * on the cuurrent page, and exits if not.
 	 * @param Parser &$parser
 	 * @param string &$text
-	 * @return true
 	 */
 	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
 		global $wgHeaderTabsAutomaticNamespaces;
@@ -48,24 +45,21 @@ class HeaderTabsHooks {
 				// nomoretabs.
 				$aboveandbelow[] = '';
 			} else {
-				return true; // <headertabs/> tag is not found
+				return; // <headertabs/> tag is not found
 			}
 		}
 
-		return HeaderTabs::replaceFirstLevelHeaders( $parser, $text, $aboveandbelow );
+		HeaderTabs::replaceFirstLevelHeaders( $parser, $text, $aboveandbelow );
 	}
 
 	/**
 	 * @param array &$vars
-	 * @return true
 	 */
 	public static function addConfigVarsToJS( &$vars ) {
 		global $wgHeaderTabsEditTabLink, $wgHeaderTabsNoTabsInToc;
 
 		$vars['wgHeaderTabsEditTabLink'] = $wgHeaderTabsEditTabLink;
 		$vars['wgHeaderTabsNoTabsInToc'] = $wgHeaderTabsNoTabsInToc;
-
-		return true;
 	}
 
 	/**
@@ -89,8 +83,6 @@ class HeaderTabsHooks {
 	 *
 	 * @param EditPage $editPage The edit page object.
 	 * @param string &$newtext The new text being edited.
-	 *
-	 * @return void
 	 */
 	public static function onEditPageGetDiffContent( $editPage, &$newtext ) {
 		if ( HeaderTabs::$isUsed ) {
