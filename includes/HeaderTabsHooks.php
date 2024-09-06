@@ -4,16 +4,13 @@
  *
  * @file
  * @ingroup Extensions
- *
- * @author Sergey Chernyshev
- * @author Yaron Koren
- * @author Finlay Beaton
- * @author Priyanshu Varshney
  */
 
 class HeaderTabsHooks {
 
 	/**
+	 * Called by the ParserFirstCallInit hook.
+	 *
 	 * @param Parser $parser
 	 */
 	public static function registerParserFunctions( $parser ) {
@@ -26,7 +23,10 @@ class HeaderTabsHooks {
 	 * A wrapper around HeaderTabs::replaceFirstLevelHeaders(), which does
 	 * most of the actual work.
 	 * This function mostly just determines if there are any header tabs
-	 * on the cuurrent page, and exits if not.
+	 * on the current page, and exits if not.
+	 *
+	 * Called by the ParserAfterTidy hook.
+	 *
 	 * @param Parser &$parser
 	 * @param string &$text
 	 */
@@ -53,6 +53,8 @@ class HeaderTabsHooks {
 	}
 
 	/**
+	 * Called by the ResourceLoaderGetConfigVars hook.
+	 *
 	 * @param array &$vars
 	 */
 	public static function addConfigVarsToJS( &$vars ) {
@@ -63,11 +65,13 @@ class HeaderTabsHooks {
 	}
 
 	/**
-	 * This method is a hook handler for the "EditPageGetPreviewContent" hook.
-	 * It is used to add the "ext.headertabs" module to the page output if HeaderTabs tagging is enabled.
+	 * Adds the ext.headertabs ResourceLoader module to the preview display
+	 * if this page uses Header Tabs.
 	 *
-	 * @param EditPage $editPage The EditPage object.
-	 * @param string &$content The preview content.
+	 * Called by the EditPageGetPreviewContent hook.
+	 *
+	 * @param EditPage $editPage The EditPage object
+	 * @param string &$content The preview content
 	 */
 	public static function onEditPageGetPreviewContent( $editPage, &$content ) {
 		if ( HeaderTabs::$isUsed ) {
@@ -76,13 +80,13 @@ class HeaderTabsHooks {
 	}
 
 	/**
-	 * Retrieves the diff content for the edit page.
+	 * Adds the ext.headertabs ResourceLoader module to the diff display
+	 * if this page uses Header Tabs.
 	 *
-	 * This function checks if the HeaderTabs are tagged, and if true, adds the 'ext.headertabs' module to the
-	 * page's output.
+	 * Called by the EditPageGetDiffContent hook.
 	 *
-	 * @param EditPage $editPage The edit page object.
-	 * @param string &$newtext The new text being edited.
+	 * @param EditPage $editPage The edit page object
+	 * @param string &$newtext The new text being edited
 	 */
 	public static function onEditPageGetDiffContent( $editPage, &$newtext ) {
 		if ( HeaderTabs::$isUsed ) {
