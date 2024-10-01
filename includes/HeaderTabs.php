@@ -55,8 +55,17 @@ class HeaderTabs {
 			wfDebugLog( 'headertabs', __METHOD__ . ': we have text below our tabs' );
 		}
 
-		$tabpatternsplit = '/(<h1.+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]*>\s*.*?\s*<\/span>.*?<\/h1>)/';
-		$tabpatternmatch = '/<h(1).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]*>\s*(.*?)\s*<\/span>.*?<\/h1>/';
+		$hasNewStructure = strpos( $aboveandbelow[0], 'data-mw-anchor' ) !== false;
+		if ( $hasNewStructure ) {
+			// MW 1.42+ or so
+			$tabpatternsplit = '/(<h1 data-mw-anchor="[^"]+"[^>]*>.*<mw:editsection .*<\/h1>)/';
+			$tabpatternmatch = '/<h(1) data-mw-anchor="([^"]+)"[^>]*>(.*)<mw:editsection .*<\/h1>/';
+		} else {
+			$tabpatternsplit = '/(<h1.+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]' .
+				'*>\s*.*?\s*<\/span>.*?<\/h1>)/';
+			$tabpatternmatch = '/<h(1).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]' .
+				'*>\s*(.*?)\s*<\/span>.*?<\/h1>/';
+		}
 		$parts = preg_split( $tabpatternsplit, trim( $aboveandbelow[0] ), -1, PREG_SPLIT_DELIM_CAPTURE );
 		$above = '';
 
@@ -64,7 +73,16 @@ class HeaderTabs {
 		if ( $wgHeaderTabsDefaultFirstTab !== false && $parts[0] !== '' ) {
 			// add the default header
 			$firstTabID = str_replace( ' ', '_', $wgHeaderTabsDefaultFirstTab );
-			$headline = "<h1><span class=\"mw-headline\" id=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab</span></h1>";
+			if ( $hasNewStructure ) {
+				// MW 1.42+ or so
+				$pageName = $parser->getTitle()->getFullText();
+				$headline = "<h1 data-mw-anchor=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab" .
+					"<mw:editsection page=\"$pageName\">$wgHeaderTabsDefaultFirstTab</mw:editsection></h1>";
+			} else {
+				$headline = "<h1><span class=\"mw-headline\" id=\"$firstTabID\">" .
+					"$wgHeaderTabsDefaultFirstTab</span></h1>";
+			}
+
 			array_unshift( $parts, $headline );
 			$above = ''; // explicit
 		} else {
