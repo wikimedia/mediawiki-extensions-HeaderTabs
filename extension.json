@@ -49,8 +49,6 @@
 		"HeaderTabsRenderSingleTab": false,
 		"HeaderTabsAutomaticNamespaces": [],
 		"HeaderTabsDefaultFirstTab": false,
-		"HeaderTabsDisableDefaultToc": true,
-		"HeaderTabsGenerateTabTocs": false,
 		"HeaderTabsEditTabLink": true,
 		"HeaderTabsNoTabsInToc": false
 	},
