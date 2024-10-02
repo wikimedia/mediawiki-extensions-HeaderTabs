@@ -49,12 +49,6 @@ class HeaderTabs {
 
 		$below = $aboveandbelow[1];
 
-		wfDebugLog( 'headertabs', __METHOD__ . ': detected header handling, checking' );
-
-		if ( $below !== '' ) {
-			wfDebugLog( 'headertabs', __METHOD__ . ': we have text below our tabs' );
-		}
-
 		$hasNewStructure = strpos( $aboveandbelow[0], 'data-mw-anchor' ) !== false;
 		if ( $hasNewStructure ) {
 			// MW 1.42+ or so
@@ -94,15 +88,10 @@ class HeaderTabs {
 		$partslimit = $wgHeaderTabsRenderSingleTab ? 2 : 4;
 
 		wfDebugLog( 'headertabs', __METHOD__ . ': parts (limit ' . $partslimit . '): ' . count( $parts ) );
-		if ( $above !== '' ) {
-			wfDebugLog( 'headertabs', __METHOD__ . ': we have text above our tabs' );
-		}
 
 		if ( count( $parts ) < $partslimit ) {
 			return;
 		}
-
-		wfDebugLog( 'headertabs', __METHOD__ . ': split count OK, continuing' );
 
 		// we have level 1 headers to parse, we'll want to render tabs
 		$tabs = [];
@@ -123,8 +112,6 @@ class HeaderTabs {
 
 			$tabid = $matches[2];
 			$tabtitle = $matches[3];
-
-			wfDebugLog( 'headertabs', __METHOD__ . ': found tab: ' . $tabtitle );
 
 			// toc and section counter
 			$subpatternsplit = '/(<h[2-6].+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]*>' .
@@ -148,8 +135,6 @@ class HeaderTabs {
 				'section' => $tabsection,
 			] );
 		}
-
-		wfDebugLog( 'headertabs', __METHOD__ . ': generated ' . count( $tabs ) . ' tabs' );
 
 		OOUI\Theme::setSingleton( new WikimediaUITheme() );
 		OOUI\Element::setDefaultDir( 'ltr' );
