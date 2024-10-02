@@ -4,34 +4,31 @@
  *
  * @file
  * @ingroup Extensions
- *
- * @author Sergey Chernyshev
- * @author Yaron Koren
- * @author Finlay Beaton
- * @author Priyanshu Varshney
  */
 
 class HeaderTabsHooks {
 
 	/**
+	 * Called by the ParserFirstCallInit hook.
+	 *
 	 * @param Parser $parser
-	 * @return true
 	 */
 	public static function registerParserFunctions( $parser ) {
 		$parser->setHook( 'headertabs', [ 'HeaderTabs', 'tag' ] );
 		$parser->setHook( 'notabtoc', [ 'HeaderTabs', 'noTabTOC' ] );
 		$parser->setFunctionHook( 'switchtablink', [ 'HeaderTabs', 'renderSwitchTabLink' ] );
-		return true;
 	}
 
 	/**
 	 * A wrapper around HeaderTabs::replaceFirstLevelHeaders(), which does
 	 * most of the actual work.
 	 * This function mostly just determines if there are any header tabs
-	 * on the cuurrent page, and exits if not.
+	 * on the current page, and exits if not.
+	 *
+	 * Called by the ParserAfterTidy hook.
+	 *
 	 * @param Parser &$parser
 	 * @param string &$text
-	 * @return true
 	 */
 	public static function replaceFirstLevelHeaders( &$parser, &$text ) {
 		global $wgHeaderTabsAutomaticNamespaces;
@@ -48,24 +45,52 @@ class HeaderTabsHooks {
 				// nomoretabs.
 				$aboveandbelow[] = '';
 			} else {
-				return true; // <headertabs/> tag is not found
+				return; // <headertabs/> tag is not found
 			}
 		}
 
-		return HeaderTabs::replaceFirstLevelHeaders( $parser, $text, $aboveandbelow );
+		HeaderTabs::replaceFirstLevelHeaders( $parser, $text, $aboveandbelow );
 	}
 
 	/**
+	 * Called by the ResourceLoaderGetConfigVars hook.
+	 *
 	 * @param array &$vars
-	 * @return true
 	 */
 	public static function addConfigVarsToJS( &$vars ) {
-		global $wgHeaderTabsUseHistory, $wgHeaderTabsEditTabLink, $wgHeaderTabsNoTabsInToc;
+		global $wgHeaderTabsEditTabLink, $wgHeaderTabsNoTabsInToc;
 
-		$vars['wgHeaderTabsUseHistory'] = $wgHeaderTabsUseHistory;
 		$vars['wgHeaderTabsEditTabLink'] = $wgHeaderTabsEditTabLink;
 		$vars['wgHeaderTabsNoTabsInToc'] = $wgHeaderTabsNoTabsInToc;
+	}
 
-		return true;
+	/**
+	 * Adds the ext.headertabs ResourceLoader module to the preview display
+	 * if this page uses Header Tabs.
+	 *
+	 * Called by the EditPageGetPreviewContent hook.
+	 *
+	 * @param EditPage $editPage The EditPage object
+	 * @param string &$content The preview content
+	 */
+	public static function onEditPageGetPreviewContent( $editPage, &$content ) {
+		if ( HeaderTabs::$isUsed ) {
+			$editPage->getContext()->getOutput()->addModules( [ 'ext.headertabs' ] );
+		}
+	}
+
+	/**
+	 * Adds the ext.headertabs ResourceLoader module to the diff display
+	 * if this page uses Header Tabs.
+	 *
+	 * Called by the EditPageGetDiffContent hook.
+	 *
+	 * @param EditPage $editPage The edit page object
+	 * @param string &$newtext The new text being edited
+	 */
+	public static function onEditPageGetDiffContent( $editPage, &$newtext ) {
+		if ( HeaderTabs::$isUsed ) {
+			$editPage->getContext()->getOutput()->addModules( [ 'ext.headertabs' ] );
+		}
 	}
 }

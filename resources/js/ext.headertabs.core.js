@@ -1,6 +1,7 @@
 /**
  * JavaScript code for Header Tabs extension.
  *
+ * @param d
  * @file
  * @ingroup Extensions
  *
@@ -12,7 +13,6 @@
 
 ( function ( d ) {
 	var tabName;
-	var tabs = OO.ui.infuse( $( '.mw-tabs' ) );
 
 	function tabNameEscape( tabName ) {
 		tabName = escape( tabName );
@@ -26,11 +26,10 @@
 		return tabName;
 	}
 
-	/*
-	 * Add event handler to the TOC links and switchtablinks
-	 * @author Chad Catlett
-	 */
 	$( d ).ready( function () {
+		var tabs = OO.ui.infuse( $( '.mw-tabs' ) );
+
+		// Add event handler to the TOC links and switchtablinks
 		$( '.toc ul a, .tabLink' ).each( function () {
 			$( this ).on( 'click', function () {
 				// Don't escape #'s for our entries. Copied from:
@@ -39,28 +38,20 @@
 				tabs.setTabPanel( escapedHash.slice( 1 ) );
 			} );
 		} );
-	} );
 
-	$( window ).on( 'hashchange', function () {
-		tabName = window.location.hash.replace( '#tab=', '' );
-		tabName = decodeURI( tabName );
-		tabs.setTabPanel( tabName );
-	} );
+		$( window ).on( 'hashchange', function () {
+			tabName = window.location.hash.replace( '#tab=', '' );
+			tabName = decodeURI( tabName );
+			tabs.setTabPanel( tabName );
+		} );
 
-	/* follow a # anchor to a tab OR a heading */
-	var curHash = window.location.hash;
-	if ( curHash.indexOf( '#tab=' ) === 0 ) {
-		// remove the fragment identifier, we're using it for the name of the tab.
-		tabName = curHash.replace( '#tab=', '' );
-		tabName = decodeURI( tabName );
-		tabs.setTabPanel( tabName );
-	}
-
-	// only fires when the user clicks on a tab, not on page load
-	$( '.mw-tabs' ).on( 'click', function () {
-		var tabCurrentTabPanelName = tabs.getCurrentTabPanelName();
-		if ( mw.config.get( 'wgHeaderTabsUseHistory' ) ) {
-			window.location.hash = '#tab=' + tabCurrentTabPanelName;
+		/* follow a # anchor to a tab OR a heading */
+		var curHash = window.location.hash;
+		if ( curHash.indexOf( '#tab=' ) === 0 ) {
+			// remove the fragment identifier, we're using it for the name of the tab.
+			tabName = curHash.replace( '#tab=', '' );
+			tabName = decodeURI( tabName );
+			tabs.setTabPanel( tabName );
 		}
 	} );
 

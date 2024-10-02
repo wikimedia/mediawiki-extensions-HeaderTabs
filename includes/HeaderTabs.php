@@ -14,6 +14,8 @@ use OOUI\WikimediaUITheme;
 
 class HeaderTabs {
 
+	public static bool $isUsed = false;
+
 	/**
 	 *
 	 * @param string $input
@@ -24,6 +26,8 @@ class HeaderTabs {
 	public static function tag( $input, $args, $parser ) {
 		$out = $parser->getOutput();
 		$out->addModules( [ 'ext.headertabs' ] );
+
+		self::$isUsed = true;
 
 		// This tag, besides just enabling tabs, also designates
 		// the end of tabs. Can be used even if automatic namespaced.
@@ -38,13 +42,10 @@ class HeaderTabs {
 	 * @param Parser &$parser
 	 * @param string &$text
 	 * @param string[] $aboveandbelow
-	 * @return true
 	 */
 	public static function replaceFirstLevelHeaders( &$parser, &$text, $aboveandbelow ) {
 		global $wgHeaderTabsRenderSingleTab, $wgHeaderTabsDefaultFirstTab,
-			$wgHeaderTabsDisableDefaultToc, $wgHeaderTabsGenerateTabTocs, $wgHeaderTabsEditTabLink;
-
-		// ! @todo handle __NOTABTOC__, __TABTOC__, __FORCETABTOC__ here (2011-12-12, ofb)
+			$wgHeaderTabsEditTabLink;
 
 		$below = $aboveandbelow[1];
 
@@ -54,48 +55,34 @@ class HeaderTabs {
 			wfDebugLog( 'headertabs', __METHOD__ . ': we have text below our tabs' );
 		}
 
-		// grab the TOC
-		$toc = '';
-		$tocpattern = '%<div id="toc" class="toc"><div id="toctitle"><h2>.+?</h2></div>' .
-			"\n+" . '(<ul>' . "\n+" . '.+?</ul>)' . "\n+" . '</div>' . "\n+" . '%ms';
-		if ( preg_match( $tocpattern, $aboveandbelow[0], $tocmatches, PREG_OFFSET_CAPTURE ) === 1 ) {
-			wfDebugLog( 'headertabs', __METHOD__ . ': found the toc: ' . $tocmatches[0][1] );
-			$toc = $tocmatches[0][0];
-			// toc is first thing
-			if ( $tocmatches[0][1] === 0 ) {
-				wfDebugLog( 'headertabs', __METHOD__ . ': removed standard-pos TOC' );
-				$aboveandbelow[0] = substr_replace( $aboveandbelow[0], '', $tocmatches[0][1],
-					strlen( $tocmatches[0][0] ) );
-			}
+		$hasNewStructure = strpos( $aboveandbelow[0], 'data-mw-anchor' ) !== false;
+		if ( $hasNewStructure ) {
+			// MW 1.42+ or so
+			$tabpatternsplit = '/(<h1 data-mw-anchor="[^"]+"[^>]*>.*<mw:editsection .*<\/h1>)/';
+			$tabpatternmatch = '/<h(1) data-mw-anchor="([^"]+)"[^>]*>(.*)<mw:editsection .*<\/h1>/';
+		} else {
+			$tabpatternsplit = '/(<h1.+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]' .
+				'*>\s*.*?\s*<\/span>.*?<\/h1>)/';
+			$tabpatternmatch = '/<h(1).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]' .
+				'*>\s*(.*?)\s*<\/span>.*?<\/h1>/';
 		}
-		// toc is tricky, if you allow the auto-gen-toc,
-		//	 and it's not at the top, but you end up with tabs... it could be embedded in a tab
-		//	 but if it is at the top, and you have auto-first-tab, but only a toc is there,
-		//	 	you don't really have an auto-tab
-
-		// how many headers parts do we have? if not enough, bail out
-		// text -- with defaulttab off = 1 parts
-		//--render singletab=on here
-		// text -- with defaulttab on = 2 parts
-		// 1 header -- with defaulttab off = 2 parts
-		// above, 1 header -- with defaulttab off = 3 parts
-		//--render singletab=off here
-		// above, 1 header -- with defaulttab on = 4 parts
-		// 2 header -- with defaulttab on/off = 4 parts
-		// above, 2 header -- with defaulttab off = 5 parts
-		// above, 2 header -- with defaulttab on = 6 parts
-
-		$tabpatternsplit = '/(<h1.+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]*>\s*.*?\s*<\/span>.*?<\/h1>)/';
-		$tabpatternmatch = '/<h(1).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]*>\s*(.*?)\s*<\/span>.*?<\/h1>/';
 		$parts = preg_split( $tabpatternsplit, trim( $aboveandbelow[0] ), -1, PREG_SPLIT_DELIM_CAPTURE );
 		$above = '';
 
 		// auto tab and the first thing isn't a header
-		// (note we already removed the default toc, add it back later if needed)
 		if ( $wgHeaderTabsDefaultFirstTab !== false && $parts[0] !== '' ) {
 			// add the default header
 			$firstTabID = str_replace( ' ', '_', $wgHeaderTabsDefaultFirstTab );
-			$headline = "<h1><span class=\"mw-headline\" id=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab</span></h1>";
+			if ( $hasNewStructure ) {
+				// MW 1.42+ or so
+				$pageName = $parser->getTitle()->getFullText();
+				$headline = "<h1 data-mw-anchor=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab" .
+					"<mw:editsection page=\"$pageName\">$wgHeaderTabsDefaultFirstTab</mw:editsection></h1>";
+			} else {
+				$headline = "<h1><span class=\"mw-headline\" id=\"$firstTabID\">" .
+					"$wgHeaderTabsDefaultFirstTab</span></h1>";
+			}
+
 			array_unshift( $parts, $headline );
 			$above = ''; // explicit
 		} else {
@@ -112,36 +99,10 @@ class HeaderTabs {
 		}
 
 		if ( count( $parts ) < $partslimit ) {
-			return true;
+			return;
 		}
 
 		wfDebugLog( 'headertabs', __METHOD__ . ': split count OK, continuing' );
-
-		// disable default TOC
-		if ( $wgHeaderTabsDisableDefaultToc ) {
-			// if it was somewhere else, we need to remove it
-			if ( count( $tocmatches ) > 0 && $tocmatches[0][1] !== 0 ) {
-				wfDebugLog( 'headertabs', __METHOD__ . ': removed non-standard-pos TOC' );
-				// remove from above
-				if ( $tocmatches[0][1] < strlen( $above ) ) {
-					$above = substr_replace( $above, '', $tocmatches[0][1], strlen( $tocmatches[0][0] ) );
-				} else {
-					$tocmatches[0][1] -= strlen( $above );
-					// it's in a tab
-					for ( $i = 0; ( $i < count( $parts ) / 2 ); $i++ ) {
-						if ( $tocmatches[0][1] < strlen( $parts[( $i * 2 ) + 1] ) ) {
-							$parts[( $i * 2 ) + 1] = substr_replace( $parts[( $i * 2 ) + 1], '',
-								$tocmatches[0][1], strlen( $tocmatches[0][0] ) );
-							break;
-						}
-						$tocmatches[0][1] -= strlen( $parts[( $i * 2 ) + 1] );
-					}
-				}
-			}
-		} elseif ( count( $tocmatches ) > 0 && $tocmatches[0][1] === 0 ) {
-			// add back a default-pos toc
-			$above = $toc . $above;
-		}
 
 		// we have level 1 headers to parse, we'll want to render tabs
 		$tabs = [];
@@ -180,36 +141,6 @@ class HeaderTabs {
 				++$s;
 			}
 
-			if ( $wgHeaderTabsGenerateTabTocs ) {
-				// @TODO This parsing no longer works in MW
-				// 1.35 (and maybe even earlier versions).
-				// @TODO Handle __TOC__, __FORCETOC__, __NOTOC__ here
-				$tocparser = clone $parser;
-				$tabtocraw = $tocparser->internalParse( $content );
-				if ( preg_match( $tocpattern, $tabtocraw, $tabtocmatches ) === 1 ) {
-					wfDebugLog( 'headertabs', __METHOD__ . ': generated toc for tab' );
-					$tabtocraw = $tabtocmatches[0];
-					$tabtoc = $tabtocraw;
-					$itempattern = '/<li class="toclevel-[0-9]+"><a href="(#[^"]+)">' .
-						'<span class="tocnumber">[0-9.]+<\/span> ' .
-						'<span class="toctext">(<span>([^<]+)<\/span>[^<]+)<\/span><\/a>/';
-					if ( preg_match_all( $itempattern, $tabtocraw, $tabtocitemmatches, PREG_SET_ORDER ) > 0 ) {
-						foreach ( $tabtocitemmatches as $match ) {
-							$newitem = $match[0];
-
-							if ( count( $matches ) == 4 ) {
-								$oldHref = $match[1];
-								$newHref = '#' . trim( substr( $oldHref, ( strlen( $oldHref ) / 2 ) + 1 ) );
-								$newitem = str_replace( $oldHref, $newHref, $newitem );
-								$newitem = str_replace( $match[2], trim( $match[3] ), $newitem );
-							}
-							$tabtoc = str_replace( $match[0], $newitem, $tabtoc );
-						}
-						$content = $tabtoc . $content;
-					}
-				}
-			}
-
 			array_push( $tabs, [
 				'tabid' => $tabid,
 				'title' => $tabtitle,
@@ -217,8 +148,6 @@ class HeaderTabs {
 				'section' => $tabsection,
 			] );
 		}
-
-		// ! @todo see if we can't add the SMW factbox stuff back in (2011-12-12, ofb)
 
 		wfDebugLog( 'headertabs', __METHOD__ . ': generated ' . count( $tabs ) . ' tabs' );
 
@@ -267,7 +196,6 @@ class HeaderTabs {
 		$tabHTML = Html::rawElement( 'div', [ 'id' => 'headertabs' ], $tabsPanelLayout );
 
 		$text = $above . $tabHTML . $below;
-		return true;
 	}
 
 	/**

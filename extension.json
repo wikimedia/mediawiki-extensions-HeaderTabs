@@ -41,15 +41,14 @@
 	"Hooks": {
 		"ParserFirstCallInit": "HeaderTabsHooks::registerParserFunctions",
 		"ParserAfterTidy": "HeaderTabsHooks::replaceFirstLevelHeaders",
-		"ResourceLoaderGetConfigVars": "HeaderTabsHooks::addConfigVarsToJS"
+		"ResourceLoaderGetConfigVars": "HeaderTabsHooks::addConfigVarsToJS",
+		"EditPageGetDiffContent": "HeaderTabsHooks::onEditPageGetDiffContent",
+		"EditPageGetPreviewContent": "HeaderTabsHooks::onEditPageGetPreviewContent"
 	},
 	"config": {
-		"HeaderTabsUseHistory": true,
 		"HeaderTabsRenderSingleTab": false,
 		"HeaderTabsAutomaticNamespaces": [],
 		"HeaderTabsDefaultFirstTab": false,
-		"HeaderTabsDisableDefaultToc": true,
-		"HeaderTabsGenerateTabTocs": false,
 		"HeaderTabsEditTabLink": true,
 		"HeaderTabsNoTabsInToc": false
 	},
