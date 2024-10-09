@@ -47,20 +47,27 @@ class HeaderTabs {
 		global $wgHeaderTabsRenderSingleTab, $wgHeaderTabsDefaultFirstTab,
 			$wgHeaderTabsEditTabLink;
 
+		$origAbove = $aboveandbelow[0];
 		$below = $aboveandbelow[1];
 
-		$hasNewStructure = strpos( $aboveandbelow[0], 'data-mw-anchor' ) !== false;
+		$hasNewStructure = strpos( $origAbove, 'data-mw-anchor' ) !== false;
 		if ( $hasNewStructure ) {
 			// MW 1.42+ or so
-			$tabpatternsplit = '/(<h1 data-mw-anchor="[^"]+"[^>]*>.*<mw:editsection .*<\/h1>)/';
-			$tabpatternmatch = '/<h(1) data-mw-anchor="([^"]+)"[^>]*>(.*)<mw:editsection .*<\/h1>/';
+			$hasEditSections = strpos( $origAbove, 'mw:editsection' ) !== false;
+			if ( $hasEditSections ) {
+				$tabpatternsplit = '/(<h1 data-mw-anchor="[^"]+"[^>]*>.*<mw:editsection .*<\/h1>)/';
+				$tabpatternmatch = '/<h(1) data-mw-anchor="([^"]+)"[^>]*>(.*)<mw:editsection .*<\/h1>/';
+			} else {
+				$tabpatternsplit = '/(<h1 data-mw-anchor="[^"]+"[^>]*>.*<\/h1>)/';
+				$tabpatternmatch = '/<h(1) data-mw-anchor="([^"]+)"[^>]*>(.*)<\/h1>/';
+			}
 		} else {
 			$tabpatternsplit = '/(<h1.+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]' .
 				'*>\s*.*?\s*<\/span>.*?<\/h1>)/';
 			$tabpatternmatch = '/<h(1).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]' .
 				'*>\s*(.*?)\s*<\/span>.*?<\/h1>/';
 		}
-		$parts = preg_split( $tabpatternsplit, trim( $aboveandbelow[0] ), -1, PREG_SPLIT_DELIM_CAPTURE );
+		$parts = preg_split( $tabpatternsplit, trim( $origAbove ), -1, PREG_SPLIT_DELIM_CAPTURE );
 		$above = '';
 
 		// auto tab and the first thing isn't a header
@@ -70,8 +77,12 @@ class HeaderTabs {
 			if ( $hasNewStructure ) {
 				// MW 1.42+ or so
 				$pageName = $parser->getTitle()->getFullText();
-				$headline = "<h1 data-mw-anchor=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab" .
-					"<mw:editsection page=\"$pageName\">$wgHeaderTabsDefaultFirstTab</mw:editsection></h1>";
+				if ( $hasEditSections ) {
+					$headline = "<h1 data-mw-anchor=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab" .
+						"<mw:editsection page=\"$pageName\">$wgHeaderTabsDefaultFirstTab</mw:editsection></h1>";
+				} else {
+					$headline = "<h1 data-mw-anchor=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab</h1>";
+				}
 			} else {
 				$headline = "<h1><span class=\"mw-headline\" id=\"$firstTabID\">" .
 					"$wgHeaderTabsDefaultFirstTab</span></h1>";
