@@ -1,6 +1,6 @@
 {
 	"name": "Header Tabs",
-	"version": "2.3",
+	"version": "2.4-alpha",
 	"author": [
 		"[http://www.sergeychernyshev.com Sergey Chernyshev]",
 		"Yaron Koren",
@@ -54,6 +54,6 @@
 	},
 	"manifest_version": 1,
 	"requires": {
-		"MediaWiki": ">= 1.33"
+		"MediaWiki": ">= 1.40"
 	}
 }

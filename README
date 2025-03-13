@@ -1,6 +1,6 @@
 Header Tabs extension
 
-        Version 2.3
+        Version 2.4-alpha
         Sergey Chernyshev, Yaron Koren et al.
 
 This is free software licensed under the GNU General Public License. Please
@@ -17,7 +17,7 @@ https://www.mediawiki.org/wiki/Extension:Header_Tabs
 
 == Requirements ==
 
-This version of the Header Tabs extension requires MediaWiki 1.33 or higher.
+This version of the Header Tabs extension requires MediaWiki 1.40 or higher.
 
 == Installation ==
 

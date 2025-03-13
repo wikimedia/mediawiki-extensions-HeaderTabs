@@ -10,6 +10,9 @@
  * @author Finlay Beaton
  * @author Priyanshu Varshney
  */
+
+use MediaWiki\Html\Html;
+use MediaWiki\Title\Title;
 use OOUI\WikimediaUITheme;
 
 class HeaderTabs {
