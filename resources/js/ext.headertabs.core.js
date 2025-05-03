@@ -12,7 +12,7 @@
  */
 
 ( function ( d ) {
-	var tabName;
+	let tabName;
 
 	function tabNameEscape( tabName ) {
 		tabName = escape( tabName );
@@ -26,27 +26,27 @@
 		return tabName;
 	}
 
-	$( d ).ready( function () {
-		var tabs = OO.ui.infuse( $( '.mw-tabs' ) );
+	$( d ).ready( () => {
+		const tabs = OO.ui.infuse( $( '.mw-tabs' ) );
 
 		// Add event handler to the TOC links and switchtablinks
 		$( '.toc ul a, .tabLink' ).each( function () {
 			$( this ).on( 'click', function () {
 				// Don't escape #'s for our entries. Copied from:
 				// http://totaldev.com/content/escaping-characters-get-valid-jquery-id
-				var escapedHash = this.hash.replace( /([;&,\.\+\*\~':"\!\^$%@\[\]\(\)=>\|])/g, '\\$1' );
+				const escapedHash = this.hash.replace( /([;&,\.\+\*\~':"\!\^$%@\[\]\(\)=>\|])/g, '\\$1' );
 				tabs.setTabPanel( escapedHash.slice( 1 ) );
 			} );
 		} );
 
-		$( window ).on( 'hashchange', function () {
+		$( window ).on( 'hashchange', () => {
 			tabName = window.location.hash.replace( '#tab=', '' );
 			tabName = decodeURI( tabName );
 			tabs.setTabPanel( tabName );
 		} );
 
 		/* follow a # anchor to a tab OR a heading */
-		var curHash = window.location.hash;
+		const curHash = window.location.hash;
 		if ( curHash.indexOf( '#tab=' ) === 0 ) {
 			// remove the fragment identifier, we're using it for the name of the tab.
 			tabName = curHash.replace( '#tab=', '' );
@@ -62,9 +62,9 @@
 	 * This has to be done in JS and not CSS, because the name of each tab (i.e., the
 	 * section header) has become separated from the tab contents.
 	 */
-	var defaultPrinter = window.print;
+	const defaultPrinter = window.print;
 	window.print = function () {
-		var $actualContent, $section, $wrapper = null;
+		let $actualContent, $section, $wrapper = null;
 		$actualContent = $( '#headertabs' ).clone( true );
 		$( '#headertabs' ).empty();
 		$actualContent.find( '.oo-ui-tabOptionWidget > .oo-ui-labelElement-label' ).each(
@@ -89,13 +89,13 @@
 	 * when wgHeaderTabsNoTabsInToc is set to true
 	 */
 	if ( mw.config.get( 'wgHeaderTabsNoTabsInToc' ) || $( '#noTabTOC' ).length ) {
-		var tabsArray = [];
+		const tabsArray = [];
 		$( '.oo-ui-tabPanelLayout' ).each( function () {
 			tabsArray.push( $( this ).attr( 'id' ) );
 		} );
 		$( '.toc' ).find( 'li' ).each( function () {
-			var id = $( this ).find( 'a' ).attr( 'href' ).replace( '#', '' );
-			if ( tabsArray.indexOf( id ) !== -1 ) {
+			const id = $( this ).find( 'a' ).attr( 'href' ).replace( '#', '' );
+			if ( tabsArray.includes( id ) ) {
 				$( this ).remove();
 			}
 		} );
@@ -110,7 +110,7 @@
 	 * tag to be a sub heading of the last known header tab <h1> (=).
 	 */
 	$( '#toc' ).find( 'li.toclevel-2' ).each( function () {
-		var id = $( this ).find( 'a' ).attr( 'href' );
+		const id = $( this ).find( 'a' ).attr( 'href' );
 		if ( $( '#headertabs' ).find( tabNameEscape( id ) ).length === 0 ) {
 			$( this ).appendTo( '#toc ul:first' );
 		}
@@ -119,13 +119,13 @@
 	$( '.tocnumber' ).remove();
 
 	// Change the TOC link of each header tab from #id to point to #tab=id
-	var tabsList = [];
+	const tabsList = [];
 	$( '.oo-ui-tabPanelLayout' ).each( function () {
 		tabsList.push( tabNameEscape( $( this ).attr( 'id' ) ) );
 	} );
 	$( '.toc' ).find( 'li' ).each( function () {
-		var id = $( this ).find( 'a' ).first().attr( 'href' ).replace( '#', '' );
-		if ( tabsList.indexOf( tabNameEscape( id ) ) !== -1 ) {
+		const id = $( this ).find( 'a' ).first().attr( 'href' ).replace( '#', '' );
+		if ( tabsList.includes( tabNameEscape( id ) ) ) {
 			$( this ).find( 'a' ).first().attr( 'href', '#tab=' + id );
 		}
 	} );
