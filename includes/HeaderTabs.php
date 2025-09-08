@@ -20,7 +20,6 @@ class HeaderTabs {
 	public static bool $isUsed = false;
 
 	/**
-	 *
 	 * @param string $input
 	 * @param array $args
 	 * @param \Parser $parser
