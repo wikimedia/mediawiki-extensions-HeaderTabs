@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Armin1392",
+			"LordProfo",
 			"ZxxZxxZ"
 		]
 	},
-	"headertabs-desc": "اضافه کردن تب‌ها به جدا کردن بخش‌های سطح بالای صفحه",
+	"headertabs-desc": "زبانه‌هایی را به صفحه می‌افزاید که بخش‌های سطح بالا را از هم جدا می‌کنند",
 	"headertabs-edittab": "ویرایش",
 	"headertabs-edittab-hint": "زبانهٔ ویرایش"
 }
