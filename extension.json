@@ -41,6 +41,7 @@
 	"Hooks": {
 		"ParserFirstCallInit": "HeaderTabsHooks::registerParserFunctions",
 		"ParserAfterTidy": "HeaderTabsHooks::replaceFirstLevelHeaders",
+		"ContentAlterParserOutput": "HeaderTabsHooks::onContentAlterParserOutput",
 		"ResourceLoaderGetConfigVars": "HeaderTabsHooks::addConfigVarsToJS",
 		"EditPageGetDiffContent": "HeaderTabsHooks::onEditPageGetDiffContent",
 		"EditPageGetPreviewContent": "HeaderTabsHooks::onEditPageGetPreviewContent"

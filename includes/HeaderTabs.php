@@ -41,7 +41,28 @@ class HeaderTabs {
 	}
 
 	/**
-	 * @param Parser &$parser
+	 * Parsoid wraps every section in <section> elements, nested by heading level.
+	 * Tabs are built by splitting the HTML at the first-level headings, so remove
+	 * the wrappers from the tabbed part, and the matching closing tags that follow
+	 * the <headertabs/> marker, keeping the HTML balanced.
+	 *
+	 * @param string $above HTML before the marker
+	 * @param string $below HTML after the marker
+	 * @return string[] [ $above, $below ]
+	 */
+	public static function unwrapParsoidSections( $above, $below ) {
+		$open = preg_match_all( '/<section\b[^>]*>/', $above );
+		$close = preg_match_all( '/<\/section>/', $above );
+		$above = preg_replace( '/<section\b[^>]*>|<\/section>/', '', $above );
+		$unclosed = $open - $close;
+		if ( $unclosed > 0 ) {
+			$below = preg_replace( '/<\/section>/', '', $below, $unclosed );
+		}
+		return [ $above, $below ];
+	}
+
+	/**
+	 * @param Parser|Title &$parser The parser (legacy parser) or the page's title (Parsoid)
 	 * @param string &$text
 	 * @param string[] $aboveandbelow
 	 */
@@ -49,11 +70,20 @@ class HeaderTabs {
 		global $wgHeaderTabsRenderSingleTab, $wgHeaderTabsDefaultFirstTab,
 			$wgHeaderTabsEditTabLink;
 
+		$title = $parser instanceof Title ? $parser : Title::castFromPageReference( $parser->getPage() );
 		$origAbove = $aboveandbelow[0];
 		$below = $aboveandbelow[1];
 
+		// Parsoid: <h1 id="Tab_name" data-mw-wikitext="">, no data-mw-anchor and no mw-headline span
+		$isParsoid = strpos( $origAbove, 'data-mw-anchor' ) === false
+			&& strpos( $origAbove, 'mw-headline' ) === false
+			&& preg_match( '/<h1\b[^>]*\bid="/', $origAbove );
 		$hasNewStructure = strpos( $origAbove, 'data-mw-anchor' ) !== false;
-		if ( $hasNewStructure ) {
+		if ( $isParsoid ) {
+			$hasEditSections = false;
+			$tabpatternsplit = '/(<h1\b[^>]*\bid="[^"]+"[^>]*>.*?<\/h1>)/s';
+			$tabpatternmatch = '/<h(1)\b[^>]*\bid="([^"]+)"[^>]*>(.*?)<\/h1>/s';
+		} elseif ( $hasNewStructure ) {
 			// MW 1.42+ or so
 			$hasEditSections = strpos( $origAbove, 'mw:editsection' ) !== false;
 			if ( $hasEditSections ) {
@@ -76,9 +106,11 @@ class HeaderTabs {
 		if ( $wgHeaderTabsDefaultFirstTab !== false && $parts[0] !== '' ) {
 			// add the default header
 			$firstTabID = str_replace( ' ', '_', $wgHeaderTabsDefaultFirstTab );
-			if ( $hasNewStructure ) {
+			if ( $isParsoid ) {
+				$headline = "<h1 id=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab</h1>";
+			} elseif ( $hasNewStructure ) {
 				// MW 1.42+ or so
-				$pageName = $parser->getTitle()->getFullText();
+				$pageName = $title->getFullText();
 				if ( $hasEditSections ) {
 					$headline = "<h1 data-mw-anchor=\"$firstTabID\">$wgHeaderTabsDefaultFirstTab" .
 						"<mw:editsection page=\"$pageName\">$wgHeaderTabsDefaultFirstTab</mw:editsection></h1>";
@@ -127,10 +159,15 @@ class HeaderTabs {
 			$tabtitle = $matches[3];
 
 			// toc and section counter
-			$subpatternsplit = '/(<h[2-6].+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]*>' .
-				'\s*.*?\s*<\/span>.*?<\/h[2-6]>)/';
-			$subpatternmatch = '/<h([2-6]).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]*>' .
-				'\s*(.*?)\s*<\/span>.*?<\/h[2-6]>/';
+			if ( $isParsoid || $hasNewStructure ) {
+				$subpatternsplit = '/(<h[2-6]\b[^>]*>.*?<\/h[2-6]>)/s';
+				$subpatternmatch = '/<h([2-6])\b[^>]*>(.*?)<\/h[2-6]>/s';
+			} else {
+				$subpatternsplit = '/(<h[2-6].+?<span[^>]+class="mw-headline"[^>]+id="[^"]+"[^>]*>' .
+					'\s*.*?\s*<\/span>.*?<\/h[2-6]>)/';
+				$subpatternmatch = '/<h([2-6]).+?<span[^>]+class="mw-headline"[^>]+id="([^"]+)"[^>]*>' .
+					'\s*(.*?)\s*<\/span>.*?<\/h[2-6]>/';
+			}
 			$subparts = preg_split( $subpatternsplit, $content, -1, PREG_SPLIT_DELIM_CAPTURE );
 			if ( ( count( $subparts ) % 2 ) !== 0 ) {
 				// don't need anything above first header
@@ -155,7 +192,7 @@ class HeaderTabs {
 		foreach ( $tabs as $i => $tab ) {
 			$editHTML = '';
 			if ( $wgHeaderTabsEditTabLink ) {
-				$url = $parser->getTitle()->getInternalURL( [ 'action' => 'edit', 'section' => $tab['section'] ] );
+				$url = $title->getInternalURL( [ 'action' => 'edit', 'section' => $tab['section'] ] );
 				$editLink = Html::element( 'a', [ 'href' => $url ], wfMessage( 'headertabs-edittab' )->text() );
 				$editHTML = Html::rawElement( 'span', [ 'class' => 'ht-editsection', 'id' => 'edittab' ],
 					"[$editLink]" );
