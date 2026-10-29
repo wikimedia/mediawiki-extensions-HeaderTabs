@@ -200,7 +200,7 @@ class HeaderTabs {
 			$tabPanels[] = new OOUI\TabPanelLayout( $tab['tabid'], [
 				'classes' => [ 'section-' . $tab['section'] ],
 				'label' => $tab['title'],
-				'id' => $tab['tabid'],
+				'id' => 'ht-tab-' . $tab['tabid'],
 				'content' => new OOUI\FieldsetLayout( [
 					// 'label' => $tab['title'],
 					'items' => [

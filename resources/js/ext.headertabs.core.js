@@ -91,7 +91,7 @@
 	if ( mw.config.get( 'wgHeaderTabsNoTabsInToc' ) || $( '#noTabTOC' ).length ) {
 		const tabsArray = [];
 		$( '.oo-ui-tabPanelLayout' ).each( function () {
-			tabsArray.push( $( this ).attr( 'id' ) );
+			tabsArray.push( $( this ).attr( 'id' ).replace( /^ht-tab-/, '' ) );
 		} );
 		$( '.toc' ).find( 'li' ).each( function () {
 			const id = $( this ).find( 'a' ).attr( 'href' ).replace( '#', '' );
@@ -121,7 +121,7 @@
 	// Change the TOC link of each header tab from #id to point to #tab=id
 	const tabsList = [];
 	$( '.oo-ui-tabPanelLayout' ).each( function () {
-		tabsList.push( tabNameEscape( $( this ).attr( 'id' ) ) );
+		tabsList.push( tabNameEscape( $( this ).attr( 'id' ).replace( /^ht-tab-/, '' ) ) );
 	} );
 	$( '.toc' ).find( 'li' ).each( function () {
 		const id = $( this ).find( 'a' ).first().attr( 'href' ).replace( '#', '' );
